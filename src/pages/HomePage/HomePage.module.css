@@ -1,0 +1,32 @@
+.container {
+    background: #fff;
+    max-width: 375px;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+
+.hero {
+    background-color: #050505;
+    width: 359px;
+    border-radius: 20px;
+}
+
+.title {
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.42857;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #fff;
+}
