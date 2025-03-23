@@ -1,0 +1,186 @@
+.categoryCard {
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(5, 5, 5, 0.2);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+
+@media screen and (min-width: 768px) {
+    .categoryCard {
+        border-radius: 30px;
+        height: 369px;
+    }
+}
+
+.categoryCard.vegan {
+    background-image: url("/src/img/categories/vegan.jpg");
+}
+
+.categoryCard.vegetarian {
+    background-image: url("/src/img/categories/vegetarian.jpg");
+}
+
+.categoryCard.starter {
+    background-image: url("/src/img/categories/starter.jpg");
+}
+
+.categoryCard.side {
+    background-image: url("/src/img/categories/side.jpg");
+}
+
+.categoryCard.seafood {
+    background-image: url("/src/img/categories/seafood.jpg");
+}
+
+.categoryCard.pasta {
+    background-image: url("/src/img/categories/pasta.jpg");
+}
+
+.categoryCard.pork {
+    background-image: url("/src/img/categories/pork.jpg");
+}
+
+.categoryCard.miscellaneous {
+    background-image: url("/src/img/categories/miscellaneous.jpg");
+}
+
+.categoryCard.goat {
+    background-image: url("/src/img/categories/goat.jpg");
+}
+
+.categoryCard.lamb {
+    background-image: url("/src/img/categories/lamb.jpg");
+}
+
+.categoryCard.beef {
+    background-image: url("/src/img/categories/beef.jpg");
+}
+
+.categoryCard.breakfast {
+    background-image: url("/src/img/categories/breakfast.jpg");
+}
+
+.categoryCard.dessert {
+    background-image: url("/src/img/categories/desserts.jpg");
+}
+
+@media only screen and (min-resolution: 2dppx) {
+    .categoryCard.vegan {
+        background-image: url("/src/img/categories/vegan@x2.jpg");
+    }
+
+    .categoryCard.vegetarian {
+        background-image: url("/src/img/categories/vegetarian@x2.jpg");
+    }
+
+    .categoryCard.starter {
+        background-image: url("/src/img/categories/starter@x2.jpg");
+    }
+
+    .categoryCard.side {
+        background-image: url("/src/img/categories/side@x2.jpg");
+    }
+
+    .categoryCard.seafood {
+        background-image: url("/src/img/categories/seafood@x2.jpg");
+    }
+
+    .categoryCard.pasta {
+        background-image: url("/src/img/categories/pasta@x2.jpg");
+    }
+
+    .categoryCard.pork {
+        background-image: url("/src/img/categories/pork@x2.jpg");
+    }
+
+    .categoryCard.miscellaneous {
+        background-image: url("/src/img/categories/miscellaneous@x2.jpg");
+    }
+
+    .categoryCard.goat {
+        background-image: url("/src/img/categories/goat@x2.jpg");
+    }
+
+    .categoryCard.lamb {
+        background-image: url("/src/img/categories/lamb@x2.jpg");
+    }
+
+    .categoryCard.beef {
+        background-image: url("/src/img/categories/beef@x2.jpg");
+    }
+
+    .categoryCard.breakfast {
+        background-image: url("/src/img/categories/breakfast@x2.jpg");
+    }
+
+    .categoryCard.dessert {
+        background-image: url("/src/img/categories/desserts@x2.jpg");
+    }
+}
+
+.cardContent {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .cardContent {
+        bottom: 24px;
+        left: 24px;
+    }
+}
+
+.cardTitle {
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.02em;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #fff;
+    border-radius: 30px;
+    padding: 8px 12px;
+    height: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .cardTitle {
+        font-size: 20px;
+        padding: 10px 14px;
+        height: 44px;
+    }
+}
+
+.iconWrapper {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 11px;
+    width: 40px;
+    height: 40px;
+}
+
+.iconWrapper:hover {
+    cursor: pointer;
+    border-color: #050505;
+    background-color: #050505;
+}
+
+@media screen and (min-width: 768px) {
+    .iconWrapper {
+        padding: 13px;
+        width: 44px;
+        height: 44px;
+    }
+}

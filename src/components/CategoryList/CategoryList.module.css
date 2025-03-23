@@ -1,0 +1,35 @@
+.categoriesList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.categoriesListItem {
+    width: 343px;
+}
+
+@media screen and (min-width: 768px) {
+    .categoriesList {
+        flex-direction: row;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .categoriesListItem.tw1 {
+        width: 342px;
+    }
+
+    .categoriesListItem.tw2 {
+        width: 704px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .categoriesListItem.dw1 {
+        width: 325px;
+    }
+
+    .categoriesListItem.dw2 {
+        width: 590px;
+    }
+}
