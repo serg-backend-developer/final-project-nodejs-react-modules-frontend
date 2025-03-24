@@ -7,8 +7,6 @@ import dishImg2x from '../img/hero-image-2x.png';
 const Hero = () => {
   return (
     <section className={styles.hero}>
-      <header className={styles.header}>foodies</header>
-
       <h1 className={styles.title}>IMPROVE YOUR CULINARY TALENTS</h1>
 
       <p className={styles.subtitle}>
