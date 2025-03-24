@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import categoryReducer from './categorySlice';
+import categoryReducer from './categories/categorySlice';
 import areasReducer from './areaSlice';
 import ingredientsReducer from './ingredientSlice';
 
