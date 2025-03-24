@@ -1,8 +1,8 @@
 import styles from './Hero.module.css';
-import heroImg1x from '../img/dish.png';
-import heroImg2x from '../img/dish-2x.png';
-import dishImg1x from '../img/hero-image.png';
-import dishImg2x from '../img/hero-image-2x.png';
+import heroImg1x from '../../img/dish.png';
+import heroImg2x from '../../img/dish-2x.png';
+import dishImg1x from '../../img/hero-image.png';
+import dishImg2x from '../../img/hero-image-2x.png';
 
 const Hero = () => {
   return (
