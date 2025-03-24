@@ -1,0 +1,134 @@
+.custom-select-container {
+    position: relative;
+    width: 343px;
+}
+
+@media (min-width: 768px) {
+    .custom-select-container {
+        width: 345px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .custom-select-container {
+        width: 330px;
+    }
+}
+
+.custom-select {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #bfbebe;
+    border-radius: 30px;
+    padding: 16px 18px;
+    width: 343px;
+    height: 48px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .custom-select {
+        width: 345px;
+        height: 56px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .custom-select {
+        width: 330px;
+    }
+}
+
+.arrow-icon { 
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 15px;
+    top: 15px;
+}
+
+@media (min-width: 768px) {
+    .arrow-icon {
+        top: 19px;
+    }
+}
+
+.custom-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    margin-top: 2px;
+    padding: 16px 18px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.42857;
+    letter-spacing: -0.02em;
+    color: #050505;
+    max-height: 182px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    z-index: 100;
+}
+
+@media (min-width: 768px) {
+    .custom-options {
+        font-size: 16px;
+        line-height: 1.5;
+        max-height: 326px;
+    }
+}
+
+.custom-options::-webkit-scrollbar {
+    display: none;
+}
+
+.custom-options li {
+    margin-bottom: 6px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.placeholder-text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.42857;
+    letter-spacing: -0.02em;
+    color: #bfbebe;
+}
+
+.selected-text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.42857;
+    letter-spacing: -0.02em;
+    color: #050505;
+}
+
+.loading-error-text {
+    padding: 10px;
+    text-align: center;
+    color: #bfbebe;
+}
+
+@media (min-width: 768px) {
+    .placeholder-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .selected-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .loading-error-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
