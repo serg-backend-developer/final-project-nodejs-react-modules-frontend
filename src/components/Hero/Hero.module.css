@@ -2,9 +2,9 @@
   background-color: #050505;
   color: #ffffff;
   text-align: center;
-  padding: 20px 16px;
+  padding: 140px 0 100px;
   border-radius: 0 0 20px 20px;
-  margin-bottom: 64px;
+  margin: 0 8px;
 }
 
 .title {
@@ -17,7 +17,6 @@
   color: #ffffff;
   max-width: 327px;
   margin: 0 auto;
-  margin-top: 140px;
 }
 
 .subtitle {
@@ -54,7 +53,6 @@
 .images {
   width: 100%;
   max-width: 375px;
-  margin: 29.5px auto 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,15 +73,14 @@
 
 @media (min-width: 768px) {
   .hero {
-    padding: 20px 29px;
-    margin-bottom: 100px;
+    padding: 151px 0 100px;
+    margin: 0 16px;
   }
 
   .title {
     font-size: 70px;
     line-height: 70px;
-    max-width: 678px;
-    margin-top: 151px;
+    min-width: 678px;
   }
 
   .subtitle {
@@ -101,7 +98,6 @@
   .images {
     max-width: 768px;
     margin-top: 40px;
-    margin-bottom: 90px;
   }
 
   .imageSecondary {
@@ -118,20 +114,18 @@
 
 @media (min-width: 1440px) {
   .hero {
-    padding: 20px 60px;
-    margin-bottom: 120px;
+    padding: 88px 0 82px;
+    margin: 0 20px;
   }
 
   .title {
     font-size: 90px;
     line-height: 90px;
     max-width: 875px;
-    margin-top: 88px;
   }
 
   .images {
     max-width: 1440px;
-    margin: 40px auto 82px;
   }
 
   .imageMain {

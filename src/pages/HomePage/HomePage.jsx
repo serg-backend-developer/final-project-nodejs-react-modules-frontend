@@ -4,10 +4,10 @@ import Categories from "../../components/Categories/Categories";
 
 const HomePage = () => {
   return (
-    <div className={styles.contentWrapper}>
+    <>
       <Hero />
       <Categories />
-    </div>
+    </>
   );
 };
 
