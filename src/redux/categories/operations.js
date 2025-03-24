@@ -1,16 +1,19 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCategories } from "../../api/categories.js";
+
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { toast } from "react-hot-toast";
 
-export const loadCategories = createAsyncThunk(
-  "categories/loadCategories",
-  async (thunkAPI) => {
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+export const fetchCategories = createAsyncThunk(
+  'categories/fetchCategories',
+  async (ThunkAPI) => {
     try {
-      const items = await fetchCategories();
-      return { items };
+      const response = await axios.get('https://project-team-04.onrender.com/api/categories');
+      return response.data;
     } catch (error) {
       toast.error("Failed to load categories!");
-      return thunkAPI.rejectWithValue(error.message);
+      return ThunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );

@@ -1,8 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import categorySlice from "./categories/slice.js";
+import { configureStore } from '@reduxjs/toolkit';
+import categoryReducer from './categories/categorySlice';
+import areasReducer from './areaSlice';
+import ingredientsReducer from './ingredientSlice';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    categories: categorySlice,
+    categories: categoryReducer,
+    areas: areasReducer,
+    ingredients: ingredientsReducer,
   },
 });
+
+export default store;

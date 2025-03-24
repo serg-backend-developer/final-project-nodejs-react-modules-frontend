@@ -2,10 +2,9 @@ import clsx from "clsx";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import css from "./CategoryList.module.css";
 import { useSelector } from "react-redux";
-import { selectCategories } from "../../redux/categories/slice";
 
 const CategoryList = () => {
-  const categories = useSelector(selectCategories);
+  const categories = useSelector((state) => state.categories.list);
   const provideTabletClass = (index) => {
     return index % 5 === 2 ? "tw2" : "tw1";
   };

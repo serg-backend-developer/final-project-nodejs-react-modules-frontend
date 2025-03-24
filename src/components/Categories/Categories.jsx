@@ -3,17 +3,18 @@ import { useDispatch } from "react-redux";
 import MainTitle from "../MainTitle/MainTitle.jsx";
 import Subtitle from "../Subtitle/Subtitle.jsx";
 import CategoryList from "../CategoryList/CategoryList";
-import { loadCategories } from "../../redux/categories/operations";
+import css from "./Categories.module.css";
+import { fetchCategories } from "../../redux/categories/operations.js";
 
 const Categories = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadCategories());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (
-    <section>
+    <section className={css["category-section"]}>
       <MainTitle>Categories</MainTitle>
       <Subtitle>
         Discover a limitless world of culinary possibilities and enjoy exquisite
