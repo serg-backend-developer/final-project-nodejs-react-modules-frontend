@@ -1,4 +1,4 @@
-import Hero from "../../components/Hero";
+import Hero from "../../components/Hero/Hero";
 import styles from "./HomePage.module.css"
 
 const HomePage = () => {
