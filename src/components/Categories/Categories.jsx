@@ -4,6 +4,7 @@ import MainTitle from "../MainTitle/MainTitle.jsx";
 import Subtitle from "../Subtitle/Subtitle.jsx";
 import CategoryList from "../CategoryList/CategoryList";
 import { loadCategories } from "../../redux/categories/operations";
+import css from "./Categories.module.css";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Categories = () => {
   }, [dispatch]);
 
   return (
-    <section>
+    <section className={css["category-section"]}>
       <MainTitle>Categories</MainTitle>
       <Subtitle>
         Discover a limitless world of culinary possibilities and enjoy exquisite
