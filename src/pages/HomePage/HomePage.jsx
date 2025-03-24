@@ -7,7 +7,7 @@ const HomePage = () => {
     <div className={styles.contentWrapper}>
       <Hero />
       <Categories />
-    </div>        
+    </div>
   );
 };
 
