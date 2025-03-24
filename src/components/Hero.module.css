@@ -2,39 +2,27 @@
   background-color: #050505;
   color: #ffffff;
   text-align: center;
-  font-family: 'Mulish', sans-serif;
   padding: 20px 16px;
-  border-radius: 20px;
-}
-
-.header {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1;
-  color: #ffffff;
-  text-align: left;
-  width: 100%;
-  max-width: 327px;
-  height: 38px;
-  margin: 16px auto 140px;
+  border-radius: 0 0 20px 20px;
 }
 
 .title {
   font-weight: 800;
   font-size: 40px;
-  line-height: 40px;
+  line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   text-align: center;
   color: #ffffff;
   max-width: 327px;
   margin: 0 auto;
+  margin-top: 140px;
 }
 
 .subtitle {
   font-weight: 500;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.42857;
   letter-spacing: -0.02em;
   color: #ffffff;
   max-width: 326px;
@@ -44,7 +32,7 @@
 .button {
   font-weight: 700;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.42857;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   padding: 12px 24px;
@@ -65,7 +53,7 @@
 .images {
   width: 100%;
   max-width: 375px;
-  margin: 25px auto 100px;
+  margin: 29.5px auto 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,30 +72,16 @@
   border-radius: 30px;
 }
 
-@media (min-width: 375px) {
-  .title {
-    font-size: 50px;
-    line-height: 50px;
-    max-width: 340px;
-  }
-}
-
 @media (min-width: 768px) {
   .hero {
-    padding: 20px 32px;
-  }
-
-  .header {
-    max-width: 672px;
-    height: 46px;
-    margin: 20px auto;
+    padding: 20px 29px;
   }
 
   .title {
     font-size: 70px;
     line-height: 70px;
     max-width: 678px;
-    margin-top: 217px;
+    margin-top: 151px;
   }
 
   .subtitle {
@@ -145,27 +119,11 @@
     padding: 20px 60px;
   }
 
-  .header {
-    max-width: 1280px;
-    height: 46px;
-  }
-
   .title {
     font-size: 90px;
     line-height: 90px;
     max-width: 875px;
-    margin-top: 154px;
-  }
-
-  .subtitle {
-    font-size: 16px;
-    line-height: 24px;
-    margin-top: 20px;
-  }
-
-  .button {
-    padding: 16px 32px;
-    margin-top: 30px;
+    margin-top: 88px;
   }
 
   .images {
@@ -175,10 +133,5 @@
 
   .imageMain {
     margin-top: 65px;
-  }
-
-  .imageSecondary {
-    width: 302px;
-    height: 273px;
   }
 }
