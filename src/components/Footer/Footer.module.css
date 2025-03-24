@@ -4,7 +4,9 @@
   align-items: center;
   gap: 40px;
   width: 100%;
-  padding: 20px 0;
+  max-width: 375px;
+  padding: 0 16px;
+  margin: 0 auto;
 }
 
 .footerContent {
@@ -13,7 +15,6 @@
   align-items: center;
   width: 100%;
   max-width: 1440px;
-  padding: 0 10px;
 }
 
 .footerLogo {
@@ -73,10 +74,10 @@
   text-align: center;
 }
 
-
 @media (min-width: 768px) {
-  .footerContent {
-    padding: 0 16px;
+  .footerWrapper {
+    max-width: 768px;
+    padding: 0 32px;
   }
 
   .footerLogo {
@@ -102,9 +103,9 @@
   }
 }
 
-
-@media (min-width: 1200px) {
-  .footerContent {
-    padding: 0 20px;
+@media (min-width: 1440px) {
+  .footerWrapper {
+    max-width: 1440px;
+    padding: 0 80px;
   }
 }

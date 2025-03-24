@@ -1,17 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-export const fetchCategories = createAsyncThunk(
-  'categories/fetchCategories',
-  async (ThunkAPI) => {
-    try {
-      const response = await axios.get('https://project-team-04.onrender.com/api/categories');
-      return response.data;
-    } catch (error) {
-        return ThunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCategories } from './operations';
 
 const categorySlice = createSlice({
   name: 'categories',

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCategories, selectCategory } from '../../redux/categorySlice';
+import { selectCategory } from '../../redux/categories/categorySlice';
 import css from "./CategoryDropdown.module.css";
+import { fetchCategories } from '../../redux/categories/operations';
 
 const CategoryDropdown = () => {
   const dispatch = useDispatch();
