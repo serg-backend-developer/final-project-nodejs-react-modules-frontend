@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import styles from './SignInModal.module.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const SignInModal = ({ isOpen, onClose }) => {
+const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -16,44 +15,45 @@ const SignInModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={styles.signInModal}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className={styles.title}>Sign In</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label className={styles.label}>
-          Email
+        <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email*"
+          className={styles.input}
+          required
+        />
+        <div className={styles.passwordInputWrapper}>
           <input
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Password"
             className={styles.input}
             required
           />
-        </label>
-        <label className={styles.label}>
-          Password
-          <div className={styles.passwordInputWrapper}>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className={styles.input}
-              required
-            />
-            <button
-              type="button"
-              className={styles.togglePassword}
-              onClick={() => setShowPassword(prev => !prev)}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-          </div>
-        </label>
-        <button type="submit" className={styles.submitButton}>Log In</button>
+          <button
+            type="button"
+            className={styles.togglePassword}
+            onClick={() => setShowPassword(prev => !prev)}
+          >
+            {showPassword ? <svg width="18px" height="18px"><use href='/img/icons.svg#icon-eye'></use></svg> : <svg width="18px" height="18px"><use href='/img/icons.svg#icon-eye-off'></use></svg>}
+          </button>
+        </div>
+        <button type="submit" className={styles.submitButton}>Sign in</button>
       </form>
       <p className={styles.footerText}>
-        Don't have an account? <a href="#signup">Sign Up</a>
+        Don't have an account?{' '}
+        <button
+          type="button"
+          className={styles.switchLink}
+          onClick={onSwitchToSignUp}
+        >
+          Create an account
+        </button>
       </p>
     </Modal>
   );

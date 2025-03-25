@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
-import { FaTimes } from 'react-icons/fa';
 
 const Modal = ({ isOpen, onClose, children, className = '' }) => {
   if (!isOpen) return null;
@@ -9,7 +8,7 @@ const Modal = ({ isOpen, onClose, children, className = '' }) => {
     <div className={styles.overlay} onClick={onClose}>
       <div className={`${styles.modal} ${className}`} onClick={e => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={onClose}>
-          <FaTimes />
+          <svg width="24px" height="24px"><use href='/img/icons.svg#icon-x'></use></svg>
         </button>
         {children}
       </div>
