@@ -6,7 +6,7 @@
 }
 
 .button_back {
-	color: var(--black);
+	color: var(--color-black);
 	font-size: 14px;
 	font-weight: 700;
 	text-transform: uppercase;

@@ -2,6 +2,10 @@
   --text-headers-color: #050505;
   --text-default-color: #1a1a1a;
   --categories-name-background: rgba(255, 255, 255, 0.2);
+
+
+  --color-gray: #bfbebe;
+  --color-black: #000000;
 }
 
 body {
