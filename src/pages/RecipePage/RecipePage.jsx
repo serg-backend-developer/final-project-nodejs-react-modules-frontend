@@ -1,5 +1,7 @@
 import PathInfo from "../../components/RecipePage/PathInfo/PathInfo";
-import RecipeInfo from "../../components/RecipePage/RecipeInfo/RecipeInfo";
+import RecipeIngredients from "../../components/RecipePage/RecipeIngredients/RecipeIngredients";
+import RecipeMainInfo from "../../components/RecipePage/RecipeMainInfo/RecipeMainInfo";
+import RecipePreparation from "../../components/RecipePage/RecipePreparation/RecipePreparation";
 // import PopularRecipes from "../../components/RecipePage/PopularRecipes";
 import style from "./RecipePage.module.css"; // імпорт стилів
 
@@ -32,13 +34,21 @@ const mockRecipe = {
 
 const RecipePage = () => {
   return (
-    <main className={style.page}>
+    <main className="container">
       <section className={style.breadcrumbs}>
         <PathInfo />
       </section>
 
       <section className={style.recipeSection}>
-        <RecipeInfo recipe={mockRecipe} />
+        <RecipeMainInfo recipe={mockRecipe} />
+      </section>
+
+      <section className={style.ingredientsSection}>
+        <RecipeIngredients ingredients={mockRecipe.ingredients}/>
+      </section>
+
+      <section className={style.recipeSection}>
+        <RecipePreparation instructions={mockRecipe.instructions} />
       </section>
 
       {/* <section className={style.popularSection}>

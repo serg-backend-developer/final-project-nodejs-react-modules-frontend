@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import SharedLayout from './SharedLayout/SharedLayout';
 import AppLayout from "./AppLayout/AppLayout";
+import  "./App.module.css"
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RecipePage = lazy(() => import("../pages/RecipePage/RecipePage"));

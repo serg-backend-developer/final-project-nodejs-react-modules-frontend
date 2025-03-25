@@ -1,14 +1,12 @@
-const RecipePreparation = ({ instructions, isFavorite }) => {
-  const handleClick = () => {
-    // Тут буде запит до бекенду: додати або видалити з улюблених
-  };
+import styles from './RecipePreparation.module.css';
 
+const RecipePreparation = ({ instructions, isFavorite }) => {
   return (
-    <section>
-      <h2>Recipe Preparation</h2>
-      <p>{instructions}</p>
-      <button type="button" onClick={handleClick}>
-        {isFavorite ? "Remove from favorites" : "Add to favorites"}
+    <section className={styles.preparationSection}>
+      <h2 className={styles.title}>Recipe Preparation</h2>
+      <p className={styles.instructions}>{instructions}</p>
+      <button type="button" className={styles.favoriteBtn}>
+        {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       </button>
     </section>
   );

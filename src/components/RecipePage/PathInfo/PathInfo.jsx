@@ -1,15 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import styles from "./PathInfo.module.css";
 
-const PathInfo = () => {
-  const location = useLocation();
-  const pageTitle = location.pathname.split("/").pop().replace(/-/g, " ");
-
+const PathInfo = ({ title }) => {
   return (
-    <nav aria-label="breadcrumb">
-      <p>
-        <Link to="/">Home</Link> / {pageTitle}
-      </p>
-    </nav>
+    <div className={styles.wrapper}>
+      <Link to="/" className={styles.home}>HOME</Link>
+      <span className={styles.separator}>/</span>
+      <span className={styles.current}>{title}</span>
+    </div>
   );
 };
 

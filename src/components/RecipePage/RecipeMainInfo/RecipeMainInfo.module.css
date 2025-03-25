@@ -1,0 +1,84 @@
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: var(--font-family);
+font-weight: 800;
+font-size: 18px;
+line-height: 133%;
+letter-spacing: -0.02em;
+text-transform: uppercase;
+color: #050505
+}
+
+.tags {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.43;
+  padding: 10px;
+  border: 1px solid #bfbebe;
+  border-radius: 20px;
+  color: #bfbebe;
+  
+}
+
+.description {
+  font-family: var(--font-family);
+font-weight: 500;
+font-size: 14px;
+line-height: 143%;
+letter-spacing: -0.02em;
+color: #bfbebe;
+  margin-bottom: 20px;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  color: #bfbebe;
+font-weight: 700;
+font-size: 14px;
+line-height: 143%;
+letter-spacing: -0.02em;
+}
+
+.textLabel{
+  color: #BFBEBE;
+  ;
+}
+
+.avatar {
+  border-radius: 30px;
+width: 32px;
+height: 32px;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 12px;
+  color: #bfbebe;
+}
+
+.authorBtn {
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 12px;
+  color: #050505;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
