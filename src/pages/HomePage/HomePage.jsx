@@ -21,7 +21,7 @@ const HomePage = () => {
     setSignUpOpen(false);
     setSignInOpen(true);
   };
-
+ // This function closes the SignIn modal and opens the SignUp modal.
   const switchToSignUp = () => {
     setSignUpOpen(true);
     setSignInOpen(false);

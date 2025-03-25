@@ -1,39 +1,44 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import styles from './SignInModal.module.css';
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
 const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Логика входа
-    console.log('Sign In:', { email, password });
+  const SignInSchema = Yup.object().shape({
+    email: Yup.string().email("Must be a valid email.").required("Email is required."),
+    password: Yup.string().required("Password is required."),
+  })
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: yupResolver(SignInSchema)});
+
+  const onSubmit = (data) => {
+    console.log(data)
+    reset();
     onClose();
-  };
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className={styles.title}>Sign In</h2>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <input
+          {...register("email")}
           type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
           placeholder="Email*"
           className={styles.input}
-          required
         />
+        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         <div className={styles.passwordInputWrapper}>
           <input
+            {...register("password")}
             type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={e => setPassword(e.target.value)}
             placeholder="Password"
             className={styles.input}
-            required
           />
           <button
             type="button"

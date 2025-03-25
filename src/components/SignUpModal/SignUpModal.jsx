@@ -1,47 +1,52 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import styles from './SignUpModal.module.css';
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
-const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUpModalTest = ({ isOpen, onClose, onSwitchToSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Sign Up:', { name, email, password });
+  const SignUpSchema = Yup.object().shape({
+    name: Yup.string().min(2, "Name must contain at least 2 characters.").required("Name is required."),
+    email: Yup.string().email("Must be a valid email.").required("Email is required."),
+    password: Yup.string().min(6, "Password must contain at least 6 characters.").required("Password is required."),
+  })
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: yupResolver(SignUpSchema)});
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
     onClose();
-  };
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={styles.signUpModal}>
       <h2 className={styles.title}>Sign Up</h2>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form} id="SignUp">
+        {errors.name && <p className={styles.error}>{errors.name.message}</p>}
         <input
+          {...register("name")}
           type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
           placeholder="Name*"
           className={styles.input}
-          required
         />
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <input
+          {...register("email")}
           type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
           placeholder="Email*"
           className={styles.input}
-          required
         />
+        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         <div className={styles.passwordInputWrapper}>
           <input
+            {...register("password")}
             type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={e => setPassword(e.target.value)}
             placeholder="Password"
             className={styles.input}
-            required
           />
           <button
             type="button"
@@ -67,4 +72,4 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
   );
 };
 
-export default SignUpModal;
+export default SignUpModalTest;
