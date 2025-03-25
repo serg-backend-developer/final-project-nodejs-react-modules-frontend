@@ -4,9 +4,13 @@ import styles from './SignUpModal.module.css';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../redux/auth/operations';
 
-const SignUpModalTest = ({ isOpen, onClose, onSwitchToSignIn }) => {
+const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.auth);
 
   const SignUpSchema = Yup.object().shape({
     name: Yup.string().min(2, "Name must contain at least 2 characters.").required("Name is required."),
@@ -16,11 +20,15 @@ const SignUpModalTest = ({ isOpen, onClose, onSwitchToSignIn }) => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: yupResolver(SignUpSchema)});
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-    onClose();
-  }
+  const onSubmit = async (data) => {
+    try {
+      await dispatch(registerUser(data)).unwrap();
+      reset();
+      onClose();
+    } catch (err) {
+      console.error('Registration failed:', err);
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={styles.signUpModal}>
@@ -56,7 +64,9 @@ const SignUpModalTest = ({ isOpen, onClose, onSwitchToSignIn }) => {
             {showPassword ? <svg width="18px" height="18px"><use href='/img/icons.svg#icon-eye'></use></svg> : <svg width="18px" height="18px"><use href='/img/icons.svg#icon-eye-off'></use></svg>}
           </button>
         </div>
-        <button type="submit" className={styles.submitButton}>Create</button>
+        <button type="submit" className={styles.submitButton}>
+          {status === 'loading' ? 'Creating...' : 'Create'}
+        </button>
       </form>
       <p className={styles.footerText}>
         I already have an account?{' '}
@@ -72,4 +82,4 @@ const SignUpModalTest = ({ isOpen, onClose, onSwitchToSignIn }) => {
   );
 };
 
-export default SignUpModalTest;
+export default SignUpModal;

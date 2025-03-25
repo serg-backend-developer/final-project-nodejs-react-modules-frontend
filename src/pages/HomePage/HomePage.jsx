@@ -11,11 +11,6 @@ const HomePage = () => {
   const [isSignUpOpen, setSignUpOpen] = useState(false);
   const [isLogOutOpen, setLogOutOpen] = useState(false);
 
-  const handleLogOutConfirm = () => {
-    console.log("User logged out");
-    setLogOutOpen(false);
-  };
-
   // This function closes the SignUp modal and opens the SignIn modal.
   const switchToSignIn = () => {
     setSignUpOpen(false);
@@ -48,7 +43,6 @@ const HomePage = () => {
       <LogOutModal
         isOpen={isLogOutOpen}
         onClose={() => setLogOutOpen(false)}
-        onConfirm={handleLogOutConfirm}
       />
       <Categories />
     </>

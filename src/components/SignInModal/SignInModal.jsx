@@ -4,9 +4,12 @@ import styles from './SignInModal.module.css';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { loginUser } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const SignInSchema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email.").required("Email is required."),
@@ -15,11 +18,15 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: yupResolver(SignInSchema)});
 
-  const onSubmit = (data) => {
-    console.log(data)
-    reset();
-    onClose();
-  }
+  const onSubmit = async (data) => {
+    try {
+      await dispatch(loginUser(data)).unwrap();
+      reset();
+      onClose();
+    } catch (err) {
+      console.error('Login failed:', err);
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
