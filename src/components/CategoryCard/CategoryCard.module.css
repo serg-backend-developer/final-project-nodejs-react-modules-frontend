@@ -69,6 +69,14 @@
     background-image: url("/src/img/categories/desserts.jpg");
 }
 
+.categoryCard.chicken {
+    background-image: url("/src/img/categories/chicken.jpg");
+}
+
+.categoryCard.soup {
+    background-image: url("/src/img/categories/soup.jpg");
+}
+
 @media only screen and (min-resolution: 2dppx) {
     .categoryCard.vegan {
         background-image: url("/src/img/categories/vegan@x2.jpg");
