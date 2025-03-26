@@ -2,123 +2,182 @@
   --swiper-theme-color: #050505 !important;
 }
 
-
 .section {
-  padding: 80px 0;
-  background: #ffffff;
-  text-align: center;
+  padding: 40px 0;
 }
 
 .container {
-  max-width: 800px;
+  position: relative;
+  max-width: 343px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
 .mainTitle {
-  color: #1a1a1a;
-  letter-spacing: -0.32px;
-  font-size: 16px;
+  font-family: 'Mulish', sans-serif;
   font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #1A1A1A;
+  margin: 0 auto;
+  max-width: 261px;
 }
 
 .subTitle {
-  margin-bottom: 10px;
-  color: #050505;
-  letter-spacing: -0.8px;
-  text-transform: uppercase;
-  margin-top: 16px;
-  font-size: 40px;
+  font-family: 'Mulish', sans-serif;
   font-weight: 800;
-  line-height: 1.1;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #050505;
+  margin: 24px auto 0;
+  max-width: 204px;
+  text-transform: uppercase;
+}
+
+.decoration {
+  color: #E8E8E8;
+  margin: 24px 0;
+  width: auto;
+  text-align: left;
+  padding-left: 16px;
+}
+
+.decorationIcon {
+  display: inline-block;
+  vertical-align: text-top;
+  width: 40px;
+  height: 32px;
+  opacity: 0.6;
 }
 
 .testimonialCard {
-  margin: 0 auto;
-  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
 }
 
 .testimonialText {
-  font-family: "Mulish", sans-serif;
-  color: #050505;
-  letter-spacing: -0.48px;
-  text-align: center;
-  z-index: 0;
-  width: 100%;
-  margin-top: 20px;
-  font-size: 24px;
+  font-family: 'Mulish', sans-serif;
   font-weight: 500;
-  line-height: 36px;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #050505;
+  margin: 0 auto;
+  max-width: 343px;
 }
 
-
 .authorName {
-  z-index: 0;
-  color: #050505;
-  text-transform: uppercase;
-  letter-spacing: -0.4px;
-  margin-top: 80px;
-  font-size: 20px;
+  font-family: 'Mulish', sans-serif;
   font-weight: 800;
-  line-height: 1.2;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #050505;
+  max-width: 117px;
+  margin: 24px auto 0;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 .pagination {
-  margin-top: 30px;
   position: relative;
-}
-
-.swiper-pagination-bullet {
-  background-color: #bfbebe;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
   display: flex;
-  border: none;
-  cursor: pointer;
+  justify-content: center;
+  margin: 32px auto 0;
+  width: 58px;
+  height: 14px;
 }
 
-.swiper-pagination-bullet-active {
-  background-color: #050505;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  border: none;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .section {
     padding: 60px 0;
   }
 
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+
   .mainTitle {
-    font-size: 1.5rem;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subTitle {
+    font-size: 40px;
+    line-height: 44px;
+    max-width: 291px;
+    margin: 32px auto 0;
+  }
+
+  .decoration {
+    margin: 32px 0;
+    padding-left: 32px;
+  }
+
+  .decorationIcon {
+    width: 59px;
+    height: 48px;
+  }
+
+  .testimonialCard {
+    margin-top: 48px;
   }
 
   .testimonialText {
-    font-size: 1rem;
+    font-size: 24px;
+    line-height: 36px;
+    max-width: 704px;
+  }
+
+  .authorName {
+    font-size: 20px;
+    max-width: 146px;
+  }
+
+  .pagination {
+    width: 72px;
+    height: 16px;
+    margin: 40px auto 0;
   }
 }
 
-/* Додайте ці стилі для декорації */
-.decoration {
-  color: #E8E8E8;
-  text-align: Left;
-}
+@media (min-width: 1440px) {
+  .section {
+    padding: 80px 0;
+  }
 
-.decorationIcon {
-  width: 59px;
-  height: 48px;
-  opacity: 0.6;
-}
+  .container {
+    max-width: 1440px;
+    padding: 0 100px;
+  }
 
-@media (max-width: 768px) {
-  .decorationIcon {
-    width: 40px;
-    height: 32px;
+  .subTitle {
+    max-width: none;
+  }
+
+  .decoration {
+    max-width: 822px;
+    padding-left: 250px;
+    margin: 32px 0;
+  }
+
+  .testimonialText {
+    max-width: 822px;
+  }
+
+  .authorName {
+    max-width: 146px;
+  }
+
+  .pagination {
+    margin: 48px auto 0;
   }
 }

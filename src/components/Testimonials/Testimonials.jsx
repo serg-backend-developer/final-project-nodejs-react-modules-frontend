@@ -61,36 +61,29 @@ const Testimonials = () => {
 
         {/* SVG декорація */}
         <div className={styles.decoration}>
-          <svg
-            width="59"
-            height="48"
-            viewBox="0 0 59 48"
-            fill="none"
-            className={styles.decorationIcon}
-          >
-            <path
-              d="M0 48V31.9412C0 25.9412 1.05672 20.4118 3.17015 15.3529C5.28358 10.2941 8.86468 5.17647 13.9134 0L23.0716 7.2353C20.1363 10.1765 17.9055 12.9412 16.3791 15.5294C14.8527 18.1177 13.8547 20.7647 13.3851 23.4706H24.6567V48H0ZM34.3433 48V31.9412C34.3433 25.9412 35.4 20.4118 37.5134 15.3529C39.6269 10.2941 43.208 5.17647 48.2567 0L57.4149 7.2353C54.4796 10.1765 52.2488 12.9412 50.7224 15.5294C49.196 18.1177 48.198 20.7647 47.7284 23.4706H59V48H34.3433Z"
-              fill="currentColor"
-            />
+          <svg width="40.000000" height="32.000000" viewBox="0 0 40 32" fill="none" className={styles.decorationIcon}>
+            <path id="“"
+                  d="M0 32L0 21.29C0 17.29 0.71 13.6 2.14 10.23C3.58 6.86 6 3.45 9.43 0L15.64 4.82C13.65 6.78 12.13 8.62 11.1 10.35C10.07 12.07 9.39 13.84 9.07 15.64L16.71 15.64L16.71 32L0 32ZM23.28 32L23.28 21.29C23.28 17.29 24 13.6 25.43 10.23C26.86 6.86 29.29 3.45 32.71 0L38.92 4.82C36.93 6.78 35.42 8.62 34.38 10.35C33.35 12.07 32.67 13.84 32.35 15.64L40 15.64L40 32L23.28 32Z"
+                  fill="#E8E8E8" fill-opacity="1.000000" fill-rule="nonzero"/>
           </svg>
         </div>
 
         <Swiper
-          modules={[Autoplay, Pagination]}
-          slidesPerView={1}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          pagination={{
-            clickable: true,
-            el: `.${styles.pagination}`
-          }}
+            modules={[Autoplay, Pagination]}
+            slidesPerView={1}
+            autoplay={{delay: 5000, disableOnInteraction: false}}
+            pagination={{
+              clickable: true,
+              el: `.${styles.pagination}`
+            }}
         >
           {testimonials.map((testimonial) => (
-            <SwiperSlide key={testimonial._id}>
-              <div className={styles.testimonialCard}>
-                <p className={styles.testimonialText}>{testimonial.text}</p>
-                <h3 className={styles.authorName}>{testimonial.author}</h3>
-              </div>
-            </SwiperSlide>
+              <SwiperSlide key={testimonial._id}>
+                <div className={styles.testimonialCard}>
+                  <p className={styles.testimonialText}>{testimonial.text}</p>
+                  <h3 className={styles.authorName}>{testimonial.author}</h3>
+                </div>
+              </SwiperSlide>
           ))}
           <div className={styles.pagination} />
         </Swiper>
