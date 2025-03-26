@@ -2,15 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
 	addFavoriteRecipe,
 	removeFromFavoriteRecipe,
-	getFavorites,
+	getFavoriteRecipes,
+	fetchRecipes,
 } from "./operations";
 
 const initialState = {
 	selectedRecipe: "",
-	list: [],
+	favoriteRecipes: [],
 	myFavorites: {
 		total: 0,
-		list: [],
+		favoriteRecipes: [],
 	},
 	recipes: {
 		total: 0,
@@ -32,7 +33,7 @@ const initialState = {
 		isLoading: false,
 		isError: null,
 	},
-	queryRecipes: {
+	fetchRecipes: {
 		isLoading: false,
 		isError: null,
 		result: {
@@ -52,17 +53,17 @@ const recipeSlice = createSlice({
 	},
 	extraReducers: (builder) =>
 		builder
-			.addCase(getFavorites.pending, (state, action) => {
+			.addCase(getFavoriteRecipes.pending, (state, action) => {
 				state.isLoading = true;
 				state.isError = null;
 			})
-			.addCase(getFavorites.rejected, (state, action) => {
+			.addCase(getFavoriteRecipes.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = action.payload;
 			})
-			.addCase(getFavorites.fulfilled, (state, action) => {
+			.addCase(getFavoriteRecipes.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.list = action.payload;
+				state.favoriteRecipes = action.payload;
 			})
 			.addCase(addFavoriteRecipe.pending, (state, action) => {
 				state.isLoadingFavorite = true;
@@ -87,6 +88,18 @@ const recipeSlice = createSlice({
 			.addCase(removeFromFavoriteRecipe.fulfilled, (state, action) => {
 				state.isLoadingFavorite = false;
 				state.isErrorFavorite = null;
+			})
+			.addCase(fetchRecipes.pending, (state) => {
+				state.fetchRecipes.isLoading = true;
+				state.fetchRecipes.isError = null;
+			})
+			.addCase(fetchRecipes.rejected, (state, action) => {
+				state.fetchRecipes.isLoading = false;
+				state.fetchRecipes.isError = action.payload;
+			})
+			.addCase(fetchRecipes.fulfilled, (state, action) => {
+				state.fetchRecipes.isLoading = false;
+				state.fetchRecipes.result = action.payload;
 			}),
 });
 

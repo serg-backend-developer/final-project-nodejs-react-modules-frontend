@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import css from "./RecipeFilters.module.css";
 
-import { fetchIngredients, selectIngredient } from "../../redux/ingredientSlice";
-import { fetchAreas, selectAreas } from "../../redux/areas/areasSlice";
+import { fetchIngredients } from "../../redux/ingredients/ingredientSlice";
+import { selectIngredients } from "../../redux/ingredients/selectors";
+import { fetchAreas } from "../../redux/areas/areaSlice";
+import { selectAreas } from "../../redux/areas/selectors";
 import IngredientDropdown from "../IngredientDropdown/IngredientDropdown";
+import AreaDropdown from "../AreaDropdown/AreaDropdown";
 
 export const IngredientsFilters = ({ changeHandler }) => {
   const dispatch = useDispatch();
@@ -14,7 +17,7 @@ export const IngredientsFilters = ({ changeHandler }) => {
     dispatch(fetchIngredients());
   }, [dispatch]);
 
-  const ingredients = useSelector(selectIngredient);
+  const ingredients = useSelector(selectIngredients);
 
   const ingredientOptions = ingredients.map(({ id, name }) => ({
     value: id,
@@ -45,7 +48,7 @@ export const AreaFilters = ({ changeHandler }) => {
   }));
 
   return (
-    <IngredientDropdown
+    <AreaDropdown
       options={ areaOptions }
       placeholder="Area"
       onChange={(selectedOption) => changeHandler(selectedOption.value)}

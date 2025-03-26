@@ -3,7 +3,7 @@ import CategoryCard from "../CategoryCard/CategoryCard";
 import css from "./CategoryList.module.css";
 import { useSelector } from "react-redux";
 
-const CategoryList = () => {
+const CategoryList = ({ onSelectCategory }) => {
   const categories = useSelector((state) => state.categories.list);
   const provideTabletClass = (index) => {
     return index % 5 === 2 ? "tw2" : "tw1";
@@ -24,7 +24,10 @@ const CategoryList = () => {
   return (
     <ul className={css.categoriesList}>
       {categories.map((category, index) => (
-        <li className={createItemClass(index)} key={index}>
+        <li className={createItemClass(index)} key={index}
+          onClick={() => {
+            onSelectCategory(category)
+        }}>
           <CategoryCard title={category.name} />
         </li>
       ))}

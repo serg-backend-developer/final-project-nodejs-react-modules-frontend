@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import css from "./RecipeCardFavoriteButton.module.css";
 
-import icons from "../../img/icons.svg";
+import icons from "../../img/icons2.svg";
 import {
 	addFavoriteRecipe,
 	removeFromFavoriteRecipe,

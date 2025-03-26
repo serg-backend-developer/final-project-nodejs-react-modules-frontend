@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAreas, selectArea } from '../../redux/areaSlice';
+
+import { fetchAreas } from '../../redux/areas/areaSlice';
+import { selectAreas } from '../../redux/areas/selectors';
 import css from "./AreaDropdown.module.css";
 
 const AreaDropdown = () => {
@@ -17,7 +19,7 @@ const AreaDropdown = () => {
   }, [status, dispatch]);
 
   const handleSelect = (areaId) => {
-    dispatch(selectArea(areaId));
+    dispatch(selectAreas(areaId));
     setIsOpen(false);
   };
 

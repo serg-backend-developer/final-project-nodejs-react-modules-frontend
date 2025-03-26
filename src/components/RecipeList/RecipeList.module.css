@@ -1,29 +1,19 @@
-.recipe-list {
+.recipes-list {
 	display: grid;
 	grid-template-columns: 1fr;
 	row-gap: 32px;
 	column-gap: 20px;
 }
 
-.button_back {
-	color: var(--color-black);
-	font-size: 14px;
-	font-weight: 700;
-	text-transform: uppercase;
-	display: flex;
-	align-items: flex-start;
-	gap: 6px;
-}
-
-@media screen and (min-width: 1440px) {
-	.recipe-list {
-		grid-template-columns: 1fr 1fr 1fr;
+@media screen and (min-width: 768px) {
+	.recipes-list {
+		grid-template-columns: 1fr 1fr;
+		row-gap: 40px;
 	}
 }
 
-@media screen and (min-width: 768px) {
-	.recipe-list {
-		grid-template-columns: 1fr 1fr;
-		row-gap: 40px;
+@media screen and (min-width: 1440px) {
+	.recipes-list {
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 }

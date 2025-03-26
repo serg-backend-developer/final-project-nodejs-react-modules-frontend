@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchIngredients, selectIngredient } from '../../redux/ingredientSlice';
+
+import { fetchIngredients, selectIngredient } from '../../redux/ingredients/ingredientSlice';
+
 import css from "./IngredientDropdown.module.css";
 
 const IngredientDropdown = () => {

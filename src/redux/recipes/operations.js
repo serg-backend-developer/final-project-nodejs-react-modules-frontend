@@ -3,12 +3,12 @@ import { toast } from "react-hot-toast";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getFavorites = createAsyncThunk(
-	"recipes/getFavorites",
+export const getFavoriteRecipes = createAsyncThunk(
+	"recipes/getFavoriteRecipes",
 	async (ThunkAPI) => {
 		try {
 			const response = await axios.get(
-				"https://project-team-04.onrender.com/api/recipes"
+				"https://project-team-04.onrender.com/api/users/favorites"
 			);
 			return response.data;
 		} catch (error) {
@@ -43,6 +43,21 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
 			return response.data;
 		} catch (error) {
 			toast.error("Failed to delete favorite recipe!");
+			return ThunkAPI.rejectWithValue(error.message);
+		}
+	}
+);
+
+export const fetchRecipes = createAsyncThunk(
+	"recipes/fetchRecipes",
+	async (ThunkAPI) => {
+		try {
+			const response = await axios.get(
+				"https://project-team-04.onrender.com/api/recipes"
+			);
+			return response.data;
+		} catch (error) {
+			toast.error("Failed to load recipes!");
 			return ThunkAPI.rejectWithValue(error.message);
 		}
 	}
