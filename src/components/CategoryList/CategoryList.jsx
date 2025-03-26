@@ -47,7 +47,7 @@ const CategoryList = () => {
   return (
     <ul className={css.categoriesList}>
       {categories
-        .slice(0, showAll ? -1 : firstViewItemsNumber)
+        .slice(0, showAll ? categories.length : firstViewItemsNumber)
         .map((category, index) => (
           <li className={createItemClass(index)} key={index}>
             <CategoryCard title={category.name} />
