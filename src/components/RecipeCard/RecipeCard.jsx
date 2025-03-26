@@ -9,7 +9,6 @@ import { defaultUserName } from "../../constants/constants";
 import RecipeCardFavoriteButton from "../RecipeCardFavoriteButton/RecipeCardFavoriteButton";
 
 export const RecipeCard = ({ recipe, isFavorite }) => {
-	console.log(recipe.ownerId.avatar);
 	return (
 		<div className={css.card}>
 			<img

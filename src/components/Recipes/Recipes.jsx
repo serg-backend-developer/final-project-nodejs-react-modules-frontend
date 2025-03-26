@@ -18,11 +18,31 @@ const Recipes = ({ category }) => {
 	const [areaId, setAreaId] = useState("");
 	const location = useLocation();
 
+	// const getQueryParams = (search) => {
+    //     return new URLSearchParams(search);
+    // };
+
+    // const queryParams = getQueryParams(location.search);
+	// const page = queryParams.get("page") || 1;
+
 	const handleChangeFilter = (selectedId, type) => {
 		type === "ingredients"
 			? setIngredientId(selectedId)
 			: setAreaId(selectedId);
 	};
+
+	// const handlerChangeCategory = (category) => {
+    //     setCategory(category);
+
+
+    //     if (categoriesListElement.current) {
+    //         setTimeout(() => {
+    //             if (categoriesListElement.current) {
+    //                 categoriesListElement.current.scrollIntoView({behavior: 'smooth'});
+    //             }
+    //         }, 100);
+    //     }
+    // };
 
 	const isEmptyObject = (obj) => {
 		return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -30,12 +50,14 @@ const Recipes = ({ category }) => {
 
 	useEffect(() => {
 		if (!category.id) {
-			console.log("here");
 			return;
 		}
 		const fetchRecipesByCategory = async () => {
 			try {
 				const url = `https://project-team-04.onrender.com/api/recipes`;
+				// const url = `/api/recipes?page=${page}&limit=6&category=${category.id}`
+                //     + (areaId ? `&area=${areaId}` : '')
+                //     + (ingredientId ? `&ingredient=${ingredientId}` : '');
 				const response = await axios.get(url);
 				const filteredRecipes = response.data.recipes.filter(recipe => recipe.categoryId === category.id);
 				setRecipes(filteredRecipes);
@@ -47,6 +69,7 @@ const Recipes = ({ category }) => {
 		};
 		fetchRecipesByCategory();
 	}, [category]);
+	// }, [category, page, areaId, ingredientId]);
 
 	return (
 		<section>
