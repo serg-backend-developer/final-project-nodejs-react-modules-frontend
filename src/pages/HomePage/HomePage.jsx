@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <Hero />
       <Categories />
-        <Testimonials />
+      <Testimonials />
     </>
   );
 };

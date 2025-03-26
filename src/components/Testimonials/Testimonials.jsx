@@ -40,7 +40,7 @@ const Testimonials = () => {
         const formattedTestimonials = data.testimonials.map(testimonial => ({
           _id: testimonial.id.toString(),
           text: testimonial.testimonial,
-          author: `User ${testimonial.ownerId}` // Якщо немає імені, використовуємо ID
+          author: `${testimonial.owner}`
         }));
 
         setTestimonials(formattedTestimonials);
