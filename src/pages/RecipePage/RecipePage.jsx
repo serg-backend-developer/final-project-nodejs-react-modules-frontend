@@ -15,21 +15,56 @@ const mockRecipe = {
   author: {
     name: "Nadia",
     avatar: "/img/author-avatar.png",
-    id: "user123"
+    id: "user123",
   },
   ingredients: [
-    { id: 1, name: "Salmon", quantity: "400 g", image: "/img/ingredients/salmon.png" },
-    { id: 2, name: "Avocado", quantity: "3", image: "/img/ingredients/avocado.png" },
-    { id: 3, name: "Cucumber", quantity: "1", image: "/img/ingredients/cucumber.png" },
-    { id: 4, name: "Spinach", quantity: "400 g", image: "/img/ingredients/spinach.png" },
-    { id: 5, name: "Mint", quantity: "4 tbs", image: "/img/ingredients/mint.png" },
+    {
+      id: 1,
+      name: "Salmon",
+      quantity: "400 g",
+      image: "/img/ingredients/salmon.png",
+    },
+    {
+      id: 2,
+      name: "Avocado",
+      quantity: "3",
+      image: "/img/ingredients/avocado.png",
+    },
+    {
+      id: 3,
+      name: "Cucumber",
+      quantity: "1",
+      image: "/img/ingredients/cucumber.png",
+    },
+    {
+      id: 4,
+      name: "Spinach",
+      quantity: "400 g",
+      image: "/img/ingredients/spinach.png",
+    },
+    {
+      id: 5,
+      name: "Mint",
+      quantity: "4 tbs",
+      image: "/img/ingredients/mint.png",
+    },
     { id: 6, name: "Lime", quantity: "1", image: "/img/ingredients/lime.png" },
-    { id: 7, name: "Honey", quantity: "2 tsp", image: "/img/ingredients/honey.png" },
-    { id: 8, name: "Olive oil", quantity: "3 tbs", image: "/img/ingredients/olive-oil.png" }
+    {
+      id: 7,
+      name: "Honey",
+      quantity: "2 tsp",
+      image: "/img/ingredients/honey.png",
+    },
+    {
+      id: 8,
+      name: "Olive oil",
+      quantity: "3 tbs",
+      image: "/img/ingredients/olive-oil.png",
+    },
   ],
   instructions:
     "Then drizzled with a homemade lemon vinaigrette. A moist, pan seared salmon is layered on top of spinach, avocado, tomatoes, and red onions. Then drizzled with a homemade lemon vinaigrette.",
-  isFavorite: false
+  isFavorite: false,
 };
 
 const RecipePage = () => {
@@ -40,12 +75,12 @@ const RecipePage = () => {
       </section>
 
       <section className={style.recipeSection}>
-        <RecipeMainInfo recipe={mockRecipe} />
-      </section>
+  <div className={style.recipeRow}>
+    <RecipeMainInfo recipe={mockRecipe} />
+    <RecipeIngredients ingredients={mockRecipe.ingredients} />
+  </div>
+</section>
 
-      <section className={style.ingredientsSection}>
-        <RecipeIngredients ingredients={mockRecipe.ingredients}/>
-      </section>
 
       <section className={style.recipeSection}>
         <RecipePreparation instructions={mockRecipe.instructions} />
