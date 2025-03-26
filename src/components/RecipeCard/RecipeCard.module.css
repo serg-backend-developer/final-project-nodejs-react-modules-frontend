@@ -29,13 +29,14 @@
 
 .title {
 	margin: 0 0 8px;
-
 	font-size: 18px;
 	font-weight: 900;
 	line-height: 24px;
-	letter-spacing: -0.2px;
-
 	text-transform: uppercase;
+	letter-spacing: -0.2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .text {
@@ -49,7 +50,6 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: 500;
-	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: normal;
 }
