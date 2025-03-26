@@ -1,15 +1,15 @@
 .category-section {
-    padding-bottom: 64px;
+    padding: 64px 0 64px;
 }
 
 @media screen and (min-width: 768px) {
     .category-section {
-        padding-bottom: 100px;
+        padding: 100px 0 100px;
     }
 }
 
 @media screen and (min-width: 1440px) {
     .category-section {
-        padding-bottom: 120px;
+        padding: 120px 0 120px;
     }
 }
