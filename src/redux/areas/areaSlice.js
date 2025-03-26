@@ -44,5 +44,5 @@ const areaSlice = createSlice({
 	},
 });
 
-export const { selectAreas } = areaSlice.actions;
+export const { selectArea } = areaSlice.actions;
 export default areaSlice.reducer;
