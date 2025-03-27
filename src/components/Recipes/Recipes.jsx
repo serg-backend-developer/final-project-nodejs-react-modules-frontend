@@ -6,6 +6,8 @@ import MainTitle from "../MainTitle/MainTitle.jsx";
 import Subtitle from "../Subtitle/Subtitle.jsx";
 import RecipeList from "../RecipeList/RecipeList.jsx";
 import RecipeFilters from "../RecipeFilters/RecipeFilters.jsx";
+import categoryDescriptions
+	from "../../constants/constants.js";
 
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
@@ -105,8 +107,7 @@ const Recipes = ({ category }) => {
 						? `Discover a limitless world of culinary possibilities and enjoy
           exquisite recipes that combine taste, style and the warm atmosphere of
           the kitchen.`
-						: `Go on a taste journey, where every sip is a sophisticated creative chord,
-          and every dessert is an expression of the most refined gastronomic desires.`}
+						: categoryDescriptions[category.id]}
 				</Subtitle>
 				<div className={css["recipes-category"]}>
 					<div>
