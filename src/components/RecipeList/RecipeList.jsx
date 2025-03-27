@@ -16,12 +16,10 @@ const RecipeList = ({ recipes }) => {
 	// 	return isFavorite !== -1;
 	// };
 
-	console.log(recipes)
-
 	return (
 		<ul className={css["recipes-list"]}>
 			{recipes.map((recipe) => (
-				<li key={recipe.id}>
+				<li key={recipe.id} className={css["recipes-item"]}>
 					<RecipeCard
 						recipe={recipe}
 						// isFavorite={isFavorite(recipe.id)}

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecipes, fetchRecipesByCategory } from "./operations";
+import { fetchRecipesByCategory, fetchRecipesByFilters } from "./operations";
 
 const recipeSlice = createSlice({
 	name: "recipes",
@@ -16,17 +16,6 @@ const recipeSlice = createSlice({
 	},
 	extraReducers: (builder) =>
 		builder
-			.addCase(fetchRecipes.pending, (state) => {
-				state.status = "loading";
-			})
-			.addCase(fetchRecipes.rejected, (state, action) => {
-				state.status = "failed";
-				state.error = action.error.message;
-			})
-			.addCase(fetchRecipes.fulfilled, (state, action) => {
-				state.status = "succeeded";
-				state.list = action.payload;
-			})
 			.addCase(fetchRecipesByCategory.pending, (state) => {
         		state.error = null;
       		})
@@ -35,7 +24,16 @@ const recipeSlice = createSlice({
       		})
       		.addCase(fetchRecipesByCategory.rejected, (state, action) => {
         		state.error = action.payload;
-      		})
+			})
+			.addCase(fetchRecipesByFilters.pending, (state) => {
+    		    state.error = null;
+    		})
+    		.addCase(fetchRecipesByFilters.fulfilled, (state, action) => {
+    		    state.list = action.payload;
+    		})
+    		.addCase(fetchRecipesByFilters.rejected, (state, action) => {
+    		    state.error = action.error.message;
+    		})
 });
 
 export const { selectRecipe } = recipeSlice.actions;

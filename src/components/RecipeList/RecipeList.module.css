@@ -17,3 +17,7 @@
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
+
+.recipes-item {
+	max-width: 343px;
+}

@@ -11,19 +11,25 @@ import { fetchRecipesByCategory } from "../../redux/recipes/operations.js";
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
 import icons from "../../img/icons2.svg";
+import { useNavigate } from "react-router";
 
 
 const Recipes = () => {
 	const categoriesListElement = useRef(null);
+	const navigate = useNavigate()
 
 	const dispatch = useDispatch();
-  	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
+	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const recipes = useSelector((state) => state.recipes.list);
+
+	const handleClick = () => {
+    	navigate("/");
+  	};
 	
 	useEffect(() => {
     	if (selectedCategory) {
-      dispatch(fetchRecipesByCategory(selectedCategory));
-    	}
+      		dispatch(fetchRecipesByCategory(selectedCategory));
+		}
   	}, [dispatch, selectedCategory]);
 
 	const isEmptyObject = (obj) => {
@@ -34,7 +40,7 @@ const Recipes = () => {
 		<section className={css["recipes-section"]}>
 			<div className={style.container}>
 				{!isEmptyObject(selectedCategory) && (
-					<button className={css.btn}>
+					<button className={css.btn} onClick={handleClick}>
 						<svg className={css.icon}>
 							<use href={`${icons}#icon-arrow-up-right`}></use>
 						</svg>

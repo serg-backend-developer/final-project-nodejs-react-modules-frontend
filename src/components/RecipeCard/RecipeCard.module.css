@@ -131,9 +131,6 @@
 }
 
 @media (min-width: 768px) {
-	.card {
-	}
-
 	.image {
 		height: 275px;
 	}
@@ -161,9 +158,8 @@
 		height: 42px;
 		width: 42px;
 	}
-}
-
-@media screen and (min-width: 1440px) {
-	.card {
+	.iconWrapper {
+		width: 42px;
+		height: 42px;
 	}
 }

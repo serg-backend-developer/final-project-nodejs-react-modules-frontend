@@ -50,36 +50,6 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
 	}
 );
 
-export const fetchRecipes = createAsyncThunk(
-	"recipes/fetchRecipes",
-	async (_, ThunkAPI) => {
-		try {
-			let allRecipes = [];
-			let page = 1;
-			let hasMore = true;
-			while (hasMore) {
-				const response = await axios.get(
-					`https://project-team-04.onrender.com/api/recipes?page=${page}`
-				);
-
-				const { recipes, totalPages } = response.data;
-				allRecipes = [...allRecipes, ...recipes];
-
-				if (page >= totalPages) {
-					hasMore = false;
-				} else {
-					page++;
-				}
-			}
-			console.log("fetchRecipes response", allRecipes);
-			return allRecipes;
-		} catch (error) {
-			toast.error("Failed to load recipes!");
-			return ThunkAPI.rejectWithValue(error.message);
-		}
-	}
-);
-
 export const fetchRecipesByCategory = createAsyncThunk(
   "recipes/fetchByCategory",
   async (category, ThunkAPI) => {
@@ -89,6 +59,25 @@ export const fetchRecipesByCategory = createAsyncThunk(
     } catch (error) {
       toast.error("Failed to load recipes!");
       return ThunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchRecipesByFilters = createAsyncThunk(
+  "recipes/fetchRecipesByFilters",
+  async ({ area, ingredient, category }, ThunkAPI) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/recipes`, {
+        params: {
+          area: area || undefined,
+          ingredient: ingredient || undefined,
+          category: category || undefined,
+        },
+      });
+      return response.data;
+	} catch (error) {
+		toast.error("Failed to load recipes!");
+      	return ThunkAPI.rejectWithValue(error.message);
     }
   }
 );
