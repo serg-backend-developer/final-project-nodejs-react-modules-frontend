@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import css from "./HomePage.module.css";
-import SignInModal from '../../components/SignInModal/SignInModal';
-import SignUpModal from '../../components/SignUpModal/SignUpModal';
-import LogOutModal from '../../components/LogOutModal/LogOutModal';
+import SignInModal from "../../components/SignInModal/SignInModal";
+import SignUpModal from "../../components/SignUpModal/SignUpModal";
+import LogOutModal from "../../components/LogOutModal/LogOutModal";
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
 import Testimonials from "../../components/Testimonials/Testimonials";
+import UserTabs from "../../components/UserTabs/UserTabs";
 
 const HomePage = () => {
   const [isSignInOpen, setSignInOpen] = useState(false);
@@ -17,7 +18,7 @@ const HomePage = () => {
     setSignUpOpen(false);
     setSignInOpen(true);
   };
- // This function closes the SignIn modal and opens the SignUp modal.
+  // This function closes the SignIn modal and opens the SignUp modal.
   const switchToSignUp = () => {
     setSignUpOpen(true);
     setSignInOpen(false);
@@ -41,12 +42,10 @@ const HomePage = () => {
         onClose={() => setSignUpOpen(false)}
         onSwitchToSignIn={switchToSignIn}
       />
-      <LogOutModal
-        isOpen={isLogOutOpen}
-        onClose={() => setLogOutOpen(false)}
-      />
+      <LogOutModal isOpen={isLogOutOpen} onClose={() => setLogOutOpen(false)} />
       <Categories />
       <Testimonials />
+      <UserTabs />
     </>
   );
 };
