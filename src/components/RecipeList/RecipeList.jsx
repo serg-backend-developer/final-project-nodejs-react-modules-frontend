@@ -23,15 +23,16 @@ const RecipeList = ({ recipes }) => {
 	};
 
 	return (
-		<div className={css["recipes-list"]}>
+		<ul className={css["recipes-list"]}>
 			{recipes.map((recipe) => (
-				<RecipeCard
-					key={recipe.id}
-					recipe={recipe}
-					isFavorite={isFavorite(recipe.id)}
-				/>
+				<li key={recipe.id}>
+					<RecipeCard
+						recipe={recipe}
+						isFavorite={isFavorite(recipe.id)}
+					/>
+				</li>
 			))}
-		</div>
+		</ul>
 	);
 };
 

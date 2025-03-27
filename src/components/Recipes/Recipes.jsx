@@ -113,14 +113,12 @@ const Recipes = ({ category }) => {
 						<RecipeFilters changeHandler={handleChangeFilter} />
 					</div>
 					<div>
-						<div className={css["recipes-list"]}>
-							<RecipeList recipes={recipes} />
-							{recipes.length === 0 && (
-								<div className={css["no-recipes"]}>
-									<p>No recipes found</p>
-								</div>
-							)}
-						</div>
+						<RecipeList recipes={recipes} />
+						{recipes.length === 0 && (
+							<div className={css["no-recipes"]}>
+								<p>No recipes found</p>
+							</div>
+						)}
 						{/* <Pagination total={total} limit={6}/> */}
 					</div>
 				</div>
