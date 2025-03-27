@@ -7,23 +7,32 @@ import RecipeFilters from "../RecipeFilters/RecipeFilters.jsx";
 import categoryDescriptions from "../../constants/constants.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipesByCategory } from "../../redux/recipes/operations.js";
+import { selectArea } from '../../redux/areas/areaSlice';
+import { selectIngredient } from '../../redux/ingredients/ingredientSlice';
+import { selectCategory } from "../../redux/categories/categorySlice";
+
 
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
 import icons from "../../img/icons2.svg";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 
 const Recipes = () => {
 	const categoriesListElement = useRef(null);
 	const navigate = useNavigate()
-
+	const location = useLocation();
 	const dispatch = useDispatch();
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const recipes = useSelector((state) => state.recipes.list);
 
+	const prevLocation = location.state || "/";
+
 	const handleClick = () => {
-    	navigate("/");
+		navigate(prevLocation);
+		dispatch(selectArea(""));
+		dispatch(selectIngredient(""));
+		dispatch(selectCategory(""));
   	};
 	
 	useEffect(() => {
