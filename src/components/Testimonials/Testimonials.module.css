@@ -3,14 +3,7 @@
 }
 
 .section {
-  padding: 40px 0;
-}
-
-.container {
-  position: relative;
-  max-width: 343px;
-  margin: 0 auto;
-  padding: 0 16px;
+  padding-bottom: 80px;
 }
 
 .mainTitle {
@@ -21,7 +14,7 @@
   letter-spacing: -0.02em;
   text-align: center;
   color: #1A1A1A;
-  margin: 0 auto;
+  margin: 0 auto 16px;
   max-width: 261px;
 }
 
@@ -33,14 +26,14 @@
   letter-spacing: -0.02em;
   text-align: center;
   color: #050505;
-  margin: 24px auto 0;
+  margin: 0 auto 12px;
   max-width: 204px;
   text-transform: uppercase;
 }
 
 .decoration {
   color: #E8E8E8;
-  margin: 24px 0;
+  margin-bottom: 20px;
   width: auto;
   text-align: left;
   padding-left: 16px;
@@ -51,14 +44,12 @@
   vertical-align: text-top;
   width: 40px;
   height: 32px;
-  opacity: 0.6;
 }
 
 .testimonialCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 32px;
 }
 
 .testimonialText {
@@ -69,7 +60,7 @@
   letter-spacing: -0.02em;
   text-align: center;
   color: #050505;
-  margin: 0 auto;
+  margin: 0 auto 64px;
   max-width: 343px;
 }
 
@@ -81,7 +72,7 @@
   letter-spacing: -0.02em;
   color: #050505;
   max-width: 117px;
-  margin: 24px auto 0;
+  margin: 0 auto 40px;
   text-align: left;
   text-transform: uppercase;
 }
@@ -90,19 +81,12 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 32px auto 0;
-  width: 58px;
-  height: 14px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: 60px 0;
-  }
-
-  .container {
-    max-width: 768px;
-    padding: 0 32px;
+      padding-bottom: 100px;
   }
 
   .mainTitle {
@@ -114,21 +98,17 @@
     font-size: 40px;
     line-height: 44px;
     max-width: 291px;
-    margin: 32px auto 0;
+    margin-bottom: 0;
   }
 
   .decoration {
-    margin: 32px 0;
+    margin-bottom: 40px;
     padding-left: 32px;
   }
 
   .decorationIcon {
     width: 59px;
     height: 48px;
-  }
-
-  .testimonialCard {
-    margin-top: 48px;
   }
 
   .testimonialText {
@@ -145,18 +125,12 @@
   .pagination {
     width: 72px;
     height: 16px;
-    margin: 40px auto 0;
   }
 }
 
 @media (min-width: 1440px) {
   .section {
-    padding: 80px 0;
-  }
-
-  .container {
-    max-width: 1440px;
-    padding: 0 100px;
+    padding-bottom: 120px;
   }
 
   .subTitle {
@@ -166,7 +140,6 @@
   .decoration {
     max-width: 822px;
     padding-left: 250px;
-    margin: 32px 0;
   }
 
   .testimonialText {
@@ -175,9 +148,5 @@
 
   .authorName {
     max-width: 146px;
-  }
-
-  .pagination {
-    margin: 48px auto 0;
   }
 }

@@ -4,6 +4,8 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './Testimonials.module.css';
+import style from "../App.module.css";
+import "./swiper.css";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -55,7 +57,7 @@ const Testimonials = () => {
 
   return (
     <section className={styles.section}>
-      <div className={styles.container}>
+      <div className={style.container}>
         <h2 className={styles.mainTitle}>What our customer say</h2>
         <h3 className={styles.subTitle}>TESTIMONIALS</h3>
 
@@ -69,7 +71,7 @@ const Testimonials = () => {
         </div>
 
         <Swiper
-            modules={[Autoplay, Pagination]}
+            modules={[Pagination]}
             slidesPerView={1}
             autoplay={{delay: 5000, disableOnInteraction: false}}
             pagination={{
