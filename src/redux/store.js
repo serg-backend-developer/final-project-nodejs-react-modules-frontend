@@ -1,15 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
-import categoryReducer from './categories/categorySlice';
-import areasReducer from './areaSlice';
-import ingredientsReducer from './ingredientSlice';
-import authReducer from './auth/authSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import { configureStore } from "@reduxjs/toolkit";
+import categoryReducer from "./categories/categorySlice";
+import profileReducer from "./profile/profileSlice";
+import areasReducer from "./areaSlice";
+import ingredientsReducer from "./ingredientSlice";
+import authReducer from "./auth/authSlice";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
 const persistConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
-  whitelist: ['token'],
+  whitelist: ["token"],
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
@@ -20,6 +21,7 @@ export const store = configureStore({
     areas: areasReducer,
     ingredients: ingredientsReducer,
     auth: persistedAuthReducer,
+    profile: profileReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
