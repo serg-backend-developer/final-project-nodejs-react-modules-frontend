@@ -1,7 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios
-	from "axios";
+import { useNavigate } from "react-router-dom";
 import icons from "../../img/icons2.svg";
 import css from "./RecipeCard.module.css";
 import noImage from "../../img/empty/no-image.png";
@@ -9,18 +6,14 @@ import noAvatar from "../../img/empty/no-avatar.jpg";
 import { defaultUserName } from "../../constants/constants";
 
 import RecipeCardFavoriteButton from "../RecipeCardFavoriteButton/RecipeCardFavoriteButton";
+import ArrowUpRightIcon from "../../icons/ArrowUpRightIcon";
 
 export const RecipeCard = ({ recipe, isFavorite }) => {
-	const [owner, setOwner] = useState(null);
+	const navigate = useNavigate();
 
-	useEffect(() => {
-		axios.get(`$https://project-team-04.onrender.com/users/${recipe.ownerId}`)
-			.then(response => {
-				console.log("response", response.data);
-				setOwner(response.data);
-			})
-            .catch(() => setOwner(null));
-	}, [recipe.ownerId]);
+	const handleClick = () => {
+    	navigate(`/recipe/${recipe.id}`);
+  	};
 
 	return (
 		<div className={css.card}>
@@ -37,23 +30,20 @@ export const RecipeCard = ({ recipe, isFavorite }) => {
 					<div className={css.avatarContainer}>
 						<img
 							className={css.avatar}
-							src={ owner?.avatar || noAvatar}
-							alt={owner?.name || defaultUserName}
+							src={ recipe.owner?.avatar || noAvatar}
+							alt={recipe.owner?.name || defaultUserName}
 						/>
 					</div>
-					<h4 className={css.name}>{owner?.name || defaultUserName}</h4>
+					<h4 className={css.name}>{recipe.owner?.name || defaultUserName}</h4>
 				</div>
 
 				<div className={css.buttons}>
 					<RecipeCardFavoriteButton idRecipe={recipe.id} favorite={isFavorite}/>
-					<NavLink
-						to={`/recipe/${recipe.id}`}
-						className={css.btn}
-						type="button">
-						<svg className={css.icon}>
-							<use href={`${icons}#icon-arrow-up-right`}></use>
-						</svg>
-					</NavLink>
+					<button onClick={handleClick} className={css.iconWrapper}>
+            			<svg>
+            				<use href={`${icons}#icon-arrow-up-right`}></use>
+        				</svg>
+          			</button>
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ import AllCategories from "../AllCategories/AllCategories";
 
 const DEFAULT_VIEW_ITEMS_NUMBER = 8;
 
-const CategoryList = ({ onSelectCategory }) => {
+const CategoryList = () => {
   const categories = useSelector((state) => state.categories.list);
   const [firstViewItemsNumber, setFirstViewItemsNumber] = useState(
     DEFAULT_VIEW_ITEMS_NUMBER,
@@ -49,10 +49,7 @@ const CategoryList = ({ onSelectCategory }) => {
       {categories
         .slice(0, showAll ? categories.length : firstViewItemsNumber)
         .map((category, index) => (
-          <li className={createItemClass(index)} key={index}
-          onClick={() => {
-            onSelectCategory(category)
-        }}>
+          <li className={createItemClass(index)} key={index}>
             <CategoryCard title={category.name} />
           </li>
         ))}

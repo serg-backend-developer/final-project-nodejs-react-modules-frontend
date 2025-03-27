@@ -7,7 +7,7 @@ import css from "./Categories.module.css";
 import style from '../App.module.css';
 import { fetchCategories } from "../../redux/categories/operations.js";
 
-const Categories = ({ onSelectCategory }) => {
+const Categories = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Categories = ({ onSelectCategory }) => {
         recipes that combine taste, style and the warm atmosphere of the
         kitchen.
       </Subtitle>
-        <CategoryList onSelectCategory={onSelectCategory} />
+        <CategoryList/>
       </div>
     </section>
   );

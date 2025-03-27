@@ -26,7 +26,7 @@ const IngredientDropdown = () => {
   return (
     <div className={css["custom-select-container"]}>
       <div className={css["custom-select"]} onClick={() => setIsOpen(!isOpen)}>
-        <span className={css[selectedIngredient ? 'selected-text' : 'placeholder-text']}>{selectedIngredient ? ingredients.find(cat => cat.id === selectedIngredient)?.name : 'Ingredient'}
+        <span className={css[selectedIngredient ? 'selected-text' : 'placeholder-text']}>{selectedIngredient ? ingredients.find(cat => cat.id === selectedIngredient)?.name : 'Ingredients'}
           <svg className={css["arrow-icon"]} >
             {isOpen ? (<use href='/img/icons.svg#icon-chevron-up-black'></use>) : (
               <use href='/img/icons.svg#icon-chevron-down-black'></use>)}

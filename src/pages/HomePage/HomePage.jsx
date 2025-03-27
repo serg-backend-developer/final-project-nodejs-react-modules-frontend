@@ -6,6 +6,7 @@ import LogOutModal from '../../components/LogOutModal/LogOutModal';
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
 import Recipes from "../../components/Recipes/Recipes";
+import { Outlet } from 'react-router-dom';
 
 const HomePage = () => {
   const [category, setCategory] = useState({});
@@ -47,8 +48,7 @@ const HomePage = () => {
         isOpen={isLogOutOpen}
         onClose={() => setLogOutOpen(false)}
       />
-      <Categories onSelectCategory={setCategory}/>
-      <Recipes category={category}/>
+      <Outlet />
     </>
   );
 };

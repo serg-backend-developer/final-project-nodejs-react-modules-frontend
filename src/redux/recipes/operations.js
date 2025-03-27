@@ -3,6 +3,8 @@ import { toast } from "react-hot-toast";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export const getFavoriteRecipes = createAsyncThunk(
 	"recipes/getFavoriteRecipes",
 	async (ThunkAPI) => {
@@ -76,4 +78,17 @@ export const fetchRecipes = createAsyncThunk(
 			return ThunkAPI.rejectWithValue(error.message);
 		}
 	}
+);
+
+export const fetchRecipesByCategory = createAsyncThunk(
+  "recipes/fetchByCategory",
+  async (category, ThunkAPI) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/recipes?category=${category}`);
+      return response.data;
+    } catch (error) {
+      toast.error("Failed to load recipes!");
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  }
 );

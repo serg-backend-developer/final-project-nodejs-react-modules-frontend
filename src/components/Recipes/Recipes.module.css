@@ -1,3 +1,19 @@
+.recipes-section {
+	padding: 64px 0 64px;
+}
+
+@media screen and (min-width: 768px) {
+	.recipes-section{
+		padding: 100px 0 100px;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.recipes-section {
+		padding: 120px 0 120px;
+	}
+}
+
 .recipes-category {
 	display: grid;
 	grid-template-columns: 1fr;
