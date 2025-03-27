@@ -59,6 +59,9 @@ const Recipes = ({ category }) => {
 				let hasMore = true;
 				while (hasMore) {
 					const url = `https://project-team-04.onrender.com/api/recipes?page=${page}&limit=6&category=${category.id}`;
+					// const url = `https://project-team-04.onrender.com/api/recipes?page=${page}&limit=6&category=${category.id}`
+					// + (areaId ? `&area=${areaId}` : '')
+					// + (ingredientId ? `&ingredient=${ingredientId}` : '');
 					const response = await axios.get(url);
 					const { recipes, totalPages } = response.data;
 					allRecipes = [...allRecipes, ...recipes];
