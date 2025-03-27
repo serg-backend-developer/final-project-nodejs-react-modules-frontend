@@ -54,12 +54,21 @@ const Recipes = ({ category }) => {
 		}
 		const fetchRecipesByCategory = async () => {
 			try {
-				const url = `https://project-team-04.onrender.com/api/recipes`;
-				// const url = `/api/recipes?page=${page}&limit=6&category=${category.id}`
-				//     + (areaId ? `&area=${areaId}` : '')
-				//     + (ingredientId ? `&ingredient=${ingredientId}` : '');
-				const response = await axios.get(url);
-				const filteredRecipes = response.data.recipes.filter(
+				let allRecipes = [];
+				let page = 1;
+				let hasMore = true;
+				while (hasMore) {
+					const url = `https://project-team-04.onrender.com/api/recipes?page=${page}&limit=6&category=${category.id}`;
+					const response = await axios.get(url);
+					const { recipes, totalPages } = response.data;
+					allRecipes = [...allRecipes, ...recipes];
+					if (page >= totalPages) {
+						hasMore = false;
+					} else {
+						page++;
+					}
+				}
+				const filteredRecipes = allRecipes.filter(
 					(recipe) => recipe.categoryId === category.id
 				);
 				setRecipes(filteredRecipes);

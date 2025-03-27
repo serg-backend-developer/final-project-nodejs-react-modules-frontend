@@ -50,12 +50,27 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
 
 export const fetchRecipes = createAsyncThunk(
 	"recipes/fetchRecipes",
-	async (ThunkAPI) => {
+	async (_, ThunkAPI) => {
 		try {
-			const response = await axios.get(
-				"https://project-team-04.onrender.com/api/recipes"
-			);
-			return response.data;
+			let allRecipes = [];
+			let page = 1;
+			let hasMore = true;
+			while (hasMore) {
+				const response = await axios.get(
+					`https://project-team-04.onrender.com/api/recipes?page=${page}`
+				);
+
+				const { recipes, totalPages } = response.data;
+				allRecipes = [...allRecipes, ...recipes];
+
+				if (page >= totalPages) {
+					hasMore = false;
+				} else {
+					page++;
+				}
+			}
+			console.log("fetchRecipes response", allRecipes);
+			return allRecipes;
 		} catch (error) {
 			toast.error("Failed to load recipes!");
 			return ThunkAPI.rejectWithValue(error.message);
