@@ -5,6 +5,7 @@ import SignUpModal from '../../components/SignUpModal/SignUpModal';
 import LogOutModal from '../../components/LogOutModal/LogOutModal';
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
+import Testimonials from "../../components/Testimonials/Testimonials";
 
 const HomePage = () => {
   const [isSignInOpen, setSignInOpen] = useState(false);
@@ -45,6 +46,7 @@ const HomePage = () => {
         onClose={() => setLogOutOpen(false)}
       />
       <Categories />
+      <Testimonials />
     </>
   );
 };
