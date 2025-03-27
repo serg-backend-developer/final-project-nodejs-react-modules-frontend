@@ -1,15 +1,17 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {
   fetchCurrentProfile,
   fetchProfile,
 } from "../../redux/profile/operations";
+import LogOutModal from "../../components/LogOutModal/LogOutModal";
 
 import style from "./ProfileInfo.module.css";
 
 const ProfileInfo = () => {
+  const [isLogOutOpen, setLogOutOpen] = useState(false);
   const dispatch = useDispatch();
   const currentProfile = useSelector((state) => state.profile.currentProfile);
   const profile = useSelector((state) => state.profile.selectedProfile);
@@ -69,6 +71,14 @@ const ProfileInfo = () => {
           </>
         )}
       </div>
+
+      <div className={style.actions}>
+        <button className={style.button} onClick={() => setLogOutOpen(true)}>
+          Log Out
+        </button>
+      </div>
+
+      <LogOutModal isOpen={isLogOutOpen} onClose={() => setLogOutOpen(false)} />
     </div>
   );
 };

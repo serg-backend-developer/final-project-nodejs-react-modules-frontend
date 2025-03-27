@@ -43,3 +43,31 @@
   line-height: 20px;
   margin-right: 8px;
 }
+
+.actions {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.button {
+  border-radius: 30px;
+  border: none;
+  padding: 14px 110px;
+  width: 100%;
+  cursor: pointer;
+  background: #050505;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.42857;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #050505;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #050505;
+  border: 1px solid #bfbebe;
+}
