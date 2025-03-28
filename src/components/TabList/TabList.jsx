@@ -1,9 +1,7 @@
-import { useState } from "react";
 import clsx from "clsx";
 import style from "./TabList.module.css";
 
-const TabList = ({ tabs }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+const TabList = ({ tabs, activeTab, onTabChange = () => {} }) => {
   const createTabStyle = (tab) => {
     return clsx(style.tab, tab === activeTab && style.tabActive);
   };
@@ -13,7 +11,7 @@ const TabList = ({ tabs }) => {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => onTabChange(tab)}
             className={createTabStyle(tab)}
           >
             {tab}
