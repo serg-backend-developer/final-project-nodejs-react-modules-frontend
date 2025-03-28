@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+import Nav from "./Nav/Nav";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -9,6 +10,7 @@ const Header = () => {
         <Link to="/" className="headerLogo" aria-label="Go to homepage">
           foodies
         </Link>
+        <Nav />
         {/* 
           Тут будуть компоненти:
           1) Nav (для авторизованого користувача)
