@@ -11,7 +11,6 @@ const RecipeList = ({ recipes }) => {
 	console.log("recipes", recipes);
 	const dispatch = useDispatch();
 	const favoriteRecipes = useSelector(selectFavoriteRecipes);
-	console.log("favoriteRecipes", favoriteRecipes);
 
 	useEffect(() => {
 		dispatch(getFavoriteRecipes());

@@ -31,6 +31,14 @@ const Recipes = () => {
 	const prevLocation = location.state || "/";
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
+	const [recipesPerPage, setRecipesPerPage] = useState(12);
+
+	useEffect(() => {
+		const windowWidth = window.innerWidth;
+		console.log("window", windowWidth);
+		setRecipesPerPage(windowWidth < 768 ? 8 : 12);
+		console.log(`Fetching recipes with size: ${recipesPerPage}`);
+	}, [recipesPerPage]);
 
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
@@ -45,21 +53,30 @@ const Recipes = () => {
   	};
 
 	useEffect(() => {
-    	if (selectedCategory) {
-      		dispatch(fetchRecipesByCategory({ category: selectedCategory, page: currentPage }));
+		if (selectedCategory) {
+			console.log(`Fetching recipes by category with size: ${recipesPerPage}`);
+			dispatch(fetchRecipesByCategory({
+				category: selectedCategory,
+				page: currentPage,
+				size: recipesPerPage
+			})).then(response => {
+				console.log('Server response', response);
+			});
 		}
-	}, [dispatch, selectedCategory, currentPage]);
+	}, [dispatch, selectedCategory, currentPage, recipesPerPage]);
 
 	useEffect(() => {
 		if (selectedCategory) {
+			console.log(`Fetching recipes by filters with size: ${recipesPerPage}`);
 			dispatch(fetchRecipesByFilters({
 				category: selectedCategory,
 				area: selectedArea,
 				ingredient: selectedIngredient,
 				page: currentPage,
+				size: recipesPerPage,
 			}));
 		}
-	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage]);
+	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage, recipesPerPage]);
 
 	const isEmptyObject = (obj) => {
 		return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -91,7 +108,7 @@ const Recipes = () => {
 				</Subtitle>
 				<div className={css["recipes-category"]}>
 					<div>
-						<RecipeFilters  currentPage={currentPage} />
+						<RecipeFilters currentPage={currentPage} size={recipesPerPage} />
 					</div>
 					<div>
 						{recipes.recipes? (

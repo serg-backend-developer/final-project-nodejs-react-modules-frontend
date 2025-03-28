@@ -89,10 +89,10 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
 
 export const fetchRecipesByCategory = createAsyncThunk(
 	"recipes/fetchByCategory",
-	async ({ category, page }, ThunkAPI) => {
+	async ({ category, page, size }, ThunkAPI) => {
 		try {
 			const response = await axios.get(
-				`${BASE_URL}/recipes?category=${category}&page=${page}`
+				`${BASE_URL}/recipes?category=${category}&page=${page}&size=${size}`
 			);
 			return response.data;
 		} catch (error) {
@@ -104,10 +104,10 @@ export const fetchRecipesByCategory = createAsyncThunk(
 
 export const fetchRecipesByFilters = createAsyncThunk(
 	"recipes/fetchRecipesByFilters",
-	async ({ area, ingredient, category, page }, ThunkAPI) => {
+	async ({ area, ingredient, category, page, size }, ThunkAPI) => {
 		try {
 			const response = await axios.get(
-				`${BASE_URL}/recipes?&page=${page}`,
+				`${BASE_URL}/recipes?page=${page}&size=${size}`,
 				{
 					params: {
 						area: area || undefined,
