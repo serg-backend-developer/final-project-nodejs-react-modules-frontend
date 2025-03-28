@@ -1,31 +1,38 @@
+// src/components/Header/Nav/Nav.jsx
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Nav.module.css';
 
 const Nav = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  // Якщо користувач не залогінений, не відображаємо навігацію
+  if (!user) return null;
 
   const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev);
+    setMenuOpen(prev => !prev);
   };
 
   return (
-    <nav>
+    <nav className={styles.nav}>
+      {/* Кнопка-бургер для мобільної версії */}
       <button 
         type="button" 
         onClick={toggleMenu} 
         aria-label="Toggle navigation menu"
-        className="burgerButton"
+        className={styles.burgerButton}
       >
         &#9776;
       </button>
-
-      <ul className={`navList ${isMenuOpen ? 'open' : ''}`}>
+      
+      <ul className={`${styles.navList} ${isMenuOpen ? styles.open : ''}`}>
         <li>
-          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         </li>
         <li>
-          <Link to="/add" onClick={() => setIsMenuOpen(false)}>Add Recipe</Link>
+          <Link to="/add" onClick={() => setMenuOpen(false)}>Add Recipe</Link>
         </li>
       </ul>
     </nav>
