@@ -1,9 +1,12 @@
+import { useEffect } from "react";
+import PopularRecipes from "../../components/PopularRecipes/PopularRecipes";
 import PathInfo from "../../components/RecipePage/PathInfo/PathInfo";
 import RecipeIngredients from "../../components/RecipePage/RecipeIngredients/RecipeIngredients";
 import RecipeMainInfo from "../../components/RecipePage/RecipeMainInfo/RecipeMainInfo";
 import RecipePreparation from "../../components/RecipePage/RecipePreparation/RecipePreparation";
-// import PopularRecipes from "../../components/RecipePage/PopularRecipes";
 import style from "./RecipePage.module.css"; // імпорт стилів
+import { useDispatch } from "react-redux";
+import { fetchPopularRecipes } from "../../redux/popularRecipes/operations";
 
 const mockRecipe = {
   image: "/img/salmon.jpg",
@@ -68,6 +71,12 @@ const mockRecipe = {
 };
 
 const RecipePage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPopularRecipes())
+  }, [dispatch]);
+  
   return (
     <main className="container">
       <section className={style.breadcrumbs}>
@@ -85,10 +94,7 @@ const RecipePage = () => {
       <section className={style.recipeSection}>
         <RecipePreparation instructions={mockRecipe.instructions} />
       </section>
-
-      {/* <section className={style.popularSection}>
-        <PopularRecipes />
-      </section> */}
+      <PopularRecipes />
     </main>
   );
 };
