@@ -7,6 +7,7 @@ import categoryReducer from "./categories/categorySlice";
 import areasReducer from "./areas/areaSlice";
 import ingredientsReducer from "./ingredients/ingredientSlice";
 import recipeReducer from "./recipes/recipesSlice";
+import favoritesReducer from "./recipes/favoritesSlice";
 
 const recipeConfig = {
 	key: "recipes",
@@ -28,6 +29,7 @@ export const store = configureStore({
 		areas: areasReducer,
 		ingredients: ingredientsReducer,
 		recipes: persistReducer(recipeConfig, recipeReducer),
+		favorites: favoritesReducer,
 		auth: persistedAuthReducer,
 	},
 	middleware: (getDefaultMiddleware) =>

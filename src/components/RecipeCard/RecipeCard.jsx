@@ -12,7 +12,6 @@ import { loginUser } from "../../redux/auth/operations";
 import { getIsAuthenticated } from "../../redux/auth/selectors";
 
 export const RecipeCard = ({ recipe, isFavorite }) => {
-	console.log("recipe", recipe);
 	const dispatch = useDispatch();
 	const isAuth = useSelector(getIsAuthenticated);
 	const navigate = useNavigate();
