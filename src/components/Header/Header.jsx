@@ -1,7 +1,7 @@
-// src/components/Header/Header.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthBar from './AuthBar/AuthBar';
+import Nav from "./Nav/Nav";
 import SignInModal from '../SignInModal/SignInModal';
 import SignUpModal from '../SignUpModal/SignUpModal';
 import LogOutModal from '../LogOutModal/LogOutModal';
@@ -31,6 +31,7 @@ const Header = () => {
         <Link to="/" className={styles.logo} aria-label="Go to homepage">
           foodies
         </Link>
+        <Nav />
         {/* AuthBar отримує callback-и для відкриття модалок */}
         <AuthBar
           openSignInModal={() => setSignInOpen(true)}
