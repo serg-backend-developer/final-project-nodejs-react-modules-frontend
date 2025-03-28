@@ -89,10 +89,10 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
 
 export const fetchRecipesByCategory = createAsyncThunk(
 	"recipes/fetchByCategory",
-	async (category, ThunkAPI) => {
+	async ({ category, page }, ThunkAPI) => {
 		try {
 			const response = await axios.get(
-				`${BASE_URL}/recipes?category=${category}`
+				`${BASE_URL}/recipes?category=${category}&page=${page}`
 			);
 			return response.data;
 		} catch (error) {

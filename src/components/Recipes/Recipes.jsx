@@ -1,4 +1,4 @@
-import { useEffect, useRef} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import MainTitle from "../MainTitle/MainTitle.jsx";
 import Subtitle from "../Subtitle/Subtitle.jsx";
@@ -10,6 +10,7 @@ import { fetchRecipesByCategory } from "../../redux/recipes/operations.js";
 import { selectArea } from '../../redux/areas/areaSlice';
 import { selectIngredient } from '../../redux/ingredients/ingredientSlice';
 import { selectCategory } from "../../redux/categories/categorySlice";
+import Pagination from "../Pagination/Pagination.jsx"
 
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
@@ -27,6 +28,14 @@ const Recipes = () => {
 
 	const prevLocation = location.state || "/";
 
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(1);
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+		dispatch(fetchRecipesByCategory({ category: selectedCategory, page }));
+	};
+
 	const handleClick = () => {
 		navigate(prevLocation);
 		dispatch(selectArea(""));
@@ -36,13 +45,19 @@ const Recipes = () => {
 
 	useEffect(() => {
     	if (selectedCategory) {
-      		dispatch(fetchRecipesByCategory(selectedCategory));
+      		dispatch(fetchRecipesByCategory({ category: selectedCategory, page: currentPage }));
 		}
-  	}, [dispatch, selectedCategory]);
+  	}, [dispatch, selectedCategory, currentPage]);
 
 	const isEmptyObject = (obj) => {
 		return Object.keys(obj).length === 0 && obj.constructor === Object;
 	};
+
+	useEffect(() => {
+		if (recipes.totalPages) {
+			setTotalPages(recipes.totalPages);
+		}
+	}, [recipes]);
 
 	return (
 		<section className={css["recipes-section"]}>
@@ -72,7 +87,10 @@ const Recipes = () => {
       					) : (
         					<p>No recipes found for this category.</p>
       					)}
-						{/* <Pagination total={total} limit={6}/> */}
+						<Pagination
+							currentPage={currentPage}
+							totalPages={totalPages}
+							onPageChange={handlePageChange}/>
 					</div>
 				</div>
 			</div>

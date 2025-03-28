@@ -18,7 +18,10 @@ const RecipeList = ({ recipes }) => {
 	}, [dispatch]);
 
 	const isFavorite = (id) => {
-		const isFavorite = favoriteRecipes.findIndex(
+		if (!favoriteRecipes || !Array.isArray(favoriteRecipes.recipes)) {
+			return false;
+		}
+		const isFavorite = favoriteRecipes.recipes.findIndex(
 			(recipe) => recipe.recipeId === id
 		);
 		return isFavorite !== -1;
