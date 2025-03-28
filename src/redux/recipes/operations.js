@@ -95,7 +95,7 @@ export const fetchRecipesByCategory = createAsyncThunk(
 				params: {
 					category: category || undefined,
 					page: page,
-					size: size || 12,
+					limit: size || 12,
 				},
 			});
 			return response.data;
@@ -116,7 +116,7 @@ export const fetchRecipesByFilters = createAsyncThunk(
 					ingredient: ingredient || undefined,
 					category: category || undefined,
 					page: page,
-					size: size || 12,
+					limit: size || 12,
 				},
 			});
 			return response.data;
