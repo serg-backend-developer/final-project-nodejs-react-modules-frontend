@@ -8,6 +8,7 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const Categories = lazy(() => import("../components/Categories/Categories"));
 const Recipes = lazy(() => import("../components/Recipes/Recipes"));
+const RecipePage = lazy(() => import("../pages/RecipePage/RecipePage"));
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='recipes' element={<Recipes />} />
           </Route>
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="recipe/:id" element={<RecipePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
