@@ -11,6 +11,7 @@ import { selectArea } from '../../redux/areas/areaSlice';
 import { selectIngredient } from '../../redux/ingredients/ingredientSlice';
 import { selectCategory } from "../../redux/categories/categorySlice";
 import Pagination from "../Pagination/Pagination.jsx"
+import { fetchRecipesByFilters } from "../../redux/recipes/operations.js";
 
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
@@ -24,16 +25,16 @@ const Recipes = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
+	const selectedArea = useSelector((state) => state.areas.selectedArea);
+	const selectedIngredient = useSelector((state) => state.ingredients.selectedIngredient);
 	const recipes = useSelector((state) => state.recipes.list);
-
 	const prevLocation = location.state || "/";
-
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
 
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
-		dispatch(fetchRecipesByCategory({ category: selectedCategory, page }));
+		// dispatch(fetchRecipesByCategory({ category: selectedCategory, page }));
 	};
 
 	const handleClick = () => {
@@ -47,7 +48,18 @@ const Recipes = () => {
     	if (selectedCategory) {
       		dispatch(fetchRecipesByCategory({ category: selectedCategory, page: currentPage }));
 		}
-  	}, [dispatch, selectedCategory, currentPage]);
+	}, [dispatch, selectedCategory, currentPage]);
+
+	useEffect(() => {
+		if (selectedCategory) {
+			dispatch(fetchRecipesByFilters({
+				category: selectedCategory,
+				area: selectedArea,
+				ingredient: selectedIngredient,
+				page: currentPage,
+			}));
+		}
+	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage]);
 
 	const isEmptyObject = (obj) => {
 		return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -79,7 +91,7 @@ const Recipes = () => {
 				</Subtitle>
 				<div className={css["recipes-category"]}>
 					<div>
-						<RecipeFilters />
+						<RecipeFilters  currentPage={currentPage} />
 					</div>
 					<div>
 						{recipes.recipes? (

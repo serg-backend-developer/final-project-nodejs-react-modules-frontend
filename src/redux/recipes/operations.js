@@ -104,15 +104,18 @@ export const fetchRecipesByCategory = createAsyncThunk(
 
 export const fetchRecipesByFilters = createAsyncThunk(
 	"recipes/fetchRecipesByFilters",
-	async ({ area, ingredient, category }, ThunkAPI) => {
+	async ({ area, ingredient, category, page }, ThunkAPI) => {
 		try {
-			const response = await axios.get(`${BASE_URL}/recipes`, {
-				params: {
-					area: area || undefined,
-					ingredient: ingredient || undefined,
-					category: category || undefined,
-				},
-			});
+			const response = await axios.get(
+				`${BASE_URL}/recipes?&page=${page}`,
+				{
+					params: {
+						area: area || undefined,
+						ingredient: ingredient || undefined,
+						category: category || undefined,
+					},
+				}
+			);
 			return response.data;
 		} catch (error) {
 			toast.error("Failed to load recipes!");
