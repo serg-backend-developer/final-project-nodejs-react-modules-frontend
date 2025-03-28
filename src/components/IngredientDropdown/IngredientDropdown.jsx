@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchIngredients, selectIngredient } from '../../redux/ingredientSlice';
+
+import { fetchIngredients, selectIngredient } from '../../redux/ingredients/ingredientSlice';
+
 import css from "./IngredientDropdown.module.css";
 
 const IngredientDropdown = () => {
@@ -17,14 +19,15 @@ const IngredientDropdown = () => {
   }, [status, dispatch]);
 
   const handleSelect = (ingredientId) => {
-    dispatch(selectIngredient(ingredientId));
+    const ingredienName = ingredients.find(ingredient => ingredient.id === ingredientId)?.name || "";
+    dispatch(selectIngredient(ingredienName));
     setIsOpen(false);
   };
 
   return (
     <div className={css["custom-select-container"]}>
       <div className={css["custom-select"]} onClick={() => setIsOpen(!isOpen)}>
-        <span className={css[selectedIngredient ? 'selected-text' : 'placeholder-text']}>{selectedIngredient ? ingredients.find(cat => cat.id === selectedIngredient)?.name : 'Ingredient'}
+        <span className={css[selectedIngredient ? 'selected-text' : 'placeholder-text']}>{selectedIngredient ? selectedIngredient : 'Ingredients'}
           <svg className={css["arrow-icon"]} >
             {isOpen ? (<use href='/img/icons.svg#icon-chevron-up-black'></use>) : (
               <use href='/img/icons.svg#icon-chevron-down-black'></use>)}
