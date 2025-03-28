@@ -177,6 +177,7 @@
     padding: 11px;
     width: 40px;
     height: 40px;
+    background: none;
 }
 
 .iconWrapper:hover {
