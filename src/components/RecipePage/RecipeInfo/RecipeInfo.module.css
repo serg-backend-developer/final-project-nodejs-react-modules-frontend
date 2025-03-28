@@ -1,0 +1,38 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  align-items: start;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.recipeLayout {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 1440px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+
+  .recipeLayout {
+    flex-direction: column;
+  }
+}
