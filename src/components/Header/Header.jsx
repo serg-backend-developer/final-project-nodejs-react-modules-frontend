@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import AuthBar from './AuthBar/AuthBar';
-import Nav from "./Nav/Nav";
+import UserBar from './UserBar/UserBar';
+import Nav from './Nav/Nav';
 import SignInModal from '../SignInModal/SignInModal';
 import SignUpModal from '../SignUpModal/SignUpModal';
 import LogOutModal from '../LogOutModal/LogOutModal';
 import styles from './Header.module.css';
 
 const Header = () => {
-  // Стан для модальних вікон
+  const user = useSelector((state) => state.auth.user);
+
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [isSignUpOpen, setSignUpOpen] = useState(false);
   const [isLogOutOpen, setLogOutOpen] = useState(false);
 
-  // Функції для перемикання модалок
   const switchToSignIn = () => {
     setSignUpOpen(false);
     setSignInOpen(true);
@@ -27,20 +29,20 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Логотип */}
         <Link to="/" className={styles.logo} aria-label="Go to homepage">
           foodies
         </Link>
         <Nav />
-        {/* AuthBar отримує callback-и для відкриття модалок */}
-        <AuthBar
-          openSignInModal={() => setSignInOpen(true)}
-          openSignUpModal={() => setSignUpOpen(true)}
-          openLogOutModal={() => setLogOutOpen(true)}
-        />
+        {user ? (
+          <UserBar openLogOutModal={() => setLogOutOpen(true)} />
+        ) : (
+          <AuthBar
+            openSignInModal={() => setSignInOpen(true)}
+            openSignUpModal={() => setSignUpOpen(true)}
+          />
+        )}
       </div>
 
-      {/* Рендеринг модальних вікон */}
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setSignInOpen(false)}
