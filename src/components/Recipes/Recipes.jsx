@@ -31,18 +31,24 @@ const Recipes = () => {
 	const prevLocation = location.state || "/";
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
-	const [recipesPerPage, setRecipesPerPage] = useState(12);
+	const [limit, setLimit] = useState(getLimit());
+
+	function getLimit() {
+		const width = window.innerWidth;
+		return width < 768 ? 8 : 12;
+	}
 
 	useEffect(() => {
-		const windowWidth = window.innerWidth;
-		console.log("window", windowWidth);
-		setRecipesPerPage(windowWidth < 768 ? 8 : 12);
-		console.log(`Fetching recipes with size: ${recipesPerPage}`);
-	}, [recipesPerPage]);
+		const handleResize = () => {
+		setLimit(getLimit());
+		};
+
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
-		// dispatch(fetchRecipesByCategory({ category: selectedCategory, page }));
 	};
 
 	const handleClick = () => {
@@ -54,29 +60,27 @@ const Recipes = () => {
 
 	useEffect(() => {
 		if (selectedCategory) {
-			console.log(`Fetching recipes by category with size: ${recipesPerPage}`);
 			dispatch(fetchRecipesByCategory({
 				category: selectedCategory,
 				page: currentPage,
-				size: recipesPerPage
+				size: limit,
 			})).then(response => {
 				console.log('Server response', response);
 			});
 		}
-	}, [dispatch, selectedCategory, currentPage, recipesPerPage]);
+	}, [dispatch, selectedCategory, currentPage, limit]);
 
 	useEffect(() => {
 		if (selectedCategory) {
-			console.log(`Fetching recipes by filters with size: ${recipesPerPage}`);
 			dispatch(fetchRecipesByFilters({
 				category: selectedCategory,
 				area: selectedArea,
 				ingredient: selectedIngredient,
 				page: currentPage,
-				size: recipesPerPage,
+				size: limit,
 			}));
 		}
-	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage, recipesPerPage]);
+	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage, limit]);
 
 	const isEmptyObject = (obj) => {
 		return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -108,7 +112,7 @@ const Recipes = () => {
 				</Subtitle>
 				<div className={css["recipes-category"]}>
 					<div>
-						<RecipeFilters currentPage={currentPage} size={recipesPerPage} />
+						<RecipeFilters currentPage={currentPage} size={limit} />
 					</div>
 					<div>
 						{recipes.recipes? (
