@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import UserBar from "./UserBar/UserBar";
-import SignInModal from "../SignInModal/SignInModal";
-import SignUpModal from "../SignUpModal/SignUpModal";
-import LogOutModal from "../LogOutModal/LogOutModal";
-import styles from "./Header.module.css";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import AuthBar from './AuthBar/AuthBar';
+import UserBar from './UserBar/UserBar';
+import Nav from './Nav/Nav';
+import SignInModal from '../SignInModal/SignInModal';
+import SignUpModal from '../SignUpModal/SignUpModal';
+import LogOutModal from '../LogOutModal/LogOutModal';
+import styles from './Header.module.css';
 
 const Header = () => {
   const user = useSelector((state) => state.auth.user);
 
-  // Стан для модальних вікон
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [isSignUpOpen, setSignUpOpen] = useState(false);
   const [isLogOutOpen, setLogOutOpen] = useState(false);
 
-  // Функції для перемикання модалок
   const switchToSignIn = () => {
     setSignUpOpen(false);
     setSignInOpen(true);
@@ -29,15 +29,20 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Логотип */}
         <Link to="/" className={styles.logo} aria-label="Go to homepage">
           foodies
         </Link>
-        {/* Відображення UserBar, якщо користувач автентифікований */}
-        {user && <UserBar openLogOutModal={() => setLogOutOpen(true)} />}
+        <Nav />
+        {user ? (
+          <UserBar openLogOutModal={() => setLogOutOpen(true)} />
+        ) : (
+          <AuthBar
+            openSignInModal={() => setSignInOpen(true)}
+            openSignUpModal={() => setSignUpOpen(true)}
+          />
+        )}
       </div>
 
-      {/* Модальні вікна */}
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setSignInOpen(false)}
@@ -48,7 +53,10 @@ const Header = () => {
         onClose={() => setSignUpOpen(false)}
         onSwitchToSignIn={switchToSignIn}
       />
-      <LogOutModal isOpen={isLogOutOpen} onClose={() => setLogOutOpen(false)} />
+      <LogOutModal
+        isOpen={isLogOutOpen}
+        onClose={() => setLogOutOpen(false)}
+      />
     </header>
   );
 };
