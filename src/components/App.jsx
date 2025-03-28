@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import AppLayout from "./AppLayout/AppLayout";
 import Footer from "./Footer/Footer";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const Categories = lazy(() => import("../components/Categories/Categories"));
@@ -18,6 +19,7 @@ function App() {
             <Route index element={<Categories />} />
             <Route path='recipes' element={<Recipes />} />
           </Route>
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
