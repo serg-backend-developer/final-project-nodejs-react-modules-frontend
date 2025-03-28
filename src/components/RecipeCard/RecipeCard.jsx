@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import icons from "../../img/icons2.svg";
 import css from "./RecipeCard.module.css";
 import noImage from "../../img/empty/no-image.png";
@@ -6,14 +8,46 @@ import noAvatar from "../../img/empty/no-avatar.jpg";
 import { defaultUserName } from "../../constants/constants";
 
 import RecipeCardFavoriteButton from "../RecipeCardFavoriteButton/RecipeCardFavoriteButton";
-import ArrowUpRightIcon from "../../icons/ArrowUpRightIcon";
+import { loginUser } from "../../redux/auth/operations";
+import { getIsAuthenticated } from "../../redux/auth/selectors";
 
 export const RecipeCard = ({ recipe, isFavorite }) => {
+	console.log("recipe", recipe);
+	const dispatch = useDispatch();
+	const isAuth = useSelector(getIsAuthenticated);
 	const navigate = useNavigate();
 
 	const handleClick = () => {
     	navigate(`/recipe/${recipe.id}`);
-  	};
+	};
+
+	const redirectToUserPage = () => {
+    	navigate(`/users/${recipe.ownerId}`);
+	};
+
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	};
+
+	const handleRedirectToUserPage = () => {
+		if (isAuth) {
+			redirectToUserPage();
+			scrollToTop();
+		} else {
+			dispatch(loginUser({ email: "test@example.com", password: "password123" }))
+				.unwrap()
+				.then(() => {
+					redirectToUserPage();
+					scrollToTop();
+				})
+				.catch((error) => {
+					console.error("Login failed:", error);
+				});
+		}
+	};
 
 	return (
 		<div className={css.card}>
@@ -26,7 +60,7 @@ export const RecipeCard = ({ recipe, isFavorite }) => {
 			<p className={css.text}>{recipe.description}</p>
 
 			<div className={css.info}>
-				<div className={css.userInfo}>
+				<div className={css.userInfo} onClick={handleRedirectToUserPage}>
 					<div className={css.avatarContainer}>
 						<img
 							className={css.avatar}

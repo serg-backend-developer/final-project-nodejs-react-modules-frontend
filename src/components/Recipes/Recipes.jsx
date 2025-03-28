@@ -11,7 +11,6 @@ import { selectArea } from '../../redux/areas/areaSlice';
 import { selectIngredient } from '../../redux/ingredients/ingredientSlice';
 import { selectCategory } from "../../redux/categories/categorySlice";
 
-
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
 import icons from "../../img/icons2.svg";
@@ -34,7 +33,7 @@ const Recipes = () => {
 		dispatch(selectIngredient(""));
 		dispatch(selectCategory(""));
   	};
-	
+
 	useEffect(() => {
     	if (selectedCategory) {
       		dispatch(fetchRecipesByCategory(selectedCategory));
