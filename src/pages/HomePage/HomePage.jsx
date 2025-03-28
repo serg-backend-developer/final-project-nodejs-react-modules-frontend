@@ -4,15 +4,11 @@ import SignInModal from "../../components/SignInModal/SignInModal";
 import SignUpModal from "../../components/SignUpModal/SignUpModal";
 import LogOutModal from "../../components/LogOutModal/LogOutModal";
 import Hero from "../../components/Hero/Hero";
-import Categories from "../../components/Categories/Categories";
-import Recipes from "../../components/Recipes/Recipes";
 import { Outlet } from 'react-router-dom';
 import Testimonials from "../../components/Testimonials/Testimonials";
-import UserTabs from "../../components/UserTabs/UserTabs";
 
 
 const HomePage = () => {
-  const [category, setCategory] = useState({});
 
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [isSignUpOpen, setSignUpOpen] = useState(false);
@@ -53,7 +49,6 @@ const HomePage = () => {
       />
       <Outlet />
       <Testimonials />
-      <UserTabs />
     </>
   );
 };

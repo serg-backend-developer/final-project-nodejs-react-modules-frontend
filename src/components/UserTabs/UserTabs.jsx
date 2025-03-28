@@ -25,12 +25,10 @@ const UserTabs = ({ userId }) => {
   };
 
   return (
-    <section>
-      <div className={appStyle.container}>
-        <TabList tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
-        {createComponent()}
-      </div>
-    </section>
+    <>
+      <TabList tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+      {createComponent()}
+    </>
   );
 };
 

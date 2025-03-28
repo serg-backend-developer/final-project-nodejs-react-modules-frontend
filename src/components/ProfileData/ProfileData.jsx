@@ -1,5 +1,9 @@
+import UserTabs from "../UserTabs/UserTabs";
+
 const ProfileData = () => {
-  return <>Profile Data</>;
+  return <>
+    <UserTabs />
+  </>;
 };
 
 export default ProfileData;
