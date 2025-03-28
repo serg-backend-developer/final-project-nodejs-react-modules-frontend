@@ -6,6 +6,7 @@ import LogOutModal from "../../components/LogOutModal/LogOutModal";
 import Hero from "../../components/Hero/Hero";
 import { Outlet } from 'react-router-dom';
 import Testimonials from "../../components/Testimonials/Testimonials";
+import PopularRecipes from "../../components/PopularRecipes/PopularRecipes";
 
 
 const HomePage = () => {
@@ -49,6 +50,7 @@ const HomePage = () => {
       />
       <Outlet />
       <Testimonials />
+      <PopularRecipes />
     </>
   );
 };
