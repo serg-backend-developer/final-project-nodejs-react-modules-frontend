@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPopularRecipes, fetchRecipesByCategory, fetchRecipesByFilters } from "./operations";
+import { fetchRecipesByCategory, fetchRecipesByFilters } from "./operations";
 
 const recipeSlice = createSlice({
 	name: "recipes",
