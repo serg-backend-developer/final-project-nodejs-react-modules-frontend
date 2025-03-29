@@ -8,18 +8,13 @@ import areasReducer from "./areas/areaSlice";
 import ingredientsReducer from "./ingredients/ingredientSlice";
 import recipeReducer from "./recipes/recipesSlice";
 import profileReducer from "./profile/profileSlice";
+import favoritesReducer from "./recipes/favoritesSlice";
 import popularRecipesReducer from "./popularRecipes/popularRecipesSlice";
 
-const recipeConfig = {
-	key: "recipes",
-	storage,
-	whitelist: ["favoriteRecipes"],
-};
-
 const persistConfig = {
-  key: "auth",
-  storage,
-  whitelist: ["token"],
+	key: "auth",
+	storage,
+	whitelist: ["token"],
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
@@ -29,7 +24,8 @@ export const store = configureStore({
 		categories: categoryReducer,
 		areas: areasReducer,
 		ingredients: ingredientsReducer,
-		recipes: persistReducer(recipeConfig, recipeReducer),
+		recipes: recipeReducer,
+		favorites: favoritesReducer,
 		auth: persistedAuthReducer,
 		profile: profileReducer,
 		popular: popularRecipesReducer,

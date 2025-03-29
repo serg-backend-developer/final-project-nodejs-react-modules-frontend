@@ -43,10 +43,10 @@ const initialState = {
 };
 
 const favoritesSlice = createSlice({
-	name: "favorite_recipes",
+	name: "favorites",
 	initialState,
 	reducers: {
-		selectRecipe: (state, action) => {
+		selectFavoriteRecipe: (state, action) => {
 			state.selectedRecipe = action.payload;
 		},
 	},
@@ -90,5 +90,5 @@ const favoritesSlice = createSlice({
 			}),
 });
 
-export const { selectRecipe } = favoritesSlice.actions;
+export const { selectFavoriteRecipe } = favoritesSlice.actions;
 export default favoritesSlice.reducer;
