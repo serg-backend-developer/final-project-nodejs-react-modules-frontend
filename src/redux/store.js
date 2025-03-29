@@ -14,7 +14,7 @@ import popularRecipesReducer from "./popularRecipes/popularRecipesSlice";
 const persistConfig = {
 	key: "auth",
 	storage,
-	whitelist: ["token"],
+	whitelist: ["token", "user"],
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);

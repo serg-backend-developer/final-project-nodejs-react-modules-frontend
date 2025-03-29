@@ -1,11 +1,13 @@
 import MainTitle from "../../components/MainTitle/MainTitle";
-import ProfileData from "../../components/ProfileData/ProfileData";
 import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 import Subtitle from "../../components/Subtitle/Subtitle";
 
 import style from "./ProfilePage.module.css";
+import { useParams } from "react-router-dom";
+import UserTabs from "../../components/UserTabs/UserTabs";
 
 const ProfilePage = () => {
+  const { id } = useParams();
   return (
     <section className={style["profile-section"]}>
       <div className="container">
@@ -19,7 +21,7 @@ const ProfilePage = () => {
             <ProfileInfo />
           </div>
           <div className="profileData">
-            <ProfileData />
+            <UserTabs userId={id} />
           </div>
         </div>
       </div>

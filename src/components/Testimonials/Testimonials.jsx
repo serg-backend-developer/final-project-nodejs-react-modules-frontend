@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import styles from './Testimonials.module.css';
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import styles from "./Testimonials.module.css";
 import style from "../App.module.css";
 import "./swiper.css";
 
@@ -25,29 +25,31 @@ const Testimonials = () => {
     {
       _id: "647495d0c825f1570b04182d",
       text: "Foodies has transformed my cooking experience! With its diverse recipe collection and user-friendly interface, I can easily find, save, and cook delicious meals for any occasion. From quick dinners to elaborate feasts, this app has become my go-to kitchen companion. Highly recommended!",
-      author: "Sarah Johnson"
+      author: "Sarah Johnson",
     },
   ];
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch('https://project-team-04.onrender.com/api/testimonials');
+        const response = await fetch(
+          "https://project-team-04.onrender.com/api/testimonials",
+        );
 
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error("Network response was not ok");
 
         const data = await response.json();
 
         // Конвертація даних з бекенду в потрібний формат
-        const formattedTestimonials = data.testimonials.map(testimonial => ({
+        const formattedTestimonials = data.testimonials.map((testimonial) => ({
           _id: testimonial.id.toString(),
           text: testimonial.testimonial,
-          author: `${testimonial.owner}`
+          author: `${testimonial.owner}`,
         }));
 
         setTestimonials(formattedTestimonials);
       } catch (error) {
-        console.error('Error fetching testimonials:', error);
+        console.error("Error fetching testimonials:", error);
         setTestimonials(mockData); // Використовуємо мокові дані при помилці
       }
     };
@@ -63,29 +65,39 @@ const Testimonials = () => {
 
         {/* SVG декорація */}
         <div className={styles.decoration}>
-          <svg width="40.000000" height="32.000000" viewBox="0 0 40 32" fill="none" className={styles.decorationIcon}>
-            <path id="“"
-                  d="M0 32L0 21.29C0 17.29 0.71 13.6 2.14 10.23C3.58 6.86 6 3.45 9.43 0L15.64 4.82C13.65 6.78 12.13 8.62 11.1 10.35C10.07 12.07 9.39 13.84 9.07 15.64L16.71 15.64L16.71 32L0 32ZM23.28 32L23.28 21.29C23.28 17.29 24 13.6 25.43 10.23C26.86 6.86 29.29 3.45 32.71 0L38.92 4.82C36.93 6.78 35.42 8.62 34.38 10.35C33.35 12.07 32.67 13.84 32.35 15.64L40 15.64L40 32L23.28 32Z"
-                  fill="#E8E8E8" fill-opacity="1.000000" fill-rule="nonzero"/>
+          <svg
+            width="40.000000"
+            height="32.000000"
+            viewBox="0 0 40 32"
+            fill="none"
+            className={styles.decorationIcon}
+          >
+            <path
+              id="“"
+              d="M0 32L0 21.29C0 17.29 0.71 13.6 2.14 10.23C3.58 6.86 6 3.45 9.43 0L15.64 4.82C13.65 6.78 12.13 8.62 11.1 10.35C10.07 12.07 9.39 13.84 9.07 15.64L16.71 15.64L16.71 32L0 32ZM23.28 32L23.28 21.29C23.28 17.29 24 13.6 25.43 10.23C26.86 6.86 29.29 3.45 32.71 0L38.92 4.82C36.93 6.78 35.42 8.62 34.38 10.35C33.35 12.07 32.67 13.84 32.35 15.64L40 15.64L40 32L23.28 32Z"
+              fill="#E8E8E8"
+              fillOpacity="1.000000"
+              fillRule="nonzero"
+            />
           </svg>
         </div>
 
         <Swiper
-            modules={[Autoplay, Pagination]}
-            slidesPerView={1}
-            autoplay={{delay: 5000, disableOnInteraction: false}}
-            pagination={{
-              clickable: true,
-              el: `.${styles.pagination}`
-            }}
+          modules={[Autoplay, Pagination]}
+          slidesPerView={1}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{
+            clickable: true,
+            el: `.${styles.pagination}`,
+          }}
         >
           {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial._id}>
-                <div className={styles.testimonialCard}>
-                  <p className={styles.testimonialText}>{testimonial.text}</p>
-                  <h3 className={styles.authorName}>{testimonial.author}</h3>
-                </div>
-              </SwiperSlide>
+            <SwiperSlide key={testimonial._id}>
+              <div className={styles.testimonialCard}>
+                <p className={styles.testimonialText}>{testimonial.text}</p>
+                <h3 className={styles.authorName}>{testimonial.author}</h3>
+              </div>
+            </SwiperSlide>
           ))}
           <div className={styles.pagination} />
         </Swiper>
