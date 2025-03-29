@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
 import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import RecipePreparation from "../RecipePreparation/RecipePreparation";
-import PathInfo from "../PathInfo/PathInfo"; // ← додай
+import PathInfo from "../PathInfo/PathInfo";
+import SignInModal from "../../SignInModal/SignInModal";
 import styles from "./RecipeInfo.module.css";
+import placeholderAvatar from "../../../img/empty/no-avatar.jpg";
 
 const RecipeInfo = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -23,6 +29,14 @@ const RecipeInfo = () => {
 
     fetchRecipe();
   }, [id]);
+
+  const handleAuthorClick = () => {
+    if (!isLoggedIn) {
+      setShowSignIn(true);
+    } else {
+      navigate(`/user/${recipe.owner?._id}`);
+    }
+  };
 
   if (!recipe) {
     return <p>Loading...</p>;
@@ -43,7 +57,11 @@ const RecipeInfo = () => {
             category={recipe.category || "Unknown"}
             time={recipe.time ? `${recipe.time} min` : "N/A"}
             description={recipe.description}
-            author={recipe.owner || { name: "Unknown", avatar: "/img/placeholder.png" }}
+            author={{
+              name: recipe.owner?.name || "Unknown",
+              avatar: recipe.owner?.avatar || placeholderAvatar,
+              onClick: handleAuthorClick
+            }}
           />
 
           <div className={styles.recipeLayout}>
@@ -62,6 +80,13 @@ const RecipeInfo = () => {
           </div>
         </div>
       </section>
+
+      {showSignIn && (
+        <SignInModal
+          isOpen={showSignIn}
+          onClose={() => setShowSignIn(false)}
+        />
+      )}
     </>
   );
 };
