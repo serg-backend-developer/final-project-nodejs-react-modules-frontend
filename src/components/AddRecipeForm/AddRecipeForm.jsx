@@ -31,6 +31,7 @@ const schema = yup.object().shape({
 
 const AddRecipeForm = () => {
     const navigate = useNavigate();
+    const userId = useSelector((state) => state.auth.user?.id);
     const dispatch = useDispatch();
     const categoryDropdownRef = useRef(null);
     const categories = useSelector((state) => state.categories.list);
@@ -130,7 +131,12 @@ const AddRecipeForm = () => {
             }
 
             handleReset();
-            navigate('/profile');
+            if (userId) {
+                navigate(`/user/${userId}`);
+            } else {
+                navigate('/');
+                console.warn('User ID not found, redirected to Home page');
+            }
         } catch (error) {
             alert(`Error: ${error.message}`);
         }
