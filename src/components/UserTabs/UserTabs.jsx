@@ -24,7 +24,7 @@ const UserTabs = ({ userId }) => {
       case "My favorites":
         return <UserFavorites />;
       case "Followers":
-        return <UserFollowers />;
+        return <UserFollowers userId={userId} />;
       case "Following":
         return <UserFollowing />;
     }
