@@ -1,5 +1,5 @@
 import RecipeInfo from "../../components/RecipePage/RecipeInfo/RecipeInfo";
-import style from "./RecipePage.module.css";
+// import style from "./RecipePage.module.css";
 
 const RecipePage = () => {
   return (
