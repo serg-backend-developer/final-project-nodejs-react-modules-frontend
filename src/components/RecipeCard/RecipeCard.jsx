@@ -13,7 +13,7 @@ import { getIsAuthenticated } from "../../redux/auth/selectors";
 import SignInModal from "../SignInModal/SignInModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
 
-export const RecipeCard = ({ recipe, isFavorite }) => {
+export const RecipeCard = ({ recipe, isFavorite, className }) => {
 	const isAuth = useSelector(getIsAuthenticated);
 	const navigate = useNavigate();
   	const [isSignInOpen, setSignInOpen] = useState(false);
@@ -55,7 +55,7 @@ export const RecipeCard = ({ recipe, isFavorite }) => {
 
 	return (
 		<>
-			<div className={css.card}>
+			<div className={className ? className : css.card}>
 				<img
 					className={css.image}
 					src={

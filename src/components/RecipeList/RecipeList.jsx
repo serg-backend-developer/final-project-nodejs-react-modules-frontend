@@ -7,8 +7,8 @@ import { getFavoriteRecipes } from "../../redux/recipes/operations";
 
 import css from "./RecipeList.module.css";
 
-const RecipeList = ({ recipes }) => {
-	console.log("recipes", recipes);
+const RecipeList = ({ recipes, className, cardClassName }) => {
+
 	const dispatch = useDispatch();
 	const favoriteRecipes = useSelector(selectFavoriteRecipes);
 
@@ -27,12 +27,14 @@ const RecipeList = ({ recipes }) => {
 	};
 
 	return (
-		<ul className={css["recipes-list"]}>
+		<ul className={className ? className : css["recipes-list"]}>
 			{recipes.map((recipe) => (
 				<li key={recipe.id} className={css["recipes-item"]}>
-					<RecipeCard
+					<RecipeCard 
 						recipe={recipe}
 						isFavorite={isFavorite(recipe.id)}
+						className={cardClassName}
+
 					/>
 				</li>
 			))}
