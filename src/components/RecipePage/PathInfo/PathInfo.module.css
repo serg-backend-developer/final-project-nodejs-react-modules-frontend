@@ -37,7 +37,7 @@ text-transform: uppercase;
 @media (min-width: 768px) {
   .wrapper {
     gap: 12px;
-    margin-top: 64px; /* Або інше значення */
+    margin-top: 64px; 
   }
 
   .home,

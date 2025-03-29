@@ -49,7 +49,7 @@
 /* ====== Tablet (>=768px) ====== */
 @media screen and (min-width: 768px) {
   .preparationSection {
-    max-width: 100%; /* наприклад, 704px */
+    max-width: 100%; 
     margin: 0 auto;
   }
 
@@ -72,7 +72,7 @@ margin-bottom: 104px;
 /* ====== Desktop (>=1440px) ====== */
 @media screen and (min-width: 1440px) {
   .preparationSection {
-    max-width: 100%; /* наприклад, 980px */
+    max-width: 100%; 
   }
 
   .title {
