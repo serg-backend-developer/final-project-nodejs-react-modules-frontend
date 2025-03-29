@@ -4,6 +4,7 @@ import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import AppLayout from "./AppLayout/AppLayout";
 import Footer from "./Footer/Footer";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const Categories = lazy(() => import("../components/Categories/Categories"));
@@ -19,7 +20,14 @@ function App() {
             <Route index element={<Categories />} />
             <Route path="recipes" element={<Recipes />} />
           </Route>
-          <Route path="user/:id" element={<ProfilePage />} />
+          <Route
+            path="user/:id"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="recipe/:id" element={<RecipePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
