@@ -14,12 +14,22 @@ const RecipeMainInfo = ({ title, category, time, description, author }) => {
       <p className={styles.description}>{description}</p>
 
       <div className={styles.authorInfo}>
-        <button className={styles.authorButton} type="button">
-          <img className={styles.avatar} src={author.avatar} alt={author.name}/>
+        <button
+          className={styles.authorButton}
+          type="button"
+          onClick={author.onClick} 
+        >
+          <img className={styles.avatar} src={author.avatar} alt={author.name} />
         </button>
         <div>
-          <span className={styles.textLabel}>Created by:</span><br/>
-          <span className={styles.authorName}>{author.name}</span>
+          <span className={styles.textLabel}>Created by:</span><br />
+          <button
+            type="button"
+            className={styles.authorName}
+            onClick={author.onClick} 
+          >
+            {author.name}
+          </button>
         </div>
       </div>
     </>
