@@ -10,12 +10,6 @@ import recipeReducer from "./recipes/recipesSlice";
 import profileReducer from "./profile/profileSlice";
 import favoritesReducer from "./recipes/favoritesSlice";
 
-const recipeConfig = {
-	key: "recipes",
-	storage,
-	whitelist: ["favoriteRecipes"],
-};
-
 const persistConfig = {
 	key: "auth",
 	storage,
@@ -29,7 +23,7 @@ export const store = configureStore({
 		categories: categoryReducer,
 		areas: areasReducer,
 		ingredients: ingredientsReducer,
-		recipes: persistReducer(recipeConfig, recipeReducer),
+		recipes: recipeReducer,
 		favorites: favoritesReducer,
 		auth: persistedAuthReducer,
 		profile: profileReducer,
