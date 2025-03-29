@@ -1,1 +1,1 @@
-export const getIsAuthenticated = (state) => Boolean(state.auth.user);
+export const getIsAuthenticated = (state) => Boolean(state.auth.token);
