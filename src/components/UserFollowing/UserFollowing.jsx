@@ -14,10 +14,21 @@ const UserFollowing = () => {
     await loadUserFollowing(page);
   };
 
+  const reloadUserFollowing = async () => {
+    await loadUserFollowing(currentPage);
+  };
+
   const loadUserFollowing = async (page) => {
     try {
       const response = await fetchAuthUserFollowing(page);
-      setFollowing(response.following);
+      setFollowing(
+        response.following.map((user) => {
+          return {
+            ...user,
+            isFollowedByAuthUser: true,
+          };
+        }),
+      );
       setCurrentPage(response.currentPage);
       setTotalPages(response.totalPages);
     } catch (error) {
@@ -32,7 +43,10 @@ const UserFollowing = () => {
     <div>
       {following.length > 0 ? (
         <>
-          <UserCardList items={following} />
+          <UserCardList
+            items={following}
+            reloadDataHandler={reloadUserFollowing}
+          />
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

@@ -2,13 +2,34 @@ import styles from "./UserCard.module.css";
 import defaultAvatar from "../../img/default-avatar.png";
 import icons from "../../img/icons2.svg";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { follow, unfollow } from "../../api/foodies";
+import { useSelector } from "react-redux";
+import { isCurrentAuthUser } from "../../redux/auth/authSlice";
 
-const UserCard = ({ user }) => {
-  const { id, name, avatar, recipesCount, recipes } = user;
+const UserCard = ({ user, reloadDataHandler = () => {} }) => {
+  const { id, name, avatar, recipesCount, recipes, isFollowedByAuthUser } =
+    user;
   const navigate = useNavigate();
+  const hideButton = useSelector(isCurrentAuthUser(id));
 
-  const handleClick = () => {
+  const handleIconClick = () => {
     navigate(`/user/${id}`);
+  };
+
+  const handleButtonClick = async () => {
+    try {
+      if (isFollowedByAuthUser) {
+        await unfollow(id);
+      } else {
+        await follow(id);
+      }
+    } catch (error) {
+      const operation = isFollowedByAuthUser ? "unfollow" : "follow";
+      toast.error(`Failed to ${operation}!`);
+    } finally {
+      reloadDataHandler();
+    }
   };
 
   return (
@@ -23,9 +44,15 @@ const UserCard = ({ user }) => {
       <div className={styles.info}>
         <div className={styles.userName}>{name}</div>
         <div className={styles.recipesCount}>Own recipes: {recipesCount}</div>
-        <button className={styles.button} type="button">
-          Follow
-        </button>
+        {!hideButton && (
+          <button
+            className={styles.button}
+            type="button"
+            onClick={handleButtonClick}
+          >
+            {isFollowedByAuthUser ? "Following" : "Follow"}
+          </button>
+        )}
       </div>
       <div className={styles.recipesWrapper}>
         {recipes.map(({ id, title, thumb }, index) => (
@@ -34,7 +61,7 @@ const UserCard = ({ user }) => {
           </div>
         ))}
       </div>
-      <button className={styles.iconWrapper} onClick={handleClick}>
+      <button className={styles.iconWrapper} onClick={handleIconClick}>
         <svg>
           <use href={`${icons}#icon-arrow-up-right`}></use>
         </svg>
