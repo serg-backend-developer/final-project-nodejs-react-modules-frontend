@@ -18,7 +18,7 @@ const IngredientsList = ({ selectedIngredients, removeIngredient }) => {
                     </div>
                     <div className={styles['ingredient-details']}>
                         <span className={styles['ingredient-name']}>{ing.name}</span>
-                        <span className={styles['ingredient-amount']}>{ing.amount}</span>
+                        <span className={styles['ingredient-amount']}>{ing.measure}</span>
                     </div>
                     <button
                         type="button"

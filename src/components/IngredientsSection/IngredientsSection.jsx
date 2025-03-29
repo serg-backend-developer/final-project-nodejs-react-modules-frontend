@@ -26,13 +26,16 @@ const IngredientsSection = ({
     };
 
     const addIngredient = () => {
-        if (!selectedIngredient || !ingredientAmount.trim()) return;
+        if (!selectedIngredient || !ingredientAmount.trim()) {
+            alert("Please enter both ingredient and amount with units (e.g. '100g', '2 cups')");
+            return;
+        }
 
         const newIngredient = {
             id: selectedIngredient.id,
             name: selectedIngredient.name,
             img: selectedIngredient.img,
-            amount: ingredientAmount
+            measure: ingredientAmount // Використовуємо measure замість amount
         };
 
         const updatedIngredients = [...selectedIngredients, newIngredient];
