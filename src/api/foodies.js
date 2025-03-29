@@ -38,3 +38,14 @@ export const fetchUserFollowers = async (userId, page = 1, limit = 10) => {
   );
   return { currentPage, followers, totalPages };
 };
+
+export const fetchAuthUserFavoriteRecipes = async (page = 1, limit = 10) => {
+  const params = new URLSearchParams({
+    page,
+    limit,
+  });
+  const {
+    data: { currentPage, recipes, totalPages },
+  } = await axios.get(`${BASE_URL}/users/favorites?${params}`, createConfig());
+  return { currentPage, recipes, totalPages };
+};
