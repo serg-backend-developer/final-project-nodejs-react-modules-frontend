@@ -24,7 +24,7 @@ export const RecipeCard = ({ recipe, isFavorite, className }) => {
 	};
 
 	const redirectToUserPage = () => {
-		navigate(`/users/${recipe.ownerId}`);
+		navigate(`/user/${recipe.ownerId}`);
 	};
 
 	const scrollToTop = () => {
