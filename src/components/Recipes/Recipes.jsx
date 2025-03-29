@@ -1,4 +1,4 @@
-import { useEffect, useRef} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import MainTitle from "../MainTitle/MainTitle.jsx";
 import Subtitle from "../Subtitle/Subtitle.jsx";
@@ -10,7 +10,8 @@ import { fetchRecipesByCategory } from "../../redux/recipes/operations.js";
 import { selectArea } from '../../redux/areas/areaSlice';
 import { selectIngredient } from '../../redux/ingredients/ingredientSlice';
 import { selectCategory } from "../../redux/categories/categorySlice";
-
+import Pagination from "../Pagination/Pagination.jsx"
+import { fetchRecipesByFilters } from "../../redux/recipes/operations.js";
 
 import style from '../App.module.css';
 import css from "./Recipes.module.css";
@@ -24,9 +25,31 @@ const Recipes = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
+	const selectedArea = useSelector((state) => state.areas.selectedArea);
+	const selectedIngredient = useSelector((state) => state.ingredients.selectedIngredient);
 	const recipes = useSelector((state) => state.recipes.list);
-
 	const prevLocation = location.state || "/";
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(1);
+	const [limit, setLimit] = useState(getLimit());
+
+	function getLimit() {
+		const width = window.innerWidth;
+		return width < 768 ? 8 : 12;
+	}
+
+	useEffect(() => {
+		const handleResize = () => {
+		setLimit(getLimit());
+		};
+
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+	};
 
 	const handleClick = () => {
 		navigate(prevLocation);
@@ -34,16 +57,44 @@ const Recipes = () => {
 		dispatch(selectIngredient(""));
 		dispatch(selectCategory(""));
   	};
-	
+
 	useEffect(() => {
-    	if (selectedCategory) {
-      		dispatch(fetchRecipesByCategory(selectedCategory));
+		if (selectedCategory) {
+			dispatch(fetchRecipesByCategory({
+				category: selectedCategory,
+				page: currentPage,
+				size: limit,
+			})).then(response => {
+				console.log('Server response', response);
+			});
 		}
-  	}, [dispatch, selectedCategory]);
+	}, [dispatch, selectedCategory, currentPage, limit]);
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [selectedArea, selectedIngredient]);
+
+	useEffect(() => {
+		if (selectedCategory) {
+			dispatch(fetchRecipesByFilters({
+				category: selectedCategory,
+				area: selectedArea,
+				ingredient: selectedIngredient,
+				page: currentPage,
+				size: limit,
+			}));
+		}
+	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage, limit]);
 
 	const isEmptyObject = (obj) => {
 		return Object.keys(obj).length === 0 && obj.constructor === Object;
 	};
+
+	useEffect(() => {
+		if (recipes.totalPages) {
+			setTotalPages(recipes.totalPages);
+		}
+	}, [recipes]);
 
 	return (
 		<section className={css["recipes-section"]}>
@@ -65,7 +116,7 @@ const Recipes = () => {
 				</Subtitle>
 				<div className={css["recipes-category"]}>
 					<div>
-						<RecipeFilters />
+						<RecipeFilters currentPage={currentPage} size={limit} />
 					</div>
 					<div>
 						{recipes.recipes? (
@@ -73,7 +124,10 @@ const Recipes = () => {
       					) : (
         					<p>No recipes found for this category.</p>
       					)}
-						{/* <Pagination total={total} limit={6}/> */}
+						<Pagination
+							currentPage={currentPage}
+							totalPages={totalPages}
+							onPageChange={handlePageChange}/>
 					</div>
 				</div>
 			</div>

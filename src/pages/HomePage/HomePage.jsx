@@ -4,6 +4,7 @@ import SignInModal from "../../components/SignInModal/SignInModal";
 import SignUpModal from "../../components/SignUpModal/SignUpModal";
 import LogOutModal from "../../components/LogOutModal/LogOutModal";
 import Hero from "../../components/Hero/Hero";
+
 import { Outlet } from 'react-router-dom';
 import Testimonials from "../../components/Testimonials/Testimonials";
 

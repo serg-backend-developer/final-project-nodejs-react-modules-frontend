@@ -16,10 +16,24 @@
   .profile-section {
     padding: 100px 0 100px;
   }
+
+  .profileInfo {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .profile-section {
     padding: 120px 0 120px;
+  }
+
+  .profileData {
+    min-width: 846px;
+  }
+
+  .profileInfo {
+    display: block;
+    margin-right: 40px;
   }
 }

@@ -1,59 +1,71 @@
 .container {
-  width: 394px;
+  max-width: 394px;
+  width: 100%;
   margin-bottom: 64px;
 }
 
 @media (min-width: 768px) {
   .container {
-      margin-bottom: 80px;
-    }
+    margin-bottom: 80px;
+  }
 }
 
 @media (min-width: 1440px) {
   .container {
     margin-bottom: 0;
-    margin-right: 40px;
   }
 }
 
 .profileCard {
-  border: 1px solid var(--text-headers-color);
+  border: 1px solid #bfbebe;
   border-radius: 30px;
-  padding: 40px 80px;
-  min-height: 348px;
+  padding: 30px 69px;
+  position: relative;
 }
 
 .profileImage {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  position: relative;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 
 .name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--text-headers-color);
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .details {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .label {
   color: #bfbebe;
   line-height: 20px;
   margin-right: 8px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.42857;
+  letter-spacing: -0.02em;
 }
 
 .actions {
@@ -82,4 +94,99 @@
   background-color: #fff;
   color: #050505;
   border: 1px solid #bfbebe;
+}
+
+.addAvatarButton {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
+.loaderContainer {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+}
+
+.loader {
+  width: 60px;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side, #000 90%, #0000) 0 /
+    calc(100% / 3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  animation: l1 1s steps(4) infinite;
+}
+
+@media (min-width: 768px) {
+  .profileCard {
+    padding: 40px 80px;
+  }
+
+  .profileImage {
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .addAvatarButton {
+    bottom: -16px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .name {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .details {
+    gap: 8px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .value {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1140px) {
+  .profileCard {
+    /* min-height: 348px; */
+    min-width: 394px;
+  }
+}
+
+@keyframes l1 {
+  to {
+    clip-path: inset(0 -34% 0 0);
+  }
 }

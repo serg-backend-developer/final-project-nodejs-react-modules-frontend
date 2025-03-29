@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCurrentProfile, fetchProfile } from "./operations";
+import { fetchCurrentProfile, fetchProfile, updateAvatar } from "./operations";
 
 const profileSlice = createSlice({
   name: "profile",
@@ -31,6 +31,22 @@ const profileSlice = createSlice({
         state.selectedProfile = action.payload;
       })
       .addCase(fetchProfile.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(updateAvatar.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        if (state.currentProfile) {
+          state.currentProfile.avatar = action.payload.avatar;
+        }
+        if (state.selectedProfile) {
+          state.selectedProfile.avatar = action.payload.avatar;
+        }
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
