@@ -11,11 +11,13 @@ import { defaultUserName } from "../../constants/constants";
 import RecipeCardFavoriteButton from "../RecipeCardFavoriteButton/RecipeCardFavoriteButton";
 import { getIsAuthenticated } from "../../redux/auth/selectors";
 import SignInModal from "../SignInModal/SignInModal";
+import SignUpModal from "../SignUpModal/SignUpModal";
 
 export const RecipeCard = ({ recipe, isFavorite }) => {
 	const isAuth = useSelector(getIsAuthenticated);
 	const navigate = useNavigate();
-	const [isSignInModalOpen, setSignInModalOpen] = useState(false);
+  	const [isSignInOpen, setSignInOpen] = useState(false);
+  	const [isSignUpOpen, setSignUpOpen] = useState(false);
 
 	const handleClick = () => {
 		navigate(`/recipe/${recipe.id}`);
@@ -37,9 +39,19 @@ export const RecipeCard = ({ recipe, isFavorite }) => {
 			redirectToUserPage();
 			scrollToTop();
 		} else {
-			setSignInModalOpen(true);
+			setSignInOpen(true);
 		}
 	};
+
+	const switchToSignUp = () => {
+    	setSignUpOpen(true);
+    	setSignInOpen(false);
+	};
+
+	const switchToSignIn = () => {
+    	setSignUpOpen(false);
+    	setSignInOpen(true);
+  	};
 
 	return (
 		<>
@@ -97,9 +109,15 @@ export const RecipeCard = ({ recipe, isFavorite }) => {
 				</div>
 			</div>
 			<SignInModal
-				isOpen={isSignInModalOpen}
-				onClose={() => setSignInModalOpen(false)}
+				isOpen={isSignInOpen}
+				onClose={() => setSignInOpen(false)}
+				onSwitchToSignUp={switchToSignUp}
 			/>
+			<SignUpModal
+        		isOpen={isSignUpOpen}
+        		onClose={() => setSignUpOpen(false)}
+        		onSwitchToSignIn={switchToSignIn}
+      		/>
 		</>
 	);
 };
