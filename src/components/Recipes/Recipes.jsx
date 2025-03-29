@@ -71,6 +71,10 @@ const Recipes = () => {
 	}, [dispatch, selectedCategory, currentPage, limit]);
 
 	useEffect(() => {
+		setCurrentPage(1);
+	}, [selectedArea, selectedIngredient]);
+
+	useEffect(() => {
 		if (selectedCategory) {
 			dispatch(fetchRecipesByFilters({
 				category: selectedCategory,
