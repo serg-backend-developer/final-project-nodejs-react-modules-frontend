@@ -62,12 +62,11 @@
 }
 
 .textLabel {
-  color: #BFBEBE;
+  color: #bfbebe;
 }
 
 .avatar {
   border-radius: 30px;
-  padding: 23px 18px;
   width: 32px;
   height: 32px;
 }
@@ -101,8 +100,8 @@
   .title {
     font-size: 24px;
     font-weight: 800;
-font-size: 24px;
-line-height: 117%;
+    font-size: 24px;
+    line-height: 117%;
   }
 
   .tag {
@@ -113,7 +112,7 @@ line-height: 117%;
   }
 
   .description {
-line-height: 150%;
+    line-height: 150%;
     font-size: 16px;
     color: #1a1a1a;
   }
@@ -125,18 +124,16 @@ line-height: 150%;
 
   .authorName {
     font-weight: 700;
-font-size: 16px;
-line-height: 150%;
-color: #1a1a1a;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1a1a1a;
   }
 
   .avatar {
-    padding: 23px 18px;
     width: 50px;
     height: 50px;
   }
 }
-
 
 /* ====== Desktop (>=1440px) ====== */
 @media screen and (min-width: 1440px) {
@@ -147,8 +144,8 @@ color: #1a1a1a;
   }
   .title {
     font-weight: 800;
-font-size: 24px;
-line-height: 117%;
+    font-size: 24px;
+    line-height: 117%;
   }
 
   .tag {
@@ -158,27 +155,26 @@ line-height: 117%;
 
   .description {
     font-weight: 500;
-font-size: 16px;
-line-height: 150%;
-color: #1a1a1a;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1a1a1a;
   }
 
   .authorInfo {
     font-weight: 500;
-font-size: 14px;
-line-height: 143%;
+    font-size: 14px;
+    line-height: 143%;
   }
 
-  .authorName{
+  .authorName {
     font-weight: 700;
-font-size: 16px;
-line-height: 150%;
-color: #1a1a1a;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1a1a1a;
   }
 
   .avatar {
     border-radius: 30px;
-padding: 23px 18px;
     width: 50px;
     height: 50px;
   }
