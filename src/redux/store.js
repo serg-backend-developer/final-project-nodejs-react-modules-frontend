@@ -11,33 +11,33 @@ import profileReducer from "./profile/profileSlice";
 import popularRecipesReducer from "./popularRecipes/popularRecipesSlice";
 
 const recipeConfig = {
-	key: "recipes",
-	storage,
-	whitelist: ["favoriteRecipes"],
+  key: "recipes",
+  storage,
+  whitelist: ["favoriteRecipes"],
 };
 
 const persistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["token", "user"],
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
-	reducer: {
-		categories: categoryReducer,
-		areas: areasReducer,
-		ingredients: ingredientsReducer,
-		recipes: persistReducer(recipeConfig, recipeReducer),
-		auth: persistedAuthReducer,
-		profile: profileReducer,
-		popular: popularRecipesReducer,
-	},
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: false,
-		}),
+  reducer: {
+    categories: categoryReducer,
+    areas: areasReducer,
+    ingredients: ingredientsReducer,
+    recipes: persistReducer(recipeConfig, recipeReducer),
+    auth: persistedAuthReducer,
+    profile: profileReducer,
+    popular: popularRecipesReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);

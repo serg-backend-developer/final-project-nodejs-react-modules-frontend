@@ -1,49 +1,55 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from './operations';
-import storage from 'redux-persist/lib/storage';
-
+import { createSlice } from "@reduxjs/toolkit";
+import { loginUser, registerUser } from "./operations";
+import storage from "redux-persist/lib/storage";
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     user: null,
     token: null,
-    status: 'idle',
+    status: "idle",
   },
   reducers: {
     logout: (state) => {
-        state.user = null;
-        state.token = null;
-        storage.removeItem('persist:auth');
+      state.user = null;
+      state.token = null;
+      storage.removeItem("persist:auth");
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.user = action.payload;
+        state.status = "succeeded";
       })
       .addCase(registerUser.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.payload;
       })
       .addCase(loginUser.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.user = action.payload;
+        state.status = "succeeded";
+        state.user = action.payload.user;
         state.token = action.payload.token;
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.payload;
       });
+  },
+  selectors: {
+    selectAuthUserId: ({ user: { id } }) => id,
+    selectToken: ({ token }) => token,
   },
 });
 
 export const { logout } = authSlice.actions;
+export const { selectAuthUserId, selectToken } = authSlice.selectors;
+
+export const isCurrentAuthUser = (userId) => (state) =>
+  selectAuthUserId(state) === parseInt(userId);
 export default authSlice.reducer;
