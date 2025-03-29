@@ -1,12 +1,13 @@
 .container {
-  width: 394px;
+  max-width: 394px;
+  width: 100%;
   margin-bottom: 64px;
 }
 
 @media (min-width: 768px) {
   .container {
-      margin-bottom: 80px;
-    }
+    margin-bottom: 80px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -21,6 +22,7 @@
   border-radius: 30px;
   padding: 40px 80px;
   min-height: 348px;
+  position: relative;
 }
 
 .profileImage {
@@ -28,6 +30,7 @@
   width: 100%;
   justify-content: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .avatar {
@@ -82,4 +85,54 @@
   background-color: #fff;
   color: #050505;
   border: 1px solid #bfbebe;
+}
+
+.addAvatarButton {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
+.loaderContainer {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+}
+
+.loader {
+  width: 60px;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side, #000 90%, #0000) 0 /
+    calc(100% / 3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  animation: l1 1s steps(4) infinite;
+}
+
+@keyframes l1 {
+  to {
+    clip-path: inset(0 -34% 0 0);
+  }
 }

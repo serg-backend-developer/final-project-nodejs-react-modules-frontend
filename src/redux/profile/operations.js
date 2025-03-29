@@ -40,3 +40,24 @@ export const fetchProfile = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatar = createAsyncThunk(
+  "profile/updateAvatar",
+  async (formData, { getState, rejectWithValue }) => {
+    const token = getState().auth.token;
+    if (!token) throw new Error("No token available");
+
+    try {
+      const response = await axios.patch(`${BASE_URL}/auth/avatars`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      toast.error("Failed to update avatar!");
+      return rejectWithValue(error.message);
+    }
+  }
+);

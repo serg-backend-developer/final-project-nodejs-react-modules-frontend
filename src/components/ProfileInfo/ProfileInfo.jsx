@@ -1,34 +1,48 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { toast } from "react-hot-toast";
 
-import {
-  fetchCurrentProfile,
-  fetchProfile,
-} from "../../redux/profile/operations";
+import { fetchProfile, updateAvatar } from "../../redux/profile/operations";
 import LogOutModal from "../../components/LogOutModal/LogOutModal";
 
 import style from "./ProfileInfo.module.css";
 
 const ProfileInfo = () => {
   const [isLogOutOpen, setLogOutOpen] = useState(false);
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const currentProfile = useSelector((state) => state.profile.currentProfile);
+  const status = useSelector((state) => state.profile.status);
   const profile = useSelector((state) => state.profile.selectedProfile);
+  const isCurrentUser = profile?.favoriteRecipesCount !== undefined;
 
   useEffect(() => {
-    dispatch(fetchCurrentProfile());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (currentProfile) {
-      dispatch(fetchProfile(currentProfile.id));
+    if (id) {
+      dispatch(fetchProfile(id));
     }
-  }, [currentProfile, dispatch]);
+  }, [id, dispatch]);
+
+  const handleAvatarChange = (event) => {
+    const avatarFile = event.target.files[0];
+
+    if (!avatarFile) {
+      toast.error("Please select an image to upload.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("avatar", avatarFile);
+
+    dispatch(updateAvatar(formData));
+  };
 
   return (
     <div className={style.container}>
       <div className={style.profileCard}>
+        {status === "loading" && (
+          <div className={style.loaderContainer}>
+            <div className={style.loader}></div>
+          </div>
+        )}
         {profile && (
           <>
             <div className={style.profileImage}>
@@ -37,6 +51,18 @@ const ProfileInfo = () => {
                 alt="profile"
                 className={style.avatar}
               />
+
+              {isCurrentUser && (
+                <label className={style.addAvatarButton}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleAvatarChange}
+                    className={style.fileInput}
+                  />
+                  <div className={style.addAvatarIcon}>+</div>
+                </label>
+              )}
             </div>
 
             <div className={style.name}>{profile.name}</div>
@@ -51,22 +77,26 @@ const ProfileInfo = () => {
                 <span className={style.value}>{profile.recipesCount}</span>
               </div>
 
-              <div className={style.detail}>
-                <span className={style.label}>Favorites:</span>
-                <span className={style.value}>
-                  {profile.favoriteRecipesCount}
-                </span>
-              </div>
+              {isCurrentUser && (
+                <div className={style.detail}>
+                  <span className={style.label}>Favorites:</span>
+                  <span className={style.value}>
+                    {profile.favoriteRecipesCount}
+                  </span>
+                </div>
+              )}
 
               <div className={style.detail}>
                 <span className={style.label}>Followers:</span>
                 <span className={style.value}>{profile.followersCount}</span>
               </div>
 
-              <div className={style.detail}>
-                <span className={style.label}>Following:</span>
-                <span className={style.value}>{profile.followingCount}</span>
-              </div>
+              {isCurrentUser && (
+                <div className={style.detail}>
+                  <span className={style.label}>Following:</span>
+                  <span className={style.value}>{profile.followingCount}</span>
+                </div>
+              )}
             </div>
           </>
         )}
