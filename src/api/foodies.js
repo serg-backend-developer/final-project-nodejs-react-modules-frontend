@@ -25,7 +25,7 @@ export const fetchUserRecipes = async (userId, page = 1, limit = 10) => {
   return { currentPage, recipes, totalPages };
 };
 
-export const fetchUserFollowers = async (userId, page = 1, limit = 10) => {
+export const fetchUserFollowers = async (userId, page = 1, limit = 5) => {
   const params = new URLSearchParams({
     page,
     limit,
@@ -50,7 +50,7 @@ export const fetchAuthUserFavoriteRecipes = async (page = 1, limit = 10) => {
   return { currentPage, recipes, totalPages };
 };
 
-export const fetchAuthUserFollowing = async (page = 1, limit = 10) => {
+export const fetchAuthUserFollowing = async (page = 1, limit = 5) => {
   const params = new URLSearchParams({
     page,
     limit,
