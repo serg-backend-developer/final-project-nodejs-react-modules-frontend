@@ -89,11 +89,15 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
 
 export const fetchRecipesByCategory = createAsyncThunk(
 	"recipes/fetchByCategory",
-	async ({ category, page }, ThunkAPI) => {
+	async ({ category, page, size }, ThunkAPI) => {
 		try {
-			const response = await axios.get(
-				`${BASE_URL}/recipes?category=${category}&page=${page}`
-			);
+			const response = await axios.get(`${BASE_URL}/recipes`, {
+				params: {
+					category: category || undefined,
+					page: page,
+					limit: size || 12,
+				},
+			});
 			return response.data;
 		} catch (error) {
 			toast.error("Failed to load recipes!");
@@ -104,13 +108,15 @@ export const fetchRecipesByCategory = createAsyncThunk(
 
 export const fetchRecipesByFilters = createAsyncThunk(
 	"recipes/fetchRecipesByFilters",
-	async ({ area, ingredient, category }, ThunkAPI) => {
+	async ({ area, ingredient, category, page, size }, ThunkAPI) => {
 		try {
 			const response = await axios.get(`${BASE_URL}/recipes`, {
 				params: {
 					area: area || undefined,
 					ingredient: ingredient || undefined,
 					category: category || undefined,
+					page: page,
+					limit: size || 12,
 				},
 			});
 			return response.data;
