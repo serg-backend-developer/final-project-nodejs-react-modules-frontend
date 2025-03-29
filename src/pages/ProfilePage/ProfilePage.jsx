@@ -17,10 +17,10 @@ const ProfilePage = () => {
           gastronomic masterpieces with us.
         </Subtitle>
         <div className={style.content}>
-          <div className="profileInfo">
+          <div className={style.profileInfo}>
             <ProfileInfo />
           </div>
-          <div className="profileData">
+          <div className={style.profileData}>
             <UserTabs userId={id} />
           </div>
         </div>
