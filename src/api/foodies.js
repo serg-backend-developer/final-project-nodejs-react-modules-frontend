@@ -25,18 +25,18 @@ export const fetchUserRecipes = async (userId, page = 1, limit = 10) => {
   return { currentPage, recipes, totalPages };
 };
 
-export const fetchUserFollowers = async (userId, page = 1, limit = 10) => {
+export const fetchUserFollowers = async (userId, page = 1, limit = 5) => {
   const params = new URLSearchParams({
     page,
     limit,
   });
   const {
-    data: { currentPage, followers, totalPages },
+    data: { currentPage, followers, totalPages, authUserFollowingIds },
   } = await axios.get(
     `${BASE_URL}/users/${userId}/followers?${params}`,
     createConfig(),
   );
-  return { currentPage, followers, totalPages };
+  return { currentPage, followers, totalPages, authUserFollowingIds };
 };
 
 export const fetchAuthUserFavoriteRecipes = async (page = 1, limit = 10) => {
@@ -50,7 +50,7 @@ export const fetchAuthUserFavoriteRecipes = async (page = 1, limit = 10) => {
   return { currentPage, recipes, totalPages };
 };
 
-export const fetchAuthUserFollowing = async (page = 1, limit = 10) => {
+export const fetchAuthUserFollowing = async (page = 1, limit = 5) => {
   const params = new URLSearchParams({
     page,
     limit,
@@ -59,4 +59,12 @@ export const fetchAuthUserFollowing = async (page = 1, limit = 10) => {
     data: { currentPage, following, totalPages },
   } = await axios.get(`${BASE_URL}/users/following?${params}`, createConfig());
   return { currentPage, following, totalPages };
+};
+
+export const unfollow = async (userId) => {
+  await axios.post(`${BASE_URL}/users/unfollow`, { userId }, createConfig());
+};
+
+export const follow = async (userId) => {
+  await axios.post(`${BASE_URL}/users/follow`, { userId }, createConfig());
 };

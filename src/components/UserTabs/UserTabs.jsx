@@ -1,6 +1,6 @@
 import TabList from "../TabList/TabList";
 import UserRecipes from "../UserRecipes/UserRecipes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import UserFavorites from "../UserFavorites/UserFavorites";
 import UserFollowers from "../UserFollowers/UserFollowers";
@@ -29,6 +29,10 @@ const UserTabs = ({ userId }) => {
         return <UserFollowing />;
     }
   };
+
+  useEffect(() => {
+    setActiveTab(tabs[0]);
+  }, [userId]);
 
   return (
     <>
