@@ -43,10 +43,13 @@ const RecipeInfo = () => {
   return (
     <>
       <section className={styles.breadcrumbs}>
-        <PathInfo title={recipe.title} />
+        <div className={styles.container}>
+          <PathInfo title={recipe.title} />
+        </div>
       </section>
 
       <section className={styles.section}>
+        <div className={styles.container}>
         <img className={styles.image} src={recipe.thumb} alt={recipe.title} />
 
         <div className={styles.content}>
@@ -75,6 +78,7 @@ const RecipeInfo = () => {
               instructions={recipe.instructions}
               recipeId={recipe.id}
             />
+          </div>
           </div>
         </div>
       </section>

@@ -4,6 +4,30 @@
   align-items: start;
 }
 
+.container {
+  max-width: 375px;
+  padding: 0 16px;
+  margin: 0 auto;
+  width: 100vw;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+  }
+}
+
 .image {
   width: 100%;
   height: auto;
@@ -39,9 +63,6 @@
 /* Desktop */
 @media (min-width: 1440px) {
   .section {
-    display: flex;
-    flex-direction: row;
-    gap: 80px;
     padding-bottom: 120px;
   }
 
