@@ -113,7 +113,7 @@ export const fetchRecipesByFilters = createAsyncThunk(
 			const response = await axios.get(`${BASE_URL}/recipes`, {
 				params: {
 					area: area || undefined,
-					ingredient: ingredient || undefined,
+					ingredient: ingredient ? ingredient.name : undefined,
 					category: category || undefined,
 					page: page,
 					limit: size || 12,
