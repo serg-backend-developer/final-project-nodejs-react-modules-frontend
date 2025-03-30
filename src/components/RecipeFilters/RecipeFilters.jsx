@@ -15,7 +15,7 @@ const RecipeFilters = ({ currentPage, size }) => {
   useEffect(() => {
     dispatch(fetchRecipesByFilters({
       area: selectedArea,
-      ingredient: selectedIngredient,
+      ingredient: selectedIngredient ? selectedIngredient.name : undefined,
       category: selectedCategory,
       page: currentPage,
       size: size,
