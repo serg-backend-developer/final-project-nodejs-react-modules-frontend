@@ -47,7 +47,7 @@ const RecipePreparation = ({ instructions, recipeId }) => {
   };
 
   return (
-    <section className={styles.preparationSection}>
+    <div className={styles.preparationSection}>
       <h2 className={styles.title}>Recipe Preparation</h2>
       <p className={styles.instructions}>{instructions}</p>
       <button type="button" className={styles.favoriteBtn} onClick={() => handleAddToFavorite(recipeId)}>
@@ -64,7 +64,7 @@ const RecipePreparation = ({ instructions, recipeId }) => {
         onClose={() => setSignUpOpen(false)}
         onSwitchToSignIn={switchToSignIn}
       />
-    </section>
+    </div>
   );
 };
 
