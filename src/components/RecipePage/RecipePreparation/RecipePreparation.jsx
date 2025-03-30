@@ -1,22 +1,24 @@
 import styles from './RecipePreparation.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import {
   addFavoriteRecipe,
   removeFromFavoriteRecipe,
-} from '../../../redux/recipes/operations'; 
-
+} from '../../../redux/recipes/operations';
+import SignInModal from '../../SignInModal/SignInModal';
+import SignUpModal from '../../SignUpModal/SignUpModal';
 
 const RecipePreparation = ({ instructions, isFavorite: initialFavorite, recipeId }) => {
   const [isFavorite, setIsFavorite] = useState(initialFavorite);
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const [isSignInOpen, setSignInOpen] = useState(false);
+  const [isSignUpOpen, setSignUpOpen] = useState(false);
 
   const handleFavoriteClick = async () => {
     if (!isLoggedIn) {
-      navigate('/signin'); 
+      setSignInOpen(true);
       return;
     }
 
@@ -32,6 +34,16 @@ const RecipePreparation = ({ instructions, isFavorite: initialFavorite, recipeId
     }
   };
 
+  const switchToSignUp = () => {
+    setSignInOpen(false);
+    setSignUpOpen(true);
+  };
+
+  const switchToSignIn = () => {
+    setSignUpOpen(false);
+    setSignInOpen(true);
+  };
+
   return (
     <section className={styles.preparationSection}>
       <h2 className={styles.title}>Recipe Preparation</h2>
@@ -39,6 +51,18 @@ const RecipePreparation = ({ instructions, isFavorite: initialFavorite, recipeId
       <button type="button" className={styles.favoriteBtn} onClick={handleFavoriteClick}>
         {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       </button>
+
+      {/* Модалки */}
+      <SignInModal
+        isOpen={isSignInOpen}
+        onClose={() => setSignInOpen(false)}
+        onSwitchToSignUp={switchToSignUp}
+      />
+      <SignUpModal
+        isOpen={isSignUpOpen}
+        onClose={() => setSignUpOpen(false)}
+        onSwitchToSignIn={switchToSignIn}
+      />
     </section>
   );
 };
