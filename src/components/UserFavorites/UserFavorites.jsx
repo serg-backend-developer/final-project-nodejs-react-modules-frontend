@@ -17,7 +17,7 @@ const UserFavorites = ({ isOwnProfile }) => {
   };
 
   const loadUserRecipes = async (page) => {
-    dispatch(fetchUserFavoriteRecipes(page));
+    dispatch(fetchUserFavoriteRecipes({ page }));
   };
 
   useEffect(() => {
