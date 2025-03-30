@@ -1,0 +1,55 @@
+.authBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    background: #ffffff;
+  }
+  
+  /* Стилізація для повідомлення користувача */
+  .welcome {
+    margin-right: 12px;
+    font-family: Mulish, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #050505;
+  }
+  
+  /* Загальні стилі для кнопок */
+  .signInButton,
+  .signUpButton,
+  .logoutButton {
+    flex: 1;
+    border-radius: 30px;
+    padding: 10px 16px;
+    font-family: Mulish, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  /* Кнопка Sign in: білий фон, без рамки, темний текст */
+  .signInButton {
+    border: none;
+    background: #ffffff;
+    color: #050505;
+  }
+  
+  /* Кнопка Sign up: темний фон, рамка, білий текст */
+  .signUpButton {
+    border: 1px solid #bfbebe;
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  /* Кнопка Logout для залогіненого користувача (за бажанням, можна додатково стилізувати) */
+  .logoutButton {
+    border: none;
+    background: transparent;
+    color: #050505;
+  }
+  

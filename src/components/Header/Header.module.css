@@ -1,0 +1,50 @@
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px 20px 0 0;
+  margin: 0 8px;
+  padding-top: 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+/* Темний стиль для HomePage і RecipePage */
+.dark {
+  background-color: #050505;
+  color: #fff;
+  /* Задаємо змінну для hover-ефекту рамки */
+  --border-color-hover: #ffffff33;
+}
+
+/* Світлий стиль для інших сторінок */
+.light {
+  background-color: #fff;
+  color: #000;
+  /* Задаємо змінну для hover-ефекту рамки */
+  --border-color-hover: #bfbebe;
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin: 0 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header {
+    margin: 0 20px;
+  }
+}

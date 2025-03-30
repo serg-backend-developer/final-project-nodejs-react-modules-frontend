@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import AuthBar from './AuthBar/AuthBar';
-import UserBar from './UserBar/UserBar';
-import Nav from './Nav/Nav';
-import SignInModal from '../SignInModal/SignInModal';
-import SignUpModal from '../SignUpModal/SignUpModal';
-import LogOutModal from '../LogOutModal/LogOutModal';
-import styles from './Header.module.css';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import AuthBar from "./AuthBar/AuthBar";
+import UserBar from "./UserBar/UserBar";
+import Nav from "./Nav/Nav";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import Logo from "../Logo/Logo";
+import SignInModal from "../SignInModal/SignInModal";
+import SignUpModal from "../SignUpModal/SignUpModal";
+import LogOutModal from "../LogOutModal/LogOutModal";
+import styles from "./Header.module.css";
+import style from "../App.module.css";
 
 const Header = () => {
-  const user = useSelector((state) => state.auth.user);
+  const location = useLocation();
+  // темний стиль для '/' і '/recipes'
+  const isDark = location.pathname === "/" || location.pathname === "/recipes";
 
+  const user = useSelector((state) => state.auth.user);
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [isSignUpOpen, setSignUpOpen] = useState(false);
   const [isLogOutOpen, setLogOutOpen] = useState(false);
@@ -27,11 +33,12 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <Link to="/" className={styles.logo} aria-label="Go to homepage">
-          foodies
-        </Link>
+    <header
+      className={`${styles.header} ${isDark ? styles.dark : styles.light}`}
+    >
+      <div className={`${style.container} ${styles.headerContainer}`}>
+        <Logo />
+        {/* Для десктопної версії відображаємо звичайну навігацію */}
         <Nav />
         {user ? (
           <UserBar openLogOutModal={() => setLogOutOpen(true)} />
@@ -41,6 +48,8 @@ const Header = () => {
             openSignUpModal={() => setSignUpOpen(true)}
           />
         )}
+        {/* BurgerMenu відображатиметься лише на мобільних*/}
+        <BurgerMenu />
       </div>
 
       <SignInModal
@@ -53,10 +62,7 @@ const Header = () => {
         onClose={() => setSignUpOpen(false)}
         onSwitchToSignIn={switchToSignIn}
       />
-      <LogOutModal
-        isOpen={isLogOutOpen}
-        onClose={() => setLogOutOpen(false)}
-      />
+      <LogOutModal isOpen={isLogOutOpen} onClose={() => setLogOutOpen(false)} />
     </header>
   );
 };
