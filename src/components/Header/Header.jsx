@@ -13,7 +13,7 @@ import styles from "./Header.module.css";
 
 const Header = () => {
   const location = useLocation();
-  const isDark = location.pathname === "/" || location.pathname === "/recipe";
+  const isDark = location.pathname === "/" || location.pathname === "/recipes";
 
   const user = useSelector((state) => state.auth.user);
   const [isSignInOpen, setSignInOpen] = useState(false);
