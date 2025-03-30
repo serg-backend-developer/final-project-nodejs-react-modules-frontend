@@ -23,14 +23,13 @@
 }
 
 .tags {
-  margin-top: 20px;
   display: flex;
   gap: 8px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .tag {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 1.43;
   padding: 10px;
@@ -54,28 +53,20 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 32px;
-  color: #bfbebe;
   font-weight: 500;
   font-size: 14px;
   line-height: 143%;
-  letter-spacing: -0.02em;
+  color: #bfbebe;
 }
 
 .textLabel {
-  color: #BFBEBE;
+  color: #bfbebe;
 }
 
 .avatar {
-  border-radius: 30px;
-  padding: 23px 18px;
   width: 32px;
   height: 32px;
-}
-
-.label {
-  font-weight: 500;
-  font-size: 12px;
-  color: #bfbebe;
+  border-radius: 30px;
 }
 
 .authorButton {
@@ -90,7 +81,12 @@
 }
 
 .authorName {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 143%;
+  letter-spacing: -0.02em;
+  color: #bfbebe;
+  background: none;
 }
 
 /* ====== Tablet (>=768px) ====== */
@@ -98,23 +94,19 @@
   .image {
     margin-bottom: 40px;
   }
+
   .title {
     font-size: 24px;
-    font-weight: 800;
-font-size: 24px;
-line-height: 117%;
+    line-height: 117%;
   }
 
   .tag {
     font-size: 14px;
     line-height: 129%;
-    font-weight: 500;
     padding: 12px;
   }
 
   .description {
-line-height: 150%;
-    font-size: 16px;
     color: #1a1a1a;
   }
 
@@ -122,21 +114,18 @@ line-height: 150%;
     font-size: 16px;
     margin-bottom: 40px;
   }
-  
+
   .authorName {
-    font-weight: 700;
-font-size: 16px;
-line-height: 150%;
-color: #1a1a1a;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1a1a1a;
   }
 
   .avatar {
-    padding: 23px 18px;
     width: 50px;
     height: 50px;
   }
 }
-
 
 /* ====== Desktop (>=1440px) ====== */
 @media screen and (min-width: 1440px) {
@@ -145,11 +134,6 @@ color: #1a1a1a;
     align-items: flex-start;
     gap: 80px;
   }
-  .title {
-    font-weight: 800;
-font-size: 24px;
-line-height: 117%;
-  }
 
   .tag {
     font-size: 18px;
@@ -157,28 +141,20 @@ line-height: 117%;
   }
 
   .description {
-    font-weight: 500;
-font-size: 16px;
-line-height: 150%;
-color: #1a1a1a;
+    color: #1a1a1a;
   }
 
   .authorInfo {
-    font-weight: 500;
-font-size: 14px;
-line-height: 143%;
+    font-size: 14px;
   }
 
-  .authorName{
-    font-weight: 700;
-font-size: 16px;
-line-height: 150%;
-color: #1a1a1a;
+  .authorName {
+    font-size: 16px;
+    line-height: 150%;
+    color: #1a1a1a;
   }
 
   .avatar {
-    border-radius: 30px;
-padding: 23px 18px;
     width: 50px;
     height: 50px;
   }
