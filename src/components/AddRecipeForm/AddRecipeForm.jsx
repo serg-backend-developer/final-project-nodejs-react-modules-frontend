@@ -69,8 +69,6 @@ const AddRecipeForm = () => {
             return;
         }
 
-        console.log("Submitting form data:", data);
-
         if (!data.category || !data.category.id) {
             alert("Please select a valid category");
             return;
