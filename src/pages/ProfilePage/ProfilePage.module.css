@@ -1,0 +1,39 @@
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+  }
+}
+
+.profile-section {
+  padding: 64px 0 64px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-section {
+    padding: 100px 0 100px;
+  }
+
+  .profileInfo {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .profile-section {
+    padding: 120px 0 120px;
+  }
+
+  .profileData {
+    min-width: 846px;
+  }
+
+  .profileInfo {
+    display: block;
+    margin-right: 40px;
+  }
+}
