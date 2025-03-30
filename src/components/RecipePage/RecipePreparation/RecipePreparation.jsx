@@ -5,34 +5,36 @@ import {
   addFavoriteRecipe,
   removeFromFavoriteRecipe,
 } from '../../../redux/recipes/operations';
+import { getIsAuthenticated } from "../../../redux/auth/selectors";
 import SignInModal from '../../SignInModal/SignInModal';
 import SignUpModal from '../../SignUpModal/SignUpModal';
 
-const RecipePreparation = ({ instructions, isFavorite: initialFavorite, recipeId }) => {
-  const [isFavorite, setIsFavorite] = useState(initialFavorite);
+const RecipePreparation = ({ instructions, recipeId }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const isAuth = useSelector(getIsAuthenticated);
   const dispatch = useDispatch();
 
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [isSignUpOpen, setSignUpOpen] = useState(false);
 
-  const handleFavoriteClick = async () => {
-    if (!isLoggedIn) {
-      setSignInOpen(true);
-      return;
-    }
-
+	const handleAddToFavorite = async (recipeId) => {
+		if (!isAuth) {
+			setSignInOpen(true);
+			return;
+		}
     try {
       if (isFavorite) {
-        await dispatch(removeFromFavoriteRecipe(recipeId)).unwrap();
+        dispatch(removeFromFavoriteRecipe(recipeId));
+         setIsFavorite(false);
       } else {
-        await dispatch(addFavoriteRecipe(recipeId)).unwrap();
+        dispatch(addFavoriteRecipe(recipeId));
+        setIsFavorite(true);
       }
-      setIsFavorite(prev => !prev);
     } catch (error) {
       console.error('Failed to update favorites:', error);
     }
-  };
+	};
 
   const switchToSignUp = () => {
     setSignInOpen(false);
@@ -48,11 +50,10 @@ const RecipePreparation = ({ instructions, isFavorite: initialFavorite, recipeId
     <section className={styles.preparationSection}>
       <h2 className={styles.title}>Recipe Preparation</h2>
       <p className={styles.instructions}>{instructions}</p>
-      <button type="button" className={styles.favoriteBtn} onClick={handleFavoriteClick}>
+      <button type="button" className={styles.favoriteBtn} onClick={() => handleAddToFavorite(recipeId)}>
         {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       </button>
 
-      {/* Модалки */}
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setSignInOpen(false)}
