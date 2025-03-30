@@ -5,8 +5,6 @@ import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
 import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import RecipePreparation from "../RecipePreparation/RecipePreparation";
 import PathInfo from "../PathInfo/PathInfo";
-import SignInModal from "../../SignInModal/SignInModal";
-import SignUpModal from "../../SignUpModal/SignUpModal";
 import styles from "./RecipeInfo.module.css";
 import placeholderAvatar from "../../../img/empty/no-avatar.jpg";
 
@@ -14,7 +12,6 @@ const RecipeInfo = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [showSignIn, setShowSignIn] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   useEffect(() => {
@@ -37,16 +34,6 @@ const RecipeInfo = () => {
     } else {
       window.location.href = `/user/${recipe.owner?._id}`;
     }
-  };
-
-  const switchToSignUp = () => {
-    setShowSignUp(true);
-    setShowSignIn(false);
-  };
-
-  const switchToSignIn = () => {
-    setShowSignIn(true);
-    setShowSignUp(false);
   };
 
   if (!recipe) {
@@ -86,24 +73,11 @@ const RecipeInfo = () => {
             />
             <RecipePreparation
               instructions={recipe.instructions}
-              isFavorite={false}
-              recipeId={recipe._id}
+              recipeId={recipe.id}
             />
           </div>
         </div>
       </section>
-
-      <SignInModal
-        isOpen={showSignIn}
-        onClose={() => setShowSignIn(false)}
-        onSwitchToSignUp={switchToSignUp}
-      />
-
-      <SignUpModal
-        isOpen={showSignUp}
-        onClose={() => setShowSignUp(false)}
-        onSwitchToSignIn={switchToSignIn}
-      />
     </>
   );
 };
