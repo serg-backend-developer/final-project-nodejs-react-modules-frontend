@@ -15,7 +15,7 @@ const RecipeFilters = ({ currentPage, size }) => {
   useEffect(() => {
     dispatch(fetchRecipesByFilters({
       area: selectedArea,
-      ingredient: selectedIngredient,
+      ingredient: selectedIngredient ? selectedIngredient.name : undefined,
       category: selectedCategory,
       page: currentPage,
       size: size,
@@ -24,7 +24,7 @@ const RecipeFilters = ({ currentPage, size }) => {
 
   return (
     <div className={ css.container }>
-      <IngredientDropdown />
+      <IngredientDropdown className={css["select-container"]} classIngName={css["ing-select"]} />
       <AreaDropdown />
     </div>
   );

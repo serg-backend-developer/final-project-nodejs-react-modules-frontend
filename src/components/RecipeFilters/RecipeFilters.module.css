@@ -9,3 +9,41 @@
 	padding: 8px;
 	width: 330px;
 }
+
+.select-container {
+	position: relative;
+	width: 100%;
+	max-width: 343px;
+}
+
+.ing-select {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 48px;
+	padding: 16px 18px;
+	border: 1px solid #bfbebe;
+	border-radius: 30px;
+	background-color: #fff;
+	cursor: pointer;
+	transition: border-color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+
+	.select-container,
+	.ing-select {
+		width: 345px;
+		height: 56px;
+	}
+}
+
+@media (min-width: 1440px) {
+
+	.select-container,
+	.ing-select {
+		width: 330px;
+	}
+}
