@@ -34,7 +34,6 @@ const AddRecipeForm = () => {
     const userId = useSelector((state) => state.auth.user?.id);
     const dispatch = useDispatch();
     const categoryDropdownRef = useRef(null);
-    const categories = useSelector((state) => state.categories.list);
     const categoriesStatus = useSelector((state) => state.categories.status);
 
     const {
