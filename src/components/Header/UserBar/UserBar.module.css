@@ -1,15 +1,19 @@
+/* Мобільна версія (mobile-first) */
 .userBar {
   display: flex;
   align-items: center;
+  gap: 10px; /* мобільний відступ між елементами */
   border-radius: 30px;
   background: #1a1a1a;
   position: relative;
-  padding-left: 0;
+  padding: 0;
+  /* Висота дорівнює висоті аватарки */
+  height: 32px;
 }
 
 .avatarContainer {
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
 }
 
@@ -34,7 +38,6 @@
 .userInfo {
   display: flex;
   align-items: center;
-  margin-left: 6px;
   cursor: pointer;
 }
 
@@ -47,12 +50,11 @@
   line-height: 1;
 }
 
+/* Для мобільної версії – мінімальні відступи для стрілки */
 .arrowIcon {
   width: 18px;
   height: 18px;
   fill: #ffffff;
-  margin-top: 16px;
-  margin-bottom: 16px;
   margin-right: 14px;
   transition: transform 0.3s ease;
 }
@@ -61,19 +63,18 @@
   transform: rotate(180deg);
 }
 
+/* Випадаюче меню, яке займає всю ширину .userBar і розташовується під ним з відступом 8px */
 .dropdownMenu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 0;
-  margin-top: 8px;
-  border: 1px solid #ffffff;
+  border: 1px solid #FFFFFF33;
   background: #050505;
   color: #fff;
   border-radius: 15px;
   overflow: hidden;
   z-index: 1000;
 }
-
 
 .dropdownItem {
   display: flex;
@@ -103,4 +104,19 @@
   height: 18px;
   margin-left: 4px;
   fill: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .userBar {
+    gap: 16px;
+    height: 50px;
+  }
+  .avatarContainer {
+    width: 50px;
+    height: 50px;
+  }
+  .arrowIcon {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
 }

@@ -17,13 +17,10 @@ const UserBar = ({ openLogOutModal }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownWidth, setDropdownWidth] = useState(null);
   const containerRef = useRef();
-  const arrowRef = useRef();
 
   useEffect(() => {
-    if (isDropdownOpen && containerRef.current && arrowRef.current) {
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const arrowRect = arrowRef.current.getBoundingClientRect();
-      const width = arrowRect.right - containerRect.left;
+    if (isDropdownOpen && containerRef.current) {
+      const width = containerRef.current.offsetWidth;
       setDropdownWidth(width);
     }
   }, [isDropdownOpen]);
@@ -68,7 +65,6 @@ const UserBar = ({ openLogOutModal }) => {
         </span>
         <svg
           className={`${styles.arrowIcon} ${isDropdownOpen ? styles.open : ""}`}
-          ref={arrowRef}
         >
           <use href="/img/icons.svg#icon-chevron-down-black"></use>
         </svg>
@@ -76,9 +72,9 @@ const UserBar = ({ openLogOutModal }) => {
       {isDropdownOpen && (
         <div
           className={styles.dropdownMenu}
-          style={{ width: dropdownWidth ? dropdownWidth : "auto" }}
+          style={{ width: dropdownWidth ? dropdownWidth : "100%" }}
         >
-          <Link to="/profile" className={styles.dropdownItem}>
+          <Link to="/user/id" className={styles.dropdownItem}>
             PROFILE
           </Link>
           <button

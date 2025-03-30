@@ -10,7 +10,6 @@ import SignInModal from "../SignInModal/SignInModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
 import LogOutModal from "../LogOutModal/LogOutModal";
 import styles from "./Header.module.css";
-import style from "../App.module.css";
 
 const Header = () => {
   const location = useLocation();
@@ -36,20 +35,24 @@ const Header = () => {
     <header
       className={`${styles.header} ${isDark ? styles.dark : styles.light}`}
     >
-      <div className={`${style.container} ${styles.headerContainer}`}>
+      <div className={styles.headerContainer}>
         <Logo />
-        {/* Для десктопної версії відображаємо звичайну навігацію */}
-        <Nav />
-        {user ? (
-          <UserBar openLogOutModal={() => setLogOutOpen(true)} />
-        ) : (
-          <AuthBar
-            openSignInModal={() => setSignInOpen(true)}
-            openSignUpModal={() => setSignUpOpen(true)}
-          />
-        )}
-        {/* BurgerMenu відображатиметься лише на мобільних*/}
-        <BurgerMenu />
+        {/* Центруємо навігацію */}
+        <div className={styles.centerNav}>
+          <Nav />
+        </div>
+        {/* Правий блок, який містить або AuthBar, або UserBar, та BurgerMenu */}
+        <div className={styles.rightBlock}>
+          {user ? (
+            <UserBar openLogOutModal={() => setLogOutOpen(true)} />
+          ) : (
+            <AuthBar
+              openSignInModal={() => setSignInOpen(true)}
+              openSignUpModal={() => setSignUpOpen(true)}
+            />
+          )}
+          <BurgerMenu />
+        </div>
       </div>
 
       <SignInModal

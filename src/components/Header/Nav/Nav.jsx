@@ -23,7 +23,7 @@ const Nav = () => {
         </li>
         <li>
           <NavLink
-            to="/add"
+            to="/recipe/add"
             className={({ isActive }) =>
               `${styles.navLink} ${styles.addLink} ${isActive ? styles.active : ""}`
             }

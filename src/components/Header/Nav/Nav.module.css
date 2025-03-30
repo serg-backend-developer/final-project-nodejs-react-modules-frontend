@@ -8,10 +8,10 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: 10px;
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 30px;
 }
 
 .navLink {
@@ -39,6 +39,12 @@
 .addLink:hover,
 .addLink.active {
   border-color: var(--border-color-hover);
+}
+
+@media screen and (min-width: 1440px) {
+  .navList {
+    gap: 40px;
+  }
 }
 
 @media screen and (max-width: 767px) {

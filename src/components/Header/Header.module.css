@@ -1,9 +1,30 @@
 .headerContainer {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 60px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .headerContainer {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .headerContainer {
+    padding: 0 60px;
+  }
+}
+
+/* Центрування навігації по середині хедера */
+.centerNav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header {
@@ -19,6 +40,12 @@
 .logo {
   font-size: 1.5rem;
   text-decoration: none;
+}
+
+.rightBlock {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* Темний стиль для HomePage і RecipePage */
