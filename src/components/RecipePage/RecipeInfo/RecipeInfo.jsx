@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
 import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import RecipePreparation from "../RecipePreparation/RecipePreparation";
 import PathInfo from "../PathInfo/PathInfo";
 import SignInModal from "../../SignInModal/SignInModal";
+import SignUpModal from "../../SignUpModal/SignUpModal";
 import styles from "./RecipeInfo.module.css";
 import placeholderAvatar from "../../../img/empty/no-avatar.jpg";
 
@@ -13,8 +14,8 @@ const RecipeInfo = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -34,8 +35,18 @@ const RecipeInfo = () => {
     if (!isLoggedIn) {
       setShowSignIn(true);
     } else {
-      navigate(`/user/${recipe.owner?._id}`);
+      window.location.href = `/user/${recipe.owner?._id}`;
     }
+  };
+
+  const switchToSignUp = () => {
+    setShowSignUp(true);
+    setShowSignIn(false);
+  };
+
+  const switchToSignIn = () => {
+    setShowSignIn(true);
+    setShowSignUp(false);
   };
 
   if (!recipe) {
@@ -76,17 +87,23 @@ const RecipeInfo = () => {
             <RecipePreparation
               instructions={recipe.instructions}
               isFavorite={false}
+              recipeId={recipe._id}
             />
           </div>
         </div>
       </section>
 
-      {showSignIn && (
-        <SignInModal
-          isOpen={showSignIn}
-          onClose={() => setShowSignIn(false)}
-        />
-      )}
+      <SignInModal
+        isOpen={showSignIn}
+        onClose={() => setShowSignIn(false)}
+        onSwitchToSignUp={switchToSignUp}
+      />
+
+      <SignUpModal
+        isOpen={showSignUp}
+        onClose={() => setShowSignUp(false)}
+        onSwitchToSignIn={switchToSignIn}
+      />
     </>
   );
 };
