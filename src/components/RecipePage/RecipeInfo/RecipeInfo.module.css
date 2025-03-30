@@ -2,21 +2,21 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
-  padding: 2rem 0;
+  padding-top: 2rem;
+  padding-bottom: 64px;
   align-items: start;
 }
 
 .image {
   width: 100%;
   height: auto;
-  object-fit: cover;
   border-radius: 8px;
+  object-fit: cover;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .recipeLayout {
@@ -26,10 +26,18 @@
   flex-wrap: wrap;
 }
 
-/* Responsive */
+/* Tablet */
+@media (max-width: 768px) {
+  .section {
+    padding-bottom: 104px;
+  }
+}
+
+/* Desktop */
 @media (max-width: 1440px) {
   .section {
     grid-template-columns: 1fr;
+    padding-bottom: 120px;
   }
 
   .recipeLayout {
