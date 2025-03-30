@@ -24,7 +24,7 @@ const RecipeFilters = ({ currentPage, size }) => {
 
   return (
     <div className={ css.container }>
-      <IngredientDropdown />
+      <IngredientDropdown className={css["select-container"]} classIngName={css["ing-select"]} />
       <AreaDropdown />
     </div>
   );

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchIngredients, selectIngredient } from '../../redux/ingredients/ingredientSlice';
 import css from "./IngredientDropdown.module.css";
 
-const IngredientDropdown = () => {
+const IngredientDropdown = ({className, classIngName}) => {
   const dispatch = useDispatch();
   const ingredients = useSelector((state) => state.ingredients.list);
   const selectedIngredient = useSelector((state) => state.ingredients.selectedIngredient);
@@ -26,8 +26,8 @@ const IngredientDropdown = () => {
   };
 
   return (
-      <div className={css["custom-select-container"]}>
-        <div className={css["custom-select"]} onClick={() => setIsOpen(!isOpen)}>
+      <div className={className ? className : css["custom-select-container"]}>
+        <div className={classIngName ? classIngName : css["custom-select"]} onClick={() => setIsOpen(!isOpen)}>
         <span className={css[selectedIngredient ? 'selected-text' : 'placeholder-text']}>
             {selectedIngredient ? selectedIngredient.name : 'Ingredient'}
           <svg className={css["arrow-icon"]} >
