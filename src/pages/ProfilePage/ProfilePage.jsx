@@ -5,12 +5,14 @@ import Subtitle from "../../components/Subtitle/Subtitle";
 import style from "./ProfilePage.module.css";
 import { useParams } from "react-router-dom";
 import UserTabs from "../../components/UserTabs/UserTabs";
+import PathInfo from "../../components/PathInfo/PathInfo";
 
 const ProfilePage = () => {
   const { id } = useParams();
   return (
     <section className={style["profile-section"]}>
       <div className="container">
+        <PathInfo currentPage="PROFILE" />
         <MainTitle>Profile</MainTitle>
         <Subtitle>
           Reveal your culinary art, share your favorite recipe and create <br />
