@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCurrentProfile } from "../../../redux/profile/operations";
+import { fetchCurrentProfile } from "../../redux/profile/operations";
 import styles from "./UserBar.module.css";
 
 const UserBar = ({ openLogOutModal }) => {
@@ -16,12 +16,11 @@ const UserBar = ({ openLogOutModal }) => {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownWidth, setDropdownWidth] = useState(null);
-  const containerRef = useRef();
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (isDropdownOpen && containerRef.current) {
-      const width = containerRef.current.offsetWidth;
-      setDropdownWidth(width);
+      setDropdownWidth(containerRef.current.offsetWidth);
     }
   }, [isDropdownOpen]);
 
@@ -33,12 +32,11 @@ const UserBar = ({ openLogOutModal }) => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   if (!profile || !profile.name) {
-    console.warn("Profile або profile.name відсутній");
+    console.warn("Profile or profile.name is missing");
     return null;
   }
 
@@ -50,31 +48,23 @@ const UserBar = ({ openLogOutModal }) => {
     <div className={styles.userBar} ref={containerRef}>
       <div className={styles.avatarContainer}>
         {profile.avatar ? (
-          <img
-            src={profile.avatar}
-            alt={profile.name}
-            className={styles.avatar}
-          />
+          <img src={profile.avatar} alt={profile.name} className={styles.avatar} />
         ) : (
           <div className={styles.avatarPlaceholder}>?</div>
         )}
       </div>
       <div className={styles.userInfo} onClick={toggleDropdown}>
-        <span className={styles.userName}>
-          {profile.name.toUpperCase()}
-        </span>
-        <svg
-          className={`${styles.arrowIcon} ${isDropdownOpen ? styles.open : ""}`}
-        >
-          <use href="/img/icons.svg#icon-chevron-down-black"></use>
+        <span className={styles.userName}>{profile.name.toUpperCase()}</span>
+        <svg className={`${styles.arrowIcon} ${isDropdownOpen ? styles.open : ""}`}>
+          <use href="/img/icons.svg#icon-chevron-down-black" />
         </svg>
       </div>
       {isDropdownOpen && (
         <div
           className={styles.dropdownMenu}
-          style={{ width: dropdownWidth ? dropdownWidth : "100%" }}
+          style={{ width: dropdownWidth || "100%" }}
         >
-          <Link to="/user/id" className={styles.dropdownItem}>
+          <Link to={`/user/${profile.id}`} className={styles.dropdownItem}>
             PROFILE
           </Link>
           <button
@@ -84,7 +74,7 @@ const UserBar = ({ openLogOutModal }) => {
           >
             LOG OUT
             <svg className={styles.arrowIconDropdown}>
-              <use href="/img/icons.svg#icon-arrow-up-right-white"></use>
+              <use href="/img/icons.svg#icon-arrow-up-right-white" />
             </svg>
           </button>
         </div>

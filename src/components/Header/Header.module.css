@@ -1,3 +1,13 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px 20px 0 0;
+  margin: 8px 8px 0 8px;
+  padding-top: 20px;
+}
+
 .headerContainer {
   position: relative;
   display: flex;
@@ -8,38 +18,10 @@
   padding: 0 16px;
 }
 
-@media screen and (min-width: 768px) {
-  .headerContainer {
-    padding: 0 32px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .headerContainer {
-    padding: 0 60px;
-  }
-}
-
-/* Центрування навігації по середині хедера */
 .centerNav {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px 20px 0 0;
-  margin: 0 8px;
-  padding-top: 20px;
-}
-
-.logo {
-  font-size: 1.5rem;
-  text-decoration: none;
 }
 
 .rightBlock {
@@ -48,30 +30,34 @@
   gap: 4px;
 }
 
-/* Темний стиль для HomePage і RecipePage */
+/* Темний стиль */
 .dark {
   background-color: #050505;
   color: #fff;
-  /* Задаємо змінну для hover-ефекту рамки */
   --border-color-hover: #ffffff33;
 }
 
-/* Світлий стиль для інших сторінок */
+/* Світлий стиль */
 .light {
   background-color: #fff;
   color: #000;
-  /* Задаємо змінну для hover-ефекту рамки */
   --border-color-hover: #bfbebe;
 }
 
 @media (min-width: 768px) {
   .header {
-    margin: 0 16px;
+    margin: 16px 16px 0 16px;
+  }
+  .headerContainer {
+    padding: 0 32px;
   }
 }
 
 @media (min-width: 1440px) {
   .header {
-    margin: 0 20px;
+    margin: 20px 20px 0 20px;
+  }
+  .headerContainer {
+    padding: 0 60px;
   }
 }

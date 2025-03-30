@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import AuthBar from "./AuthBar/AuthBar";
-import UserBar from "./UserBar/UserBar";
-import Nav from "./Nav/Nav";
-import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import AuthBar from "../AuthBar/AuthBar";
+import UserBar from "../UserBar/UserBar";
+import Nav from "../Nav/Nav";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Logo from "../Logo/Logo";
 import SignInModal from "../SignInModal/SignInModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -13,8 +13,7 @@ import styles from "./Header.module.css";
 
 const Header = () => {
   const location = useLocation();
-  // темний стиль для '/' і '/recipes'
-  const isDark = location.pathname === "/" || location.pathname === "/recipes";
+  const isDark = location.pathname === "/" || location.pathname === "/recipe";
 
   const user = useSelector((state) => state.auth.user);
   const [isSignInOpen, setSignInOpen] = useState(false);
@@ -37,11 +36,9 @@ const Header = () => {
     >
       <div className={styles.headerContainer}>
         <Logo />
-        {/* Центруємо навігацію */}
         <div className={styles.centerNav}>
           <Nav />
         </div>
-        {/* Правий блок, який містить або AuthBar, або UserBar, та BurgerMenu */}
         <div className={styles.rightBlock}>
           {user ? (
             <UserBar openLogOutModal={() => setLogOutOpen(true)} />

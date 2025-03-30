@@ -1,13 +1,11 @@
-/* Мобільна версія (mobile-first) */
 .userBar {
   display: flex;
   align-items: center;
-  gap: 10px; /* мобільний відступ між елементами */
+  gap: 10px;
   border-radius: 30px;
   background: #1a1a1a;
   position: relative;
   padding: 0;
-  /* Висота дорівнює висоті аватарки */
   height: 32px;
 }
 
@@ -50,7 +48,6 @@
   line-height: 1;
 }
 
-/* Для мобільної версії – мінімальні відступи для стрілки */
 .arrowIcon {
   width: 18px;
   height: 18px;
@@ -63,12 +60,11 @@
   transform: rotate(180deg);
 }
 
-/* Випадаюче меню, яке займає всю ширину .userBar і розташовується під ним з відступом 8px */
 .dropdownMenu {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  border: 1px solid #FFFFFF33;
+  border: 1px solid #ffffff33;
   background: #050505;
   color: #fff;
   border-radius: 15px;
