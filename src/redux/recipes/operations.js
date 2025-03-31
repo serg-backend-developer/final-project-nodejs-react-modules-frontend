@@ -16,20 +16,17 @@ export const getFavoriteRecipes = createAsyncThunk(
         return rejectWithValue("User is not authenticated");
       }
 
-      const response = await axios.get(
-        "https://project-team-04.onrender.com/api/users/favorites",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${BASE_URL}/users/favorites`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       toast.error("Failed to load recipes!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const addFavoriteRecipe = createAsyncThunk(
@@ -44,20 +41,20 @@ export const addFavoriteRecipe = createAsyncThunk(
       }
 
       const response = await axios.post(
-        `https://project-team-04.onrender.com/api/recipes/favorites/${id}`,
+        `${BASE_URL}/recipes/favorites/${id}`,
         {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       return response.data;
     } catch (error) {
       toast.error("Failed to load favorite recipe!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const removeFromFavoriteRecipe = createAsyncThunk(
@@ -72,19 +69,19 @@ export const removeFromFavoriteRecipe = createAsyncThunk(
       }
 
       const response = await axios.delete(
-        `https://project-team-04.onrender.com/api/recipes/favorites/${id}`,
+        `${BASE_URL}/recipes/favorites/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       return response.data;
     } catch (error) {
       toast.error("Failed to delete favorite recipe!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchRecipesByCategory = createAsyncThunk(
@@ -103,7 +100,7 @@ export const fetchRecipesByCategory = createAsyncThunk(
       toast.error("Failed to load recipes!");
       return ThunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchRecipesByFilters = createAsyncThunk(
@@ -124,7 +121,7 @@ export const fetchRecipesByFilters = createAsyncThunk(
       toast.error("Failed to load recipes!");
       return ThunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchUserRecipes = createAsyncThunk(
@@ -153,7 +150,7 @@ export const fetchUserRecipes = createAsyncThunk(
       toast.error("Failed to load recipes!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const deleteRecipe = createAsyncThunk(
@@ -178,7 +175,7 @@ export const deleteRecipe = createAsyncThunk(
       toast.error("Failed to delete recipe!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchUserFavoriteRecipes = createAsyncThunk(
@@ -207,7 +204,7 @@ export const fetchUserFavoriteRecipes = createAsyncThunk(
       toast.error("Failed to load recipes!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const deleteFavoriteRecipe = createAsyncThunk(
@@ -232,5 +229,5 @@ export const deleteFavoriteRecipe = createAsyncThunk(
       toast.error("Failed to delete recipe!");
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
