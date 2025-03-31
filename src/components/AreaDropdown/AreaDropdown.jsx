@@ -24,6 +24,11 @@ const AreaDropdown = () => {
     setIsOpen(false);
   };
 
+  const handleReset = () => {
+    dispatch(selectArea(""));
+    setIsOpen(false);
+  };
+
   return (
     <div className={css["custom-select-container"]}>
       <div className={css["custom-select"]} onClick={() => setIsOpen(!isOpen)}>
@@ -36,6 +41,7 @@ const AreaDropdown = () => {
       </div>
       {isOpen && (
         <ul className={css["custom-options"]}>
+          <li onClick={handleReset}>Reset</li>
           {status !== 'loading' && status !== 'failed' &&
             areas.map((area) => (
               <li key={area.id} onClick={() => handleSelect(area.id)}>

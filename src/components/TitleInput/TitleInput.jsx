@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './TitleInput.module.css';
 
-const TitleInput = ({ register, errors }) => {
+const TitleInput = ({ register, errors, watch }) => {
+    const titleValue = watch("title");
+    
     return (
         <div className={styles['form-group']}>
             <input
@@ -12,7 +14,7 @@ const TitleInput = ({ register, errors }) => {
                 {...register("title")}
                 placeholder="THE NAME OF THE RECIPE"
             />
-            {errors.title && <p className={styles['error-message']}>{errors.title.message}</p>}
+            {errors.title && !titleValue && <p className={styles['error-message']}>{errors.title.message}</p>}
         </div>
     );
 };

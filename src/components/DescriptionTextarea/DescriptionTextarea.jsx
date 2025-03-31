@@ -29,7 +29,7 @@ const DescriptionTextarea = ({ name, label, placeholder, register, errors, watch
             <div className={styles["char-count"]}>
                 <span className={styles["char-counter"]}>{value?.length || 0}</span>/200
             </div>
-            {errors[name] && (
+            {errors[name] && !value && (
                 <p className={styles["error-message"]}>{errors[name].message}</p>
             )}
         </div>
