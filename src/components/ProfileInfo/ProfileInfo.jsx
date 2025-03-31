@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-hot-toast";
+import defaultAvatar from "../../img/default-avatar.png";
 
 import {
   fetchProfile,
@@ -67,7 +68,7 @@ const ProfileInfo = () => {
           <>
             <div className={style.profileImage}>
               <img
-                src={profile?.avatar}
+                src={profile?.avatar || defaultAvatar}
                 alt="profile"
                 className={style.avatar}
               />
