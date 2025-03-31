@@ -4,10 +4,13 @@ import css from "./CategoryList.module.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import AllCategories from "../AllCategories/AllCategories";
+import { selectLoading } from "../../redux/categories/categorySlice";
+import Loader from "../Loader/Loader";
 
 const DEFAULT_VIEW_ITEMS_NUMBER = 8;
 
 const CategoryList = () => {
+  const isLoading = useSelector(selectLoading);
   const categories = useSelector((state) => state.categories.list);
   const [firstViewItemsNumber, setFirstViewItemsNumber] = useState(
     DEFAULT_VIEW_ITEMS_NUMBER,
@@ -46,6 +49,7 @@ const CategoryList = () => {
 
   return (
     <ul className={css.categoriesList}>
+      {isLoading && <Loader />}
       {categories
         .slice(0, showAll ? categories.length : firstViewItemsNumber)
         .map((category, index) => (
@@ -58,7 +62,7 @@ const CategoryList = () => {
           className={createItemClass(firstViewItemsNumber)}
           onClick={() => setShowAll(true)}
         >
-          <AllCategories />
+          {!isLoading && <AllCategories />}
         </li>
       )}
     </ul>

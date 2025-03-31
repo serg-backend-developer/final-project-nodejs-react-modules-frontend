@@ -7,6 +7,7 @@ import Footer from "./Footer/Footer";
 import Header from "./Header/Header"
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import Loader from "./Loader/Loader";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const Categories = lazy(() => import("../components/Categories/Categories"));
@@ -16,7 +17,7 @@ const RecipePage = lazy(() => import("../pages/RecipePage/RecipePage"));
 function App() {
   return (
     <AppLayout>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
       <Header />
         <Routes>
           <Route path="/" element={<HomePage />}>
