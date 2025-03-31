@@ -31,6 +31,10 @@
 	}
 }
 
+.loader {
+	margin: auto;
+}
+
 .icon {
 	transform: rotate(225deg);
 }

@@ -16,6 +16,8 @@ import style from '../App.module.css';
 import css from "./Recipes.module.css";
 import icons from "../../img/icons2.svg";
 import { useLocation, useNavigate } from "react-router";
+import { selectLoading } from "../../redux/recipes/selectors.js";
+import Loader from "../Loader/Loader.jsx";
 
 
 const Recipes = () => {
@@ -23,6 +25,7 @@ const Recipes = () => {
 	const navigate = useNavigate()
 	const location = useLocation();
 	const dispatch = useDispatch();
+	const isLoading = useSelector(selectLoading);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const selectedArea = useSelector((state) => state.areas.selectedArea);
 	const selectedIngredient = useSelector((state) => state.ingredients.selectedIngredient);
@@ -97,14 +100,15 @@ const Recipes = () => {
 					<div>
 						<RecipeFilters />
 					</div>
-					<div>
+					<div className={css.loader}>
+						{isLoading && <Loader />}
 						{recipes.recipes? (
-        					<RecipeList recipes={recipes.recipes} />
+        					(!isLoading && <RecipeList recipes={recipes.recipes} />)
       					) : (
-        					<p className={css.message}>No recipes found for this category.</p>
+        					!isLoading && <p className={css.message}>No recipes found for this category.</p>
 						)}
 						{recipes.totalItems === 0 ?
-							(<p className={css.message}>No recipes found.</p>) : (
+							(!isLoading && <p className={css.message}>No recipes found.</p>) : (
 							<Pagination
 								currentPage={currentPage}
 								totalPages={totalPages}

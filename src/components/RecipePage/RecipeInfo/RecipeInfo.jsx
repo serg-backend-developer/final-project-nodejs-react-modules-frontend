@@ -7,6 +7,7 @@ import RecipePreparation from "../RecipePreparation/RecipePreparation";
 import PathInfo from "../PathInfo/PathInfo";
 import styles from "./RecipeInfo.module.css";
 import placeholderAvatar from "../../../img/empty/no-avatar.jpg";
+import Loader from "../../Loader/Loader";
 
 const RecipeInfo = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const RecipeInfo = () => {
   };
 
   if (!recipe) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   return (

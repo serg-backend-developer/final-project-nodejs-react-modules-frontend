@@ -4,11 +4,14 @@ import { fetchUserFollowers } from "../../api/foodies";
 import { toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
+import Loader from "../Loader/Loader";
+import css from "../UserRecipes/UserRecipes.module.css";
 
 const UserFollowers = ({ userId }) => {
   const [followers, setFollowers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true) 
 
   const changeCurrentPage = async (page) => {
     await loadUserFollowers(page);
@@ -31,10 +34,14 @@ const UserFollowers = ({ userId }) => {
           };
         }),
       );
+      setIsLoading(true);
       setCurrentPage(response.currentPage);
       setTotalPages(response.totalPages);
     } catch (error) {
       toast.error("Failed to load followers!");
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -43,8 +50,9 @@ const UserFollowers = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div>
-      {followers.length > 0 ? (
+    <div className={isLoading ? css.loader : ''}>
+      {isLoading && <Loader />}
+      {followers.length > 0 && !isLoading ? (
         <>
           <UserCardList
             items={followers}
@@ -56,7 +64,7 @@ const UserFollowers = ({ userId }) => {
             onPageChange={changeCurrentPage}
           />
         </>
-      ) : (
+      ) : ( !isLoading &&
         <EmptyList>
           There are currently no followers on your account. Please engage our
           visitors with interesting content and draw their attention to your
