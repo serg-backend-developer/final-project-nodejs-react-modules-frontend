@@ -71,8 +71,6 @@ const Recipes = () => {
 		setCurrentPage(1);
 	}, [selectedArea, selectedIngredient]);
 
-	console.log(selectedCategory)
-
 	useEffect(() => {
 		if (recipes.totalPages) {
 			setTotalPages(recipes.totalPages);
@@ -82,14 +80,12 @@ const Recipes = () => {
 	return (
 		<section className={css["recipes-section"]}>
 			<div className={style.container}>
-				{!selectedCategory && (
-					<button className={css.btn} onClick={handleClick}>
-						<svg className={css.icon}>
-							<use href={`${icons}#icon-arrow-up-right`}></use>
-						</svg>
-						back
-					</button>
-				)}
+				<button className={css.btn} onClick={handleClick}>
+					<svg className={css.icon}>
+						<use href={`${icons}#icon-arrow-up-right`}></use>
+					</svg>
+					back
+				</button>
 				<div ref={categoriesListElement}></div>
 				<MainTitle>
 					{!selectedCategory ? "Recipes" : selectedCategory}
