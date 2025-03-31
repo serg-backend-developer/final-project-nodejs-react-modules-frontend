@@ -25,6 +25,11 @@ const IngredientDropdown = ({className, classIngName}) => {
     setIsOpen(false);
   };
 
+    const handleReset = () => {
+    dispatch(selectIngredient(null));
+    setIsOpen(false);
+  };
+
   return (
       <div className={className ? className : css["custom-select-container"]}>
         <div className={classIngName ? classIngName : css["custom-select"]} onClick={() => setIsOpen(!isOpen)}>
@@ -37,7 +42,8 @@ const IngredientDropdown = ({className, classIngName}) => {
         </span>
         </div>
         {isOpen && (
-            <ul className={css["custom-options"]}>
+        <ul className={css["custom-options"]}>
+          <li onClick={handleReset}>Reset</li>
               {status !== 'loading' && status !== 'failed' &&
                   sortedIngredients.map((ingredient) => (
                       <li
