@@ -1,35 +1,27 @@
 .wrapper {
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Mulish'; 
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 64px;
 }
 
-.home {
-  font-family: var(--font-family);
-font-weight: 700;
-font-size: 12px;
-line-height: 150%;
-letter-spacing: -0.02em;
-text-transform: uppercase;
-  color: #bfbebe;
-}
-
-.separator {
+.home,
+.separator,
+.current {
   font-weight: 700;
   font-size: 12px;
   line-height: 150%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.home,
+.separator {
   color: #bfbebe;
 }
 
 .current {
-  font-family: var(--font-family);
-font-weight: 700;
-font-size: 12px;
-line-height: 150%;
-letter-spacing: -0.02em;
-text-transform: uppercase;
   color: #050505;
 }
 
@@ -37,14 +29,7 @@ text-transform: uppercase;
 @media (min-width: 768px) {
   .wrapper {
     gap: 12px;
-    margin-top: 64px; /* Або інше значення */
-  }
-
-  .home,
-  .separator,
-  .current {
-    font-size: 12px;
-    line-height: 150%;
+    margin-top: 100px;
   }
 }
 
@@ -52,6 +37,6 @@ text-transform: uppercase;
 @media (min-width: 1440px) {
   .wrapper {
     gap: 8px;
-    margin-top: 80px;
+    margin-top: 120px;
   }
 }
