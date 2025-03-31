@@ -58,24 +58,18 @@ const Recipes = () => {
   	};
 
 	useEffect(() => {
-		if (selectedCategory) {
-			dispatch(fetchRecipesByFilters({
-				category: selectedCategory,
-				area: selectedArea,
-				ingredient: selectedIngredient,
-				page: currentPage,
-				size: limit,
-			}));
-		}
+		dispatch(fetchRecipesByFilters({
+			category: selectedCategory,
+			area: selectedArea,
+			ingredient: selectedIngredient,
+			page: currentPage,
+			size: limit,
+		}));
 	}, [dispatch, selectedCategory, selectedArea, selectedIngredient, currentPage, limit]);
 
 	useEffect(() => {
 		setCurrentPage(1);
 	}, [selectedArea, selectedIngredient]);
-
-	const isEmptyObject = (obj) => {
-		return Object.keys(obj).length === 0 && obj.constructor === Object;
-	};
 
 	useEffect(() => {
 		if (recipes.totalPages) {
@@ -86,17 +80,15 @@ const Recipes = () => {
 	return (
 		<section className={css["recipes-section"]}>
 			<div className={style.container}>
-				{!isEmptyObject(selectedCategory) && (
-					<button className={css.btn} onClick={handleClick}>
-						<svg className={css.icon}>
-							<use href={`${icons}#icon-arrow-up-right`}></use>
-						</svg>
-						back
-					</button>
-				)}
+				<button className={css.btn} onClick={handleClick}>
+					<svg className={css.icon}>
+						<use href={`${icons}#icon-arrow-up-right`}></use>
+					</svg>
+					back
+				</button>
 				<div ref={categoriesListElement}></div>
 				<MainTitle>
-					{isEmptyObject(selectedCategory) ? "Categories" : selectedCategory}
+					{!selectedCategory ? "Recipes" : selectedCategory}
 				</MainTitle>
 				<Subtitle>
 					{categoryDescriptions[selectedCategory]}
