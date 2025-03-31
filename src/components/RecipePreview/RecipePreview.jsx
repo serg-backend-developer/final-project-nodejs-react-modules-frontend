@@ -23,13 +23,7 @@ const RecipePreview = ({ recipe, isOwnProfile, listType }) => {
     }
 
     if (listType === "favorites") {
-      if (
-        window.confirm(
-          "Are you sure you want to remove this recipe from favorites?"
-        )
-      ) {
-        dispatch(deleteFavoriteRecipe(id));
-      }
+      dispatch(deleteFavoriteRecipe(id));
     }
   };
 
