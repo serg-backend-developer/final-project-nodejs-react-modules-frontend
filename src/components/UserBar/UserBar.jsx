@@ -36,7 +36,6 @@ const UserBar = ({ openLogOutModal }) => {
   }, []);
 
   if (!profile || !profile.name) {
-    console.warn("Profile or profile.name is missing");
     return null;
   }
 
