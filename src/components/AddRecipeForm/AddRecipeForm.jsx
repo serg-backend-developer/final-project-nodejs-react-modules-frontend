@@ -169,12 +169,14 @@ const AddRecipeForm = () => {
                     setValue={setValue}
                     imagePreview={imagePreview}
                     setImagePreview={setImagePreview}
+                    watch={watch}
                 />
             </div>
             <div className={styles["form-content"]}>
                 <TitleInput
                     register={register}
                     errors={errors}
+                    watch={watch}
                 />
 
                 <DescriptionTextarea
@@ -216,6 +218,7 @@ const AddRecipeForm = () => {
                     selectedIngredients={selectedIngredients}
                     setSelectedIngredients={setSelectedIngredients}
                     setValue={setValue}
+                    watch={watch}
                 />
 
                 <div className={styles["label-wrapper"]}>

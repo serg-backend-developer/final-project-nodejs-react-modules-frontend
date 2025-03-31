@@ -3,7 +3,9 @@ import { Controller } from "react-hook-form";
 import styles from "./ImageUploader.module.css";
 import { ReactComponent as CameraIcon } from '../../img/categories/addPicture.svg';
 
-const ImageUploader = ({ control, errors, setValue, imagePreview, setImagePreview }) => {
+const ImageUploader = ({ control, errors, setValue, imagePreview, setImagePreview, watch }) => {
+    const imgValue = watch("image");
+
     const handleFileChange = (e, field) => {
         const file = e.target.files[0];
         if (file) {
@@ -63,9 +65,8 @@ const ImageUploader = ({ control, errors, setValue, imagePreview, setImagePrevie
                         />
                     </label>
                 )}
-                {errors.image && <p style={{color: 'red', fontSize: '0.8rem', marginTop: '4px'}}>{errors.image.message}</p>}
+                {errors.image && !imgValue?.length && <p style={{color: 'red', fontSize: '0.8rem', marginTop: '4px'}}>{errors.image.message}</p>}
             </div>
-            {/*{errors.image && <p style={{color: 'red', fontSize: '0.8rem', marginTop: '4px'}}>{errors.image.message}</p>}*/}
         </div>
     );
 };

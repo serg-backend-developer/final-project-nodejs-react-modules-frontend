@@ -11,8 +11,10 @@ const IngredientsSection = ({
                                 errors,
                                 selectedIngredients,
                                 setSelectedIngredients,
-                                setValue
-                            }) => {
+                                setValue, watch
+}) => {
+    const ingValue = watch("ingredients");
+
     const dispatch = useDispatch();
     const [ingredientAmount, setIngredientAmount] = useState("");
     const selectedIngredient = useSelector((state) => state.ingredients.selectedIngredient);
@@ -78,7 +80,7 @@ const IngredientsSection = ({
                 removeIngredient={removeIngredient}
             />
 
-            {errors.ingredients && (
+            {errors.ingredients && (!ingValue || ingValue.length === 0) && (
                 <p className={styles['error-message']}>{errors.ingredients.message}</p>
             )}
         </div>
