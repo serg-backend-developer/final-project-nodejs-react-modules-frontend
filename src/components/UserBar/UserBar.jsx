@@ -63,7 +63,7 @@ const UserBar = ({ openLogOutModal }) => {
           className={styles.dropdownMenu}
           style={{ width: dropdownWidth || "100%" }}
         >
-          <Link to={`/user/${profile.id}`} className={styles.dropdownItem}>
+          <Link to={`/user/${profile.id}`} className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
             PROFILE
           </Link>
           <button
