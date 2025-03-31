@@ -19,7 +19,7 @@ const CategoryCard = ({ title }) => {
     <div className={className}>
       <div className={css.cardContent}>
         <h3 className={css.cardTitle}>{title}</h3>
-          <button onClick={handleClick} className={css.iconWrapper}>
+          <button onClick={handleClick} className={css.iconWrapper} aria-label="to recipe">
             <ArrowUpRightIcon />
           </button>
       </div>
