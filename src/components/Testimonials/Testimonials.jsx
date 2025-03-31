@@ -7,6 +7,8 @@ import styles from "./Testimonials.module.css";
 import style from "../App.module.css";
 import "./swiper.css";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
 
@@ -32,9 +34,7 @@ const Testimonials = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch(
-          "https://project-team-04.onrender.com/api/testimonials",
-        );
+        const response = await fetch(`${BASE_URL}/testimonials`);
 
         if (!response.ok) throw new Error("Network response was not ok");
 
